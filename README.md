@@ -35,6 +35,16 @@ npx -y skills add <你的GitHub用户名>/qinpei-skills -g --all
 
 > 手机端安装依赖 WorkBuddy 官方的 SkillHub 通道，不依赖本仓库的 GitHub 地址。
 
+### 通用：一句话指令安装（GitHub raw，手机/桌面都行）
+
+不想走 SkillHub 时，也可以直接把本仓库的安装说明书地址发给 WorkBuddy，让它自己装：
+
+```
+根据 https://raw.githubusercontent.com/<你的GitHub用户名>/qinpei-skills/main/install.md 安装「沁珮方法论技能包」（可指定某个技能，如"朋友圈信任经营"）。
+```
+
+仓库根目录的 `install.md` 是一份写给 AI 的安装说明书，会自动把对应技能目录完整下载到 `~/.workbuddy/skills/`。
+
 ## 关于「开源」与「版权」
 
 - 本仓库所有技能以 **MIT 协议**开源，可自由使用、修改、再分发。

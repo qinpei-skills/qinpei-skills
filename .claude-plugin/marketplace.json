@@ -1,0 +1,108 @@
+{
+  "name": "qinpei-skills",
+  "owner": {
+    "name": "qinpei"
+  },
+  "metadata": {
+    "description": "沁珮（经销商赋能）开源方法论技能集 —— 把常用的展业、社群、朋友圈、故事力、课程研发方法蒸馏成可一键安装的 AI 技能。",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "qinpei-community-ops-trust",
+      "displayName": "qinpei-community-ops-trust",
+      "description": "社群运营提效技能包——帮大健康/分享经济从业者用AI把微信群从\"广告死群\"升级为\"信任运营场\"。不会写提示词也能用，聊天式操作，零门槛。覆盖从0到1建群、五类群内容排期（兴趣/会员服务/垂类打卡/养伙伴围观/事业）、群间流转与合并洗群、诊断",
+      "source": "./skills/qinpei-community-ops-trust",
+      "strict": true,
+      "version": "1.0.0",
+      "category": "business-methodology",
+      "keywords": [
+        "qinpei",
+        "经销商赋能",
+        "团队长",
+        "方法论",
+        "chinese"
+      ]
+    },
+    {
+      "name": "qinpei-community-plan-gen",
+      "displayName": "qinpei-community-plan-gen",
+      "description": "基于 qinpei-community-ops-trust v2.0 社群方法论，批量生成多赛道「事业群带教方案」Word 文档（.docx）。当用户（沁珮）要为某大健康/分享经济赛道产出事业群带教/团队长训练场方案、或需要一次出多个赛道的",
+      "source": "./skills/qinpei-community-plan-gen",
+      "strict": true,
+      "version": "1.0.0",
+      "category": "business-methodology",
+      "keywords": [
+        "qinpei",
+        "经销商赋能",
+        "团队长",
+        "方法论",
+        "chinese"
+      ]
+    },
+    {
+      "name": "qinpei-course-asset-workflow",
+      "displayName": "qinpei-course-asset-workflow",
+      "description": "沁珮研发知识付费课程（以小鹅通训练营为典型形态）从课程设计、视觉规范、素材图片生产到上架发布的标准工作流。当用户要从零设计一门年度会员/训练营课程、制作配套封面/详情页/作业图等上架素材、搭建小鹅通产品，或复盘一套可复用的课程研发 SOP ",
+      "source": "./skills/qinpei-course-asset-workflow",
+      "strict": true,
+      "version": "1.0.0",
+      "category": "business-methodology",
+      "keywords": [
+        "qinpei",
+        "经销商赋能",
+        "团队长",
+        "方法论",
+        "chinese"
+      ]
+    },
+    {
+      "name": "qinpei-knowledge-base",
+      "displayName": "沁珮先学再用",
+      "description": "|",
+      "source": "./skills/qinpei-knowledge-base",
+      "strict": true,
+      "version": "1.0.0",
+      "category": "business-methodology",
+      "keywords": [
+        "qinpei",
+        "经销商赋能",
+        "团队长",
+        "方法论",
+        "chinese"
+      ]
+    },
+    {
+      "name": "qinpei-storytelling",
+      "displayName": "qinpei-storytelling",
+      "description": "故事力提效技能包——帮大健康/分享经济团队长用AI把\"故事\"变成信任经营的最短路径。基于沁珮「三问写故事」与星光计划四大新能力，覆盖六类故事结构（个人/ IP / 创业 / 案例 / 产品 / 失败转折）+ 应用场景 + 自检清单 + 按展",
+      "source": "./skills/qinpei-storytelling",
+      "strict": true,
+      "version": "1.0.0",
+      "category": "business-methodology",
+      "keywords": [
+        "qinpei",
+        "经销商赋能",
+        "团队长",
+        "方法论",
+        "chinese"
+      ]
+    },
+    {
+      "name": "qinpei-wechat-trust",
+      "displayName": "qinpei-wechat-trust",
+      "description": "朋友圈信任经营提效技能包——帮大健康/分享经济从业者用AI把朋友圈从\"卖货广告牌\"升级为\"信任银行\"。不会写提示词也能用，聊天式操作，零门槛。覆盖IP名片五位置装修（含置顶三条）、内容制作六大维度、三层信任体系、黄金四段式文案结构、发圈计划",
+      "source": "./skills/qinpei-wechat-trust",
+      "strict": true,
+      "version": "1.0.0",
+      "category": "business-methodology",
+      "keywords": [
+        "qinpei",
+        "经销商赋能",
+        "团队长",
+        "方法论",
+        "chinese"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+# 沁珮方法论技能包（qinpei-skills）
+
+沁珮（经销商赋能方向）把常年使用的展业方法，蒸馏成一组可被 AI 一键调用的技能（Skill）。
+本仓库**全部开源、免费**，任何人都能安装使用。
+
+> 核心逻辑：**技能是方法，不是交付物。** 真正值钱的是「教你怎么用、陪你练、帮你批作业」的服务。
+> 这些技能是钩子 —— 装上它，你就拿到了一套经过验证的展业方法论起点。
+
+## 包含技能（6 个）
+
+| 技能 | 作用 |
+| --- | --- |
+| `qinpei-wechat-trust` | 朋友圈信任经营：把朋友圈从卖货广告牌升级为信任银行 |
+| `qinpei-community-ops-trust` | 社群运营提效：把微信群从广告死群升级为信任运营场 |
+| `qinpei-storytelling` | 故事力：用「三问写故事」把经历变成信任经营的最短路径 |
+| `qinpei-course-asset-workflow` | 课程研发工作流：从大纲到上架素材的标准 SOP |
+| `qinpei-community-plan-gen` | 事业群带教方案生成：批量产出赛道带教方案 |
+| `qinpei-knowledge-base` | 沁珮先学再用：强制学习知识库后再执行任务的纪律技能 |
+
+## 安装方式
+
+### 桌面端（有电脑 / 开发者）
+
+```bash
+npx -y skills add <你的GitHub用户名>/qinpei-skills -g --all
+```
+
+安装后技能会出现在 `~/.workbuddy/skills/`（WorkBuddy）或对应 Agent 的 skills 目录。
+
+### 手机端（WorkBuddy 小程序）— 推荐
+
+1. 打开 WorkBuddy 小程序 → 进入 **SkillHub**
+2. 搜索本仓库的技能（或在会员群拿到 `unlisted` 专属安装链接）
+3. 点「安装」即可，无需电脑
+
+> 手机端安装依赖 WorkBuddy 官方的 SkillHub 通道，不依赖本仓库的 GitHub 地址。
+
+## 关于「开源」与「版权」
+
+- 本仓库所有技能以 **MIT 协议**开源，可自由使用、修改、再分发。
+- 技能文件为纯文本，**任何人装到自己的设备后都能原样转发** —— 这是开源的天然属性，无法也无需阻止。
+- 因此我们把护城河放在「方法 + 陪跑 + 批改」的服务里，而非文件本身。
+- 公开版本已按规范**去除真实品牌名与学员个人数据**，仅保留方法论骨架。
+
+## 目录结构
+
+```
+qinpei-skills/
+├── .claude-plugin/
+│   ├── marketplace.json     # 技能市场清单（每个技能可单独安装）
+│   └── plugin.json          # 整仓插件清单（--all 全装）
+├── skills/                  # 6 个技能，每个一个目录 + SKILL.md
+├── skillhub-zips/           # 每个技能一个 ZIP，用于 SkillHub 上传
+├── README.md
+└── LICENSE
+```
+
+---
+
+由沁珮与 WorkBuddy 共建 · 让好的展业方法，人人装得上。

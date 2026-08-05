@@ -1,0 +1,13 @@
+{
+  "name": "qinpei-methodology",
+  "displayName": "沁珮方法论技能包",
+  "description": "沁珮（经销商赋能）蒸馏的 6 个方法论技能：朋友圈信任经营、社群运营、故事力、课程研发、事业群带教、先学再用。",
+  "skills": [
+    "./skills/qinpei-community-ops-trust",
+    "./skills/qinpei-community-plan-gen",
+    "./skills/qinpei-course-asset-workflow",
+    "./skills/qinpei-knowledge-base",
+    "./skills/qinpei-storytelling",
+    "./skills/qinpei-wechat-trust"
+  ]
+}

@@ -5,7 +5,7 @@ description: |
   触发方式：qp、qp 技能包、「我想做XX」、「不知道用哪个」、「下一步怎么走」
   Qinpei skill family main entry. Three modes: onboarding (diagnostic), pre-task routing, post-task navigation.
   Trigger: qp, "I want to do X", "which skill should I use", "what's next"
-version: 1.3.1
+version: 1.3.2
 author: 大健康AI提效官
 agent_created: true
 tags: [沁珮, 入口, 路由, 技能包]
@@ -43,13 +43,15 @@ tags: [沁珮, 入口, 路由, 技能包]
    - **读到了** → 已安装，直接用
    - **读不到** → 未安装，先补装
 
-2. **补装流程**：
-   - 先告诉学员：「我把【XX】技能装一下，约 1-2 分钟，手机别熄屏、别切走～」
-   - 用 WebFetch 抓取技能清单 `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalog.md`，找到该技能的 SKILL.md 地址
-   - WebFetch 抓取该地址的**完整原文** → 用 Write 工具原样写入 `~/.workbuddy/skills/<技能名>/SKILL.md`
+2. **补装流程（防卡死规则）**：
+   - 先告诉学员：「我把【XX】技能装一下，约 1 分钟，手机别熄屏、别切走～」
+   - 用 WebFetch 抓取技能清单 `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalog.md`（URL 加 `?t=时间戳` 绕过缓存），找到该技能的 SKILL.md 地址
+   - WebFetch 抓取该地址的**完整原文**（URL 加 `?t=` 绕过缓存）→ 剥掉可能的 ```markdown 围栏 → 用 Write 工具原样写入 `~/.workbuddy/skills/<技能名>/SKILL.md`
    - 写完后继续执行该技能的完整流程
+   - ⚠️ **每个文件最多尝试 2 次**（WebFetch 1 次 + 兜底 1 次）。**两次都失败就立即停止**，不要反复重试同一个文件——每次 SSL 失败浪费 ~5 秒，反复重试会把时间堆到无限长
+   - ⚠️ **抓取期间实时汇报进度**（"正在装 XX，约 1 分钟，别切走"），不要闷头抓，让学员心里有数
 
-3. **补装失败**（抓取不到/写入失败）→ 告诉学员：「网络没通，没装上。你稍后再说一次你的需求（或说『升级技能包』），我帮你重试～」——**不硬装、不卡住，先安抚学员。**
+3. **补装失败**（2 次尝试后仍失败）→ 告诉学员：「网络没通，没装上。你稍后再说一次你的需求（或说『升级技能包』），我帮你重试～」——**不硬装、不卡住，先安抚学员。**
 
 4. ⚠️ **补装只写 SKILL.md**，绝不碰学员已有的画像/档案文件（学员资料是底线）。
 

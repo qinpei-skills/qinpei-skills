@@ -10,8 +10,8 @@
 |:---|:---|:---:|:---:|:---|:---|
 | qinpei | 沁珮入口（引导+导航） | 1.4.0 | core | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei/SKILL.md | |
 | qinpei-profile | 共享画像银行 | 1.0.1 | core | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-profile/SKILL.md | |
-| qinpei-wechat-trust | 朋友圈信任经营 | 2.1.0-student | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/SKILL.md | |
-| qinpei-community-ops-trust | 社群运营提效 | 3.0.4 | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/SKILL.md | |
+| qinpei-wechat-trust | 朋友圈信任经营 | 2.1.0-student | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/SKILL.md | skills/qinpei-wechat-trust/references/领域知识-中医养生.md,skills/qinpei-wechat-trust/references/领域知识-减脂塑形.md,skills/qinpei-wechat-trust/references/领域知识-美业护肤.md,skills/qinpei-wechat-trust/references/领域知识-母婴育儿.md,skills/qinpei-wechat-trust/references/领域知识-分享经济.md,skills/qinpei-wechat-trust/references/选题库.md |
+| qinpei-community-ops-trust | 社群运营提效 | 3.0.5 | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/SKILL.md | skills/qinpei-community-ops-trust/references/排期模板库.md,skills/qinpei-community-ops-trust/references/话题库.md,skills/qinpei-community-ops-trust/references/赛道案例库.md |
 | qinpei-salon-ops-trust | 线下沙龙信任经营 | 1.6.0 | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-salon-ops-trust/SKILL.md | |
 | qinpei-storytelling | 故事力提效 | 1.1.0 | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-storytelling/SKILL.md | |
 | qinpei-ip-diagnosis | 个人IP定位诊断 | 1.1.0 | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-ip-diagnosis/SKILL.md | |

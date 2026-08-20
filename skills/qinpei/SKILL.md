@@ -2,10 +2,10 @@
 name: qinpei
 description: |
   沁珮技能包全家桶入口。三种模式：新手引导（诊断式）、任务前路由、任务后导航。
-  触发方式：沁珮、沁珮技能包、「我想做XX」、「不知道用哪个」、「下一步怎么走」
+  触发方式：qp、qp 技能包、「我想做XX」、「不知道用哪个」、「下一步怎么走」
   Qinpei skill family main entry. Three modes: onboarding (diagnostic), pre-task routing, post-task navigation.
-  Trigger: 沁珮, "I want to do X", "which skill should I use", "what's next"
-version: 1.1.0
+  Trigger: qp, "I want to do X", "which skill should I use", "what's next"
+version: 1.2.0
 author: 大健康AI提效官
 agent_created: true
 tags: [沁珮, 入口, 路由, 技能包]
@@ -21,7 +21,7 @@ tags: [沁珮, 入口, 路由, 技能包]
 
 **你负责判断模式、选择技能包、按需补装和组织衔接。具体干活由被路由到的技能包执行。**
 
-学员只需要记一件事：**不知道用哪个就说「沁珮」**。
+学员只需要记一件事：**不知道用哪个就说「qp」**。
 
 ---
 
@@ -152,7 +152,7 @@ tags: [沁珮, 入口, 路由, 技能包]
 
 ## 收尾（每次任务完成后）
 
-> 还有别的想干的吗？随时跟我说～ 不知道从哪开始就说「沁珮」，我帮你看。
+> 还有别的想干的吗？随时跟我说～ 不知道从哪开始就说「qp」，我帮你看。
 
 ---
 

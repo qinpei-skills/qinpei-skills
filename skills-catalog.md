@@ -6,5 +6,6 @@
 
 | 技能名 | 显示名 | 版本 | SKILL.md 地址 |
 |:---|:---|:---:|:---|
+| qinpei-profile | 共享画像银行 | 1.0.0 | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-profile/SKILL.md |
 | qinpei-wechat-trust | 朋友圈信任经营 | 2.0.1 | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/SKILL.md |
 | qinpei-community-ops-trust | 社群运营提效 | 3.0.3 | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/SKILL.md |

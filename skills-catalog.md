@@ -7,7 +7,7 @@
 
 | 技能名 | 显示名 | 版本 | 安装模式 | SKILL.md 地址 |
 |:---|:---|:---:|:---:|:---|
-| qinpei | 沁珮入口（引导+导航） | 1.2.0 | core | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei/SKILL.md |
+| qinpei | 沁珮入口（引导+导航） | 1.3.0 | core | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei/SKILL.md |
 | qinpei-profile | 共享画像银行 | 1.0.1 | core | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-profile/SKILL.md |
 | qinpei-wechat-trust | 朋友圈信任经营 | 2.0.1 | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/SKILL.md |
 | qinpei-community-ops-trust | 社群运营提效 | 3.0.3 | on-demand | https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/SKILL.md |

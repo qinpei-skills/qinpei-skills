@@ -35,24 +35,40 @@ https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalo
 
 ---
 
-## 第二步：只处理 core 技能（on-demand 技能跳过，留给入口按需补装）
+## 第二步：本次只装这两个技能（写死名单，不依赖字段匹配）
 
-对清单里**安装模式 = `core`** 的每一个技能：
+⚠️ **本次安装只装以下两个技能，其他所有技能（包括清单里其他条目）都不抓不装**：
 
-### 1. 判断状态
+| 保存为 | 抓取地址 | 必需 |
+|:---|:---|:---:|
+| `~/.workbuddy/skills/qinpei/SKILL.md` | `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei/SKILL.md` | 必需 |
+| `~/.workbuddy/skills/qinpei-profile/SKILL.md` | `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-profile/SKILL.md` | 必需 |
+
+**这两个技能很小（合计约 10KB），秒装。** 清单里的其他技能（如朋友圈、社群等）都属于「按需补装」——**本次安装完全不抓不写任何文件**，它们由「沁珮入口」在学员实际要用时自动按需补装。
+
+### 1. 对每个要装的技能
+
 检查 `~/.workbuddy/skills/<技能名>/SKILL.md` 是否存在：
 
-- **不存在** → 新安装：WebFetch 抓取线上 SKILL.md，写入该目录
+- **不存在** → 新安装：WebFetch 抓取，写入该目录
 - **存在** → 读它 frontmatter 里的 `version` 字段，和清单里的版本比对：
   - **一样** → 跳过（已是最新，别动它）
   - **线上更新** → WebFetch 抓取，覆盖写入（升级）
 
-**安装模式 = `on-demand` 的技能：本轮全部跳过，不抓取、不安装。** 它们由「沁珮入口」在学员实际用到时自动补装。
+### 2. ⚠️ 装完自检（防止 AI 错装）
 
-### 2. 抓取失败的技能
+装完两个 core 技能后，**AI 必须做一次自检**：
+
+用 `ls ~/.workbuddy/skills/`（或 Read 目录）确认：
+- ✅ **应该存在**：`qinpei/` 和 `qinpei-profile/` 两个目录
+- ❌ **绝不应该存在**：`qinpei-wechat-trust/` 或 `qinpei-community-ops-trust/`（除非学员之前已经装过）
+
+如果发现不该有的目录被本次操作创建/修改了 → 在回复里诚实告诉学员"刚才多装了 XX（不该装的），可以忽略/后面用到时再说"。
+
+### 3. 抓取失败
 跳过它、记下来，最后告诉用户"哪个没装上，再说一次『升级技能包』重试"。**不要卡住整个流程。**
 
-### 3. ⚠️ 硬规则：保护学员自己的资料
+### 4. ⚠️ 硬规则：保护学员自己的资料
 每个技能目录下的 `我的画像.md`、`学员档案/` 等文件，是**学员自己的数据**：
 - 已存在 → **绝对不要覆盖、不要删除、不要动**
 - 不存在 → 不要替学员创建（技能使用过程中 AI 会自动创建）

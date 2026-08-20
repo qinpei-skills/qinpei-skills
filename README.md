@@ -1,72 +1,57 @@
-> ⚠️ **当前开源状态（2026-08-05）**：本仓库目前仅开源 **「朋友圈信任经营」（qinpei-wechat-trust）** 一个技能。社群运营、故事力、课程研发、事业群带教、先学再用 共 5 个技能正在优化打磨中，暂未公开，后续版本逐步开源。
->
-# 沁珮方法论技能包（qinpei-skills）
+# 沁珮技能包全家桶（qinpei-skills）
 
-沁珮（经销商赋能方向）把常年使用的展业方法，蒸馏成一组可被 AI 一键调用的技能（Skill）。
+沁珮（团队长赋能方向）把常年使用的展业方法，蒸馏成一组可被 AI 一键调用的技能（Skill）。
 本仓库**全部开源、免费**，任何人都能安装使用。
 
 > 核心逻辑：**技能是方法，不是交付物。** 真正值钱的是「教你怎么用、陪你练、帮你批作业」的服务。
 > 这些技能是钩子 —— 装上它，你就拿到了一套经过验证的展业方法论起点。
 
-## 包含技能（6 个）
+## 技能全家桶（8 个）
 
-| 技能 | 作用 |
-| --- | --- |
-| `qinpei-wechat-trust` | 朋友圈信任经营：把朋友圈从卖货广告牌升级为信任银行 |
-| `qinpei-community-ops-trust` | 社群运营提效：把微信群从广告死群升级为信任运营场 |
-| `qinpei-storytelling` | 故事力：用「三问写故事」把经历变成信任经营的最短路径 |
-| `qinpei-course-asset-workflow` | 课程研发工作流：从大纲到上架素材的标准 SOP |
-| `qinpei-community-plan-gen` | 事业群带教方案生成：批量产出赛道带教方案 |
-| `qinpei-knowledge-base` | 沁珮先学再用：强制学习知识库后再执行任务的纪律技能 |
+| 技能 | 版本 | 作用 |
+| --- | --- | --- |
+| `qinpei` | 1.4.0 | 全家桶入口：诊断你要做什么，路由到对应技能（说「qp」触发） |
+| `qinpei-profile` | 1.0.1 | 共享画像银行：填一次画像，全家桶共用 |
+| `qinpei-wechat-trust` | 2.1.0 | 朋友圈信任经营：把朋友圈从卖货广告牌升级为信任银行 |
+| `qinpei-community-ops-trust` | 3.0.4 | 社群运营提效：把微信群从广告死群升级为信任运营场 |
+| `qinpei-salon-ops-trust` | 1.6.0 | 线下沙龙信任经营：把小型活动从讲产品升级为体验信任场 |
+| `qinpei-storytelling` | 1.1.0 | 故事力：用「三问写故事」把经历变成信任经营的最短路径 |
+| `qinpei-ip-diagnosis` | 1.1.0 | 个人 IP 定位诊断：综合情况 → IP 三问 → 内容方向 |
+| `qinpei-business-check` | 1.1.0 | 业务数字化体检：数字化三问 + 5 维度，定位业务断点 |
+
+> 前 2 个是核心（首次秒装）；后 6 个按需补装（学员用到时由入口自动装）。
 
 ## 安装方式
 
-### 桌面端（有电脑 / 开发者）
+### 📱 手机端（小程序 / APP）— 推荐
+
+复制下面这句话，发到 WorkBuddy 对话框，AI 会自动装好：
+
+```
+根据 https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/install.md 帮我安装「沁珮技能包」
+```
+
+- 首次安装**约 1 分钟**（只装核心：入口 + 画像银行）
+- 装完 AI 会问你"做什么行业、最头疼什么" → 引导你选功能 → 用到哪个技能再自动补装
+- 不知道下一步做什么 → 随时说「**qp**」，AI 帮你诊断
+
+### 💻 电脑端（开发者 / 会用命令行）
 
 ```bash
-npx -y skills add <你的GitHub用户名>/qinpei-skills -g --all
+npx -y skills add qinpei-skills/qinpei-skills -g --all
 ```
 
-安装后技能会出现在 `~/.workbuddy/skills/`（WorkBuddy）或对应 Agent 的 skills 目录。
+## 升级与新增
 
-### 手机端（WorkBuddy 小程序）— 推荐
-
-1. 打开 WorkBuddy 小程序 → 进入 **SkillHub**
-2. 搜索本仓库的技能（或在会员群拿到 `unlisted` 专属安装链接）
-3. 点「安装」即可，无需电脑
-
-> 手机端安装依赖 WorkBuddy 官方的 SkillHub 通道，不依赖本仓库的 GitHub 地址。
-
-### 通用：一句话指令安装（GitHub raw，手机/桌面都行）
-
-不想走 SkillHub 时，也可以直接把本仓库的安装说明书地址发给 WorkBuddy，让它自己装：
+学员端一句指令即可增量升级：
 
 ```
-根据 https://raw.githubusercontent.com/<你的GitHub用户名>/qinpei-skills/main/install.md 安装「沁珮方法论技能包」（可指定某个技能，如"朋友圈信任经营"）。
+升级技能包
 ```
 
-仓库根目录的 `install.md` 是一份写给 AI 的安装说明书，会自动把对应技能目录完整下载到 `~/.workbuddy/skills/`。
-
-### 电脑端 / 手机端 双入口对照
-
-| 人群 | 入口 | 口令（把 `<用户名>` 换成实际 GitHub 用户名） |
-| --- | --- | --- |
-| 电脑党（会用命令行） | `npx skills add` | `npx -y skills add <用户名>/qinpei-skills -g --all` |
-| 手机党（无电脑学员） | GitHub raw 链接 | `根据 https://raw.githubusercontent.com/<用户名>/qinpei-skills/main/install.md 安装「沁珮方法论技能包」` |
-| 手机党（官方通道） | SkillHub | 在 WorkBuddy 小程序 SkillHub 里搜 / 点安装 |
-
-两条路指向同一个仓库，一份维护、两处生效。
-
-## 更新与新增技能（持续养这套体系）
-
-**核心机制：重跑安装 = 更新（覆盖式）。** 学员任何时候重新发一次安装口令，AI 就把仓库里当前最新的文件重新拉下来覆盖旧文件，自动就是最新版。无需你单独推包，也无需学员手动删旧版。
-
-- **你迭代了某个 skill**：学员发「检查技能更新」→ AI 重拉覆盖 → 拿到新版
-- **你写了新 skill**：在仓库 `CHANGELOG.md` 加一条记录 + 把技能目录加进 `skills/` → 学员发「有什么新技能」→ AI 读 CHANGELOG 列出 → 装
-- **今年 / 明年的 365 学员**：全开源、仓库永久公开，任何时候买都指向同一个仓库，群发同一条口令即可
-- **你的运营动作**：在会员群 / 公众号「喊一声」——「新增了 XX 技能 / XX 技能更新了，去更新一下」。学员回一句口令，AI 自己搞定
-
-> 每次新增或迭代技能后，记得同步更新本仓库的 `CHANGELOG.md` 与 `skills/` 目录，并 `git push`，学员才能拿到。
+- 已装过的技能自动更新到最新版
+- 新开源的技能自动补装（缺失才装，不重复下载）
+- 学员自己的画像/档案文件**永远不会被覆盖**
 
 ## 关于「开源」与「版权」
 
@@ -79,11 +64,10 @@ npx -y skills add <你的GitHub用户名>/qinpei-skills -g --all
 
 ```
 qinpei-skills/
-├── .claude-plugin/
-│   ├── marketplace.json     # 技能市场清单（每个技能可单独安装）
-│   └── plugin.json          # 整仓插件清单（--all 全装）
-├── skills/                  # 6 个技能，每个一个目录 + SKILL.md
-├── skillhub-zips/           # 每个技能一个 ZIP，用于 SkillHub 上传
+├── .claude-plugin/           # 技能市场清单（npx skills add 用）
+├── skills/                   # 8 个技能，每个一个目录 + SKILL.md
+├── skills-catalog.md         # 安装/升级的唯一数据源（版本矩阵）
+├── install.md                # 写给 AI 的安装说明书（核心入口）
 ├── README.md
 └── LICENSE
 ```

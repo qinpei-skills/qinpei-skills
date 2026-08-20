@@ -1,7 +1,7 @@
 # 沁珮系列技能包 · 安装说明书
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，不是给人读的文档。
-> 当前版本：3.4.0（轻量首装：10 秒装核心，大技能按需补装）
+> 当前版本：3.4.1（轻量首装：10 秒装核心，大技能按需补装）
 
 ---
 
@@ -50,6 +50,15 @@ https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalo
 - WebFetch 偶尔不通时，**可尝试一次 curl 兜底**，但**绝不超过 1 次**
 - 反复 curl 会在 SSL 握手超时上每次浪费 ~5 秒（SSL_ERROR_SYSCALL exit=35），把时间堆上去
 - 不做任何"环境自检"（curl/wget/nc 测网络连通性），**直接走 WebFetch**——自检浪费时间但不解决问题
+
+### ⚠️ 坑 4：GitHub raw 通道有 CDN 缓存（最隐蔽）
+
+- **实测发现**：GitHub raw 通道（raw.githubusercontent.com）的 CDN 缓存 TTL 长达 1-2 小时——你刚推的新版，AI 抓到的可能还是几小时前的旧版
+- 这会导致学员"升级技能包"看不到新内容、AI 报告"都是最新版"漏升
+- **绕过方法**：抓 catalog 和 SKILL.md 时，**URL 末尾必须加 `?t=<当前时间戳>`**，例如：
+  - `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalog.md?t=1739876543`
+  - 时间戳用当前 Unix 秒数即可（任何唯一值都行，目的就是让 URL 唯一，CDN 强制回源）
+- 写入文件时用 URL 抓内容；**不要把时间戳写进文件**——文件内容应是干净的 markdown
 
 ### ⚠️ 版本号规则
 
@@ -149,5 +158,5 @@ https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalo
 
 - 学员说「安装技能包」「升级技能包」「更新技能包」「装最新版」→ **重跑本文件**，自动增量 + 升级，无需区分
 - 学员说「qp」或直接说需求（发朋友圈/运营社群等）→ 由「沁珮入口」处理，包括**按需补装对应技能包**
-- 当前版本 3.4.0。技能清单最新数据以 `skills-catalog.md` 为准
+- 当前版本 3.4.1。技能清单最新数据以 `skills-catalog.md` 为准
 - 学员的画像/档案数据永远不动——这是底线

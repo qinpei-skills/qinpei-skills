@@ -1,7 +1,7 @@
 # 沁珮系列技能包 · 安装说明书
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，不是给人读的文档。
-> 当前版本：3.4.2（轻量首装：10 秒装核心，大技能按需补装）
+> 当前版本：4.0.0（jsdelivr CDN 优先——2026-08-25 加入 jsdelivr 直连通道）
 
 ---
 
@@ -15,53 +15,74 @@
 ## ⚠️ 先对学员说清楚（每次安装/升级前必说，大白话）
 
 > 安装需要保持手机**亮屏、别切走、别接电话**，装完我会告诉你。
-> 这次大概需要：**1 分钟内**（首次）或几分钟（升级），你准备好了跟我说一声，我就开始。
+> 这次大概需要：**1 分钟内**（首次）或几十秒（升级），你准备好了跟我说一声，我就开始。
 
 学员确认后，再开始下面的流程。
 
 ---
 
-## 第一步：读技能清单（WebFetch）
+## ⚠️ 环境事实（决定抓取通道）
 
-用**读取网页内容（WebFetch）**抓取：
+**手机端沙箱网络实测**：
 
+| 通道 | 状态 | 用途 |
+|---|---|---|
+| `raw.githubusercontent.com` GitHub 直连 | ❌ 被封（SSL 失败） | **不要用** |
+| GitHub API | ❌ 被封 | **不要用** |
+| **`cdn.jsdelivr.net` jsdelivr CDN** | ✅ **能直连！返回原始字节** | **首选** |
+| WebFetch（AI 工具） | ✅ 能通但慢、可能转述/截断 | **备用兜底** |
+
+**结论**：抓文件**首选 jsdelivr CDN**（curl 直连下载原始字节，最快最稳）；jsdelivr 不通才用 WebFetch。
+
+> jsdelivr URL 格式：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/<仓库内路径>`
+> 例：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills-catalog.md`
+
+### 推荐抓取命令（首选）
+```bash
+curl -fsSL "<jsdelivr URL>" -o "<目标路径>"
 ```
-https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalog.md
+- `-f`：HTTP 错误不输出文件（失败立即停）
+- `-sS`：静默但错误时显示
+- `-L`：跟随重定向
+
+jsdelivr 不通（HTTP 非 2xx）→ 改用 WebFetch 抓同一 URL（剥围栏后写入）。
+
+---
+
+## 第一步：读技能清单
+
+**首选 jsdelivr**：用 curl 抓取
 ```
+https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills-catalog.md
+```
+存到本地临时文件（如 `/tmp/skills-catalog.md`），用 Read 工具读取。
+
+**备用 WebFetch**：jsdelivr 不通时用 WebFetch 抓同一 URL，剥围栏后写入临时文件再读。
 
 清单是一张表格，每行一个技能：`技能名 | 显示名 | 版本 | 安装模式 | SKILL.md 地址`。
 
-⚠️ **不要用 curl / 命令行下载**——手机网络下会 SSL 失败白等。一律用 WebFetch。
-
-### ⚠️ WebFetch 三大坑（必须避开）
-
-> 实测中发现的三个真实 bug，**任何一条没做到都会导致安装失败或损坏文件**，请严格遵守：
+### ⚠️ WebFetch 三大坑（仅 WebFetch 兜底时适用）
 
 **坑 1：抓回内容可能包围栏**
 - WebFetch 抓 markdown 文件时，返回内容经常被外层包了 ` ```markdown ... ``` ` 代码围栏
 - **写入文件前必须剥掉最外层的 ` ```markdown ` 和末尾的 ` ``` `**，否则 frontmatter（`---` 标记）被破坏，技能失效
-- 剥法：如果返回内容以 ` ```markdown\n` 开头且以 ` ```\n` 结尾，删掉这两行；其他情况按原文写入
+- 剥法：如果返回内容以 ` ```markdown\n` 开头且以 ` ```\n` 结尾，删掉这两行
 
 **坑 2：抓清单可能漏行（最危险）**
-- WebFetch 抓 `skills-catalog.md` 时**实测可能丢行**——返回的表格只列了部分技能（曾出现 4 行丢成 2 行）
-- **抓到 catalog 后必须数行**：`/skills-catalog.md` 里的 `| ... |` 行数应 = 技能数 + 1（表头）。如果少于清单声明的技能数（当前是 4 个），**重新抓一次**；还漏就报错让学员知道
+- WebFetch 抓 `skills-catalog.md` 时**实测可能丢行**——曾出现 4 行丢成 2 行
+- **抓到 catalog 后必须数行**：`| ... |` 行数应 = 技能数 + 1（表头）。如果少于清单声明的技能数（当前 8 个），重新抓一次；还漏就报错让学员知道
 
-**坑 3：下载失败后不要反复试 curl**
-- WebFetch 偶尔不通时，**可尝试一次 curl 兜底**，但**绝不超过 1 次**
-- 反复 curl 会在 SSL 握手超时上每次浪费 ~5 秒（SSL_ERROR_SYSCALL exit=35），把时间堆上去
-- 不做任何"环境自检"（curl/wget/nc 测网络连通性），**直接走 WebFetch**——自检浪费时间但不解决问题
+**坑 3：不反复重试**
+- 每个文件最多尝试 2 次（jsdelivr curl 1 次 + WebFetch 兜底 1 次），失败就停止
 
-### ⚠️ 坑 4：GitHub raw 通道有 CDN 缓存（最隐蔽）
+### ⚠️ 坑 4：jsdelivr 缓存（很罕见但存在）
 
-- **实测发现**：GitHub raw 通道（raw.githubusercontent.com）的 CDN 缓存 TTL 长达 1-2 小时——你刚推的新版，AI 抓到的可能还是几小时前的旧版
-- 这会导致学员"升级技能包"看不到新内容、AI 报告"都是最新版"漏升
-- **绕过方法**：抓 catalog 和 SKILL.md 时，**URL 末尾必须加 `?t=<当前时间戳>`**，例如：
-  - `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalog.md?t=1739876543`
-  - 时间戳用当前 Unix 秒数即可（任何唯一值都行，目的就是让 URL 唯一，CDN 强制回源）
-- 写入文件时用 URL 抓内容；**不要把时间戳写进文件**——文件内容应是干净的 markdown
+- jsdelivr CDN 通常缓存时间短（分钟级），但偶尔也会有旧版本缓存
+- 绕过方法：URL 末尾加 `?t=<当前时间戳>`，例如：
+  - `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills-catalog.md?t=1739876543`
+- 仅在发现抓到旧版时才用；时间戳只是为了让 URL 唯一，强制回源
 
 ### ⚠️ 版本号规则
-
 - 抓回 SKILL.md 后**必须读它的 frontmatter `version` 字段**（开头的 `--- ... ---` 块里）
 - 与清单里的版本**字符串不一致** → 强制升级（不要冒险跳过，"误判最新"是最严重的安装故障）
 - 升级时只覆盖 `SKILL.md` 本体，绝不碰学员资料
@@ -72,10 +93,10 @@ https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalo
 
 ⚠️ **本次安装只装以下两个技能，其他所有技能（包括清单里其他条目）都不抓不装**：
 
-| 保存为 | 抓取地址 | 必需 |
-|:---|:---|:---:|
-| `~/.workbuddy/skills/qinpei/SKILL.md` | `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei/SKILL.md` | 必需 |
-| `~/.workbuddy/skills/qinpei-profile/SKILL.md` | `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-profile/SKILL.md` | 必需 |
+| 保存为 | jsdelivr URL（首选） |
+|:---|:---|
+| `~/.workbuddy/skills/qinpei/SKILL.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei/SKILL.md` |
+| `~/.workbuddy/skills/qinpei-profile/SKILL.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-profile/SKILL.md` |
 
 **这两个技能很小（合计约 10KB），秒装。** 清单里的其他技能（如朋友圈、社群等）都属于「按需补装」——**本次安装完全不抓不写任何文件**，它们由「沁珮入口」在学员实际要用时自动按需补装。
 
@@ -83,10 +104,10 @@ https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalo
 
 检查 `~/.workbuddy/skills/<技能名>/SKILL.md` 是否存在：
 
-- **不存在** → 新安装：WebFetch 抓取，写入该目录
+- **不存在** → 新安装：用 curl 抓 jsdelivr URL，写入该目录
 - **存在** → 读它 frontmatter 里的 `version` 字段，和清单里的版本比对：
   - **一样** → 跳过（已是最新，别动它）
-  - **线上更新** → WebFetch 抓取，覆盖写入（升级）
+  - **线上更新** → curl 抓 jsdelivr URL，覆盖写入（升级）
 
 ### 1.5 已装过的「按需包」也要升级（学员说「升级技能包」时）
 
@@ -99,7 +120,7 @@ https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalo
   - **已存在** → 按第 1 步的规则比对版本：线上更新就升级，一样就跳过
   - **不存在** → 如果是 `core` 就新装；如果是 `on-demand` 就跳过（不新装，等用到时由入口补装）
 - **附加文件检查（升级时）**：对已存在的技能，检查它 catalog 里列的"附加文件"（references/ 等）是否都存在：
-  - **缺失** → 用 WebFetch 抓取补上（URL 加 `?t=` 绕过缓存，剥围栏）
+  - **缺失** → 用 curl 抓 jsdelivr URL 补上
   - **都存在** → 跳过
 
 > 一句话记忆：**升级 = 装过的都更新到最新，没装过的按需包不装，缺的知识文件补上。**
@@ -161,5 +182,5 @@ https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills-catalo
 
 - 学员说「安装技能包」「升级技能包」「更新技能包」「装最新版」→ **重跑本文件**，自动增量 + 升级，无需区分
 - 学员说「qp」或直接说需求（发朋友圈/运营社群等）→ 由「沁珮入口」处理，包括**按需补装对应技能包**
-- 当前版本 3.4.2。技能清单最新数据以 `skills-catalog.md` 为准
+- 当前版本 4.0.0。技能清单最新数据以 `skills-catalog.md` 为准
 - 学员的画像/档案数据永远不动——这是底线

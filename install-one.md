@@ -1,14 +1,14 @@
-# 沁珮技能包 · 单个技能安装说明书（v2 写死名单版）
+# 沁珮技能包 · 单个技能安装说明书（v3 · jsdelivr CDN 版）
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，用于**只装某一个技能**（不想装全家桶时）。
 > 学员说「安装 XX 技能」时用这份说明书。
-> 版本：v2（2026-08-25 改为写死名单——不再抓 catalog 解析，直接按下方对照表执行）
+> 版本：v3（2026-08-25 加入 jsdelivr CDN 镜像——直连原始字节，不依赖 WebFetch 转述）
 
 ---
 
 ## 你要做的事
 
-识别学员想装的技能名 → 在下方【技能文件对照表】里找到它 → 只抓那一个技能的**全部文件**（SKILL.md + references）→ 保存到 `~/.workbuddy/skills/<技能名>/`。
+识别学员想装的技能名 → 在下方【技能文件对照表】里找到它 → 抓取全部文件（SKILL.md + references）→ 保存到 `~/.workbuddy/skills/<技能名>/`。
 
 **⚠️ 不要抓技能清单、不要解析任何表格、不要请求任何其他 URL**——文件地址全部写死在下面，照着抓就行。
 
@@ -22,46 +22,112 @@
 
 ---
 
-## 技能文件对照表（写死 · 直接查表，勿抓清单）
+## ⚠️ 环境事实（重要 · 决定走哪条抓取通道）
 
-| 学员说 | 保存到目录 | 要抓的文件（按顺序） |
-|:---|:---|:---|
-| **朋友圈** | `~/.workbuddy/skills/qinpei-wechat-trust/` | ① SKILL.md：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/SKILL.md`<br>② 中医养生：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/references/%E9%A2%86%E5%9F%9F%E7%9F%A5%E8%AF%86-%E4%B8%AD%E5%8C%BB%E5%85%BB%E7%94%9F.md`<br>③ 减脂塑形：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/references/%E9%A2%86%E5%9F%9F%E7%9F%A5%E8%AF%86-%E5%87%8F%E8%84%82%E5%A1%91%E5%BD%A2.md`<br>④ 美业护肤：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/references/%E9%A2%86%E5%9F%9F%E7%9F%A5%E8%AF%86-%E7%BE%8E%E4%B8%9A%E6%8A%A4%E8%82%A4.md`<br>⑤ 母婴育儿：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/references/%E9%A2%86%E5%9F%9F%E7%9F%A5%E8%AF%86-%E6%AF%8D%E5%A9%B4%E8%82%B2%E5%84%BF.md`<br>⑥ 分享经济：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/references/%E9%A2%86%E5%9F%9F%E7%9F%A5%E8%AF%86-%E5%88%86%E4%BA%AB%E7%BB%8F%E6%B5%8E.md`<br>⑦ 选题库：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/references/%E9%80%89%E9%A2%98%E5%BA%93.md` |
-| **社群** | `~/.workbuddy/skills/qinpei-community-ops-trust/` | ① SKILL.md：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/SKILL.md`<br>② 排期模板库：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/references/%E6%8E%92%E6%9C%9F%E6%A8%A1%E6%9D%BF%E5%BA%93.md`<br>③ 话题库：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/references/%E8%AF%9D%E9%A2%98%E5%BA%93.md`<br>④ 赛道案例库：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/references/%E8%B5%9B%E9%81%93%E6%A1%88%E4%BE%8B%E5%BA%93.md` |
-| **沙龙** | `~/.workbuddy/skills/qinpei-salon-ops-trust/` | ① SKILL.md：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-salon-ops-trust/SKILL.md`<br>② 活动内容脚本：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-salon-ops-trust/references/%E6%B4%BB%E5%8A%A8%E5%86%85%E5%AE%B9%E8%84%9A%E6%9C%AC.md`<br>③ 成交与分工：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-salon-ops-trust/references/%E6%88%90%E4%BA%A4%E4%B8%8E%E5%88%86%E5%B7%A5.md` |
-| **故事力** | `~/.workbuddy/skills/qinpei-storytelling/` | ① SKILL.md：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-storytelling/SKILL.md` |
-| **IP定位** | `~/.workbuddy/skills/qinpei-ip-diagnosis/` | ① SKILL.md：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-ip-diagnosis/SKILL.md` |
-| **业务体检** | `~/.workbuddy/skills/qinpei-business-check/` | ① SKILL.md：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-business-check/SKILL.md` |
-| **画像** | `~/.workbuddy/skills/qinpei-profile/` | ① SKILL.md：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-profile/SKILL.md` |
-| **入口** | `~/.workbuddy/skills/qinpei/` | ① SKILL.md：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei/SKILL.md` |
+**手机端沙箱的网络状况（已实测）**：
 
-> 学员说"沁珮"/"qp"→ 对应入口（qinpei）；说"记住我/我的画像"→ 画像（qinpei-profile）。
-> 学员说的技能不在表里 → 告诉学员"这个还没开源，我帮你装现有的：朋友圈/社群/沙龙/故事力/IP定位/业务体检"。
+| 通道 | 状态 | 用途 |
+|---|---|---|
+| `raw.githubusercontent.com` GitHub 直连 | ❌ 被封（SSL 失败） | **不要用** |
+| GitHub API (`api.github.com`) | ❌ 被封 | **不要用** |
+| **`cdn.jsdelivr.net` CDN 镜像** | ✅ **能直连！返回原始字节** | **首选** |
+| WebFetch（AI 工具） | ✅ 能通但慢、可能转述/截断 | **备用兜底** |
+
+**结论**：抓文件**首选 jsdelivr CDN 镜像**（curl/wget 直连下载原始字节，最快最稳）；jsdelivr 不通才用 WebFetch 兜底。
+
+> jsdelivr URL 格式：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/<仓库内路径>`
+> 例如：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/SKILL.md`
 
 ---
 
-## 抓取规则（WebFetch · 必须遵守）
+## 技能文件对照表（写死 · 直接查表，勿抓清单）
 
-### ⚠️ 环境事实
-**手机端沙箱只有 WebFetch 能访问 GitHub**——curl/wget/git 直连全部被封（HTTP=000）。
-- **不要试 curl / wget / git**——浪费时间且必然失败
-- **不要做"环境自检"**——直接走 WebFetch
-- 每个 URL 末尾加 `?t=<当前时间戳>` 绕过 CDN 缓存（只用于抓取，写入文件时去掉）
+每行都给了**首选 jsdelivr URL**（原始字节）和**备用 raw URL**（WebFetch 用）；优先用 jsdelivr。
+
+### 朋友圈（qinpei-wechat-trust）
+保存到 `~/.workbuddy/skills/qinpei-wechat-trust/`
+- SKILL.md（首选）：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/SKILL.md`
+- 领域-中医养生：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/references/领域知识-中医养生.md`
+- 领域-减脂塑形：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/references/领域知识-减脂塑形.md`
+- 领域-美业护肤：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/references/领域知识-美业护肤.md`
+- 领域-母婴育儿：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/references/领域知识-母婴育儿.md`
+- 领域-分享经济：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/references/领域知识-分享经济.md`
+- 选题库：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/references/选题库.md`
+
+### 社群（qinpei-community-ops-trust）
+保存到 `~/.workbuddy/skills/qinpei-community-ops-trust/`
+- SKILL.md：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-community-ops-trust/SKILL.md`
+- 排期模板库：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-community-ops-trust/references/排期模板库.md`
+- 话题库：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-community-ops-trust/references/话题库.md`
+- 赛道案例库：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-community-ops-trust/references/赛道案例库.md`
+
+### 沙龙（qinpei-salon-ops-trust）
+保存到 `~/.workbuddy/skills/qinpei-salon-ops-trust/`
+- SKILL.md：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/SKILL.md`
+- 活动内容脚本：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/references/活动内容脚本.md`
+- 成交与分工：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/references/成交与分工.md`
+
+### 故事力（qinpei-storytelling）
+保存到 `~/.workbuddy/skills/qinpei-storytelling/`
+- SKILL.md：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-storytelling/SKILL.md`
+
+### IP定位（qinpei-ip-diagnosis）
+保存到 `~/.workbuddy/skills/qinpei-ip-diagnosis/`
+- SKILL.md：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-ip-diagnosis/SKILL.md`
+
+### 业务体检（qinpei-business-check）
+保存到 `~/.workbuddy/skills/qinpei-business-check/`
+- SKILL.md：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-business-check/SKILL.md`
+
+### 画像（qinpei-profile）
+保存到 `~/.workbuddy/skills/qinpei-profile/`
+- SKILL.md：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-profile/SKILL.md`
+
+### 入口（qinpei）
+保存到 `~/.workbuddy/skills/qinpei/`
+- SKILL.md：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei/SKILL.md`
+
+> 学员说的技能不在表里 → 告诉学员"这个还没开源，我帮你装现有的：朋友圈/社群/沙龙/故事力/IP定位/业务体检/画像/入口"。
+
+---
+
+## 抓取规则（jsdelivr 优先 · 必须遵守）
 
 ### 抓取顺序（重要）
 1. **先抓 SKILL.md**（最大的文件）→ 校验完整 → 写入
 2. 抓完 SKILL.md 后**向学员汇报一句**："主体装好了，正在补几个小文件～"
 3. 再逐个抓 references 小文件（都很小，几秒一个）→ 校验非空 → 写入
 
-### 三大坑
-**坑 1：包围栏**——WebFetch 返回内容若以 ` ```markdown ` 开头，写入前剥掉最外层围栏（首尾各一行）。
+### 抓取方式
 
-**坑 2：截断/漏内容（最危险）**——大文件可能抓不全，抓回后必须校验：
-- SKILL.md 校验：开头是 `---` 和 `name: <对应技能名>`；含 `## 💡 任务完成后必说`（qp 收尾）；结尾接近"这个提醒每次回复结束都说一次"
-- references 校验：内容非空、含标题行
-- **不完整 → 换新时间戳重抓 1 次 → 仍不完整 → 不要硬写残缺文件，如实报告学员**："网络不稳定没抓全，你稍后再说一次，或说『升级技能包』我重试～"
+**首选**：用 curl/wget 直连 jsdelivr CDN 下载原始字节到目标文件。
+```bash
+curl -fsSL "<jsdelivr URL>" -o "<目标路径>"
+```
+- 加 `-f`：HTTP 错误不输出文件（失败立即停）
+- 加 `-s`：静默模式（不刷进度条干扰）
+- 加 `-S`：错误时显示错误信息
+- 加 `-L`：跟随重定向（jsdelivr 偶尔重定向）
 
-**坑 3：不反复重试**——每个文件最多尝试 2 次，失败就停止，不无限重试。
+**备用**：jsdelivr 不通时（HTTP 不在 200-299），用 WebFetch 抓取目标 URL，剥围栏后写入。
+
+### 校验清单（每个文件抓完必做）
+
+**SKILL.md 校验**（缺一项 = 不完整）：
+- ✅ 开头是 `---` 和 `name: <对应技能名>`
+- ✅ 含 `## 💡 任务完成后必说`（qp 收尾标记，所有包都有）
+- ✅ 结尾接近"这个提醒每次回复结束都说一次"
+
+**references 校验**：
+- ✅ 文件非空（> 500 字节）
+- ✅ 含至少 1 个 `##` 标题行
+
+### 不完整怎么办
+1. 重新抓一次（换工具：curl 不通换 WebFetch，反之亦然）
+2. 仍不完整 → **不要硬写残缺文件**，如实报告学员："网络不稳定没抓全，你稍后再说一次，或说『升级技能包』我重试～"
+
+### 不反复重试
+每个文件最多尝试 2 次（curl/wget 1 次 + WebFetch 1 次），失败就停止，不无限重试。
 
 ---
 

@@ -23,22 +23,40 @@
 
 ## ⚠️ 环境事实（必须遵守）
 
-**手机端沙箱只有 WebFetch 能访问 GitHub**——curl/wget/git 直连全部被封（HTTP=000）。
-- **不要试 curl / wget / git**——浪费时间且必然失败
-- **不要做"环境自检"**（测网络连通性）——直接走 WebFetch
-- 一律用 **WebFetch** 抓取，URL 加 `?t=<当前时间戳>` 绕过 CDN 缓存
+**手机端沙箱网络实测**：
+
+| 通道 | 状态 | 用途 |
+|---|---|---|
+| `raw.githubusercontent.com` GitHub 直连 | ❌ 被封 | **不要用** |
+| **jsdelivr CDN 镜像** | ✅ **能直连！返回原始字节** | **首选** |
+| WebFetch | ✅ 能通但慢、可能转述/截断 | **备用兜底** |
+
+**结论**：抓文件**首选 jsdelivr CDN 镜像**（用 `curl -fsSL "<URL>" -o "<path>"` 直连下载原始字节）；jsdelivr 不通才用 WebFetch。
+
+> jsdelivr URL 格式：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/<仓库内路径>`
+> ⚠️ `cdn.jsdelivr.net` 才是通的；不要去试 `raw.githubusercontent.com`（被封）。
 
 ---
 
-## 抓取文件（WebFetch · 全部必需）
+## 抓取文件（jsdelivr 优先 · 全部必需）
 
-依次抓取以下文件：
+依次抓取以下 3 个文件：
 
-| 保存为 | 抓取地址 |
+| 保存为 | jsdelivr URL（首选） |
 |:---|:---|
-| `~/.workbuddy/skills/qinpei-salon-ops-trust/SKILL.md` | `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-salon-ops-trust/SKILL.md` |
-| `~/.workbuddy/skills/qinpei-salon-ops-trust/references/活动内容脚本.md` | `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-salon-ops-trust/references/%E6%B4%BB%E5%8A%A8%E5%86%85%E5%AE%B9%E8%84%9A%E6%9C%AC.md` |
-| `~/.workbuddy/skills/qinpei-salon-ops-trust/references/成交与分工.md` | `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-salon-ops-trust/references/%E6%88%90%E4%BA%A4%E4%B8%8E%E5%88%86%E5%B7%A5.md` |
+| `~/.workbuddy/skills/qinpei-salon-ops-trust/SKILL.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/SKILL.md` |
+| `~/.workbuddy/skills/qinpei-salon-ops-trust/references/活动内容脚本.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/references/活动内容脚本.md` |
+| `~/.workbuddy/skills/qinpei-salon-ops-trust/references/成交与分工.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/references/成交与分工.md` |
+
+### 抓取命令（首选）
+```bash
+curl -fsSL "<上表jsdelivr URL>" -o "<上表目标路径>"
+```
+- `-f`：HTTP 错误不输出文件
+- `-sS`：静默但错误时显示
+- `-L`：跟随重定向
+
+jsdelivr 不通（HTTP 非 2xx）→ 改用 WebFetch 抓同一地址，剥围栏后写入。
 
 ---
 

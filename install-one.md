@@ -73,19 +73,37 @@ curl -fsSL --max-time 20 "<地址>" -o /tmp/qinpei-skill.zip
 
 ## 第 2 步：解压到技能目录
 
+**🔴 必须先试 Python 方式**（原因见下方"中文文件名自检"）：
+
+```bash
+python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
+```
+
+**只有 python3 确实不可用时**，才用 `unzip`，且**必须做下面的自检**：
+
 ```bash
 mkdir -p ~/.workbuddy/skills/<技能名>
 unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 ```
 
-**`unzip` 不可用时**改用 Python：
-```bash
-python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
-```
+### 🔴 解压后必做：中文文件名自检（漏做会导致技能变哑巴）
 
-**两种都不可用** → 走「终极兜底：逐文件抓取」。
+技能包里有**中文命名的模板文件**（社群 7 个、沙龙 13 个、朋友圈 4 个，如 `assets/templates/01-群公告+欢迎语.md`）。
+部分系统的 `unzip` 不支持中文（无 UTF-8 支持），会把它们解成乱码名，**技能就找不到自己的模板，功能直接残废**。
 
-然后 `rm -f /tmp/qinpei-skill.zip` 清理。
+解压后 `ls ~/.workbuddy/skills/<技能名>/assets/templates/` 看一眼：
+
+- **中文正常显示** → ✅ 通过，继续下一步
+- **出现乱码**（形如 `01-???.md`、`01-ç¾¤å…¬å'Š.md`、`01-\xe7\xbe\xa4...md`）→ 立刻清掉重解：
+  ```bash
+  rm -rf ~/.workbuddy/skills/<技能名>/
+  python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
+  ```
+  python3 也没有 → 改走「终极兜底：逐文件抓取」（文件名由你自己写，反而不会出错）
+
+**两种解压方式都不可用** → 同样走「终极兜底：逐文件抓取」。
+
+解压完成后 `rm -f /tmp/qinpei-skill.zip` 清理。
 
 **⚠️ 解压是覆盖式但不会伤学员数据**：分发包里**不含**学员的 `我的画像.md` 和 `学员档案/`，所以升级解压不会清掉学员积累的内容。
 

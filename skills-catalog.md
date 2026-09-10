@@ -11,7 +11,7 @@
 |:---|:---|:---:|:---:|:---|
 | qinpei | 沁珮入口（引导+导航） | 1.5.0 | core | skillhub-zips/qinpei.zip |
 | qinpei-profile | 共享画像银行 | 1.0.1 | core | skillhub-zips/qinpei-profile.zip |
-| qinpei-wechat-trust | 朋友圈信任经营 | 2.3.1-student | on-demand | skillhub-zips/qinpei-wechat-trust.zip |
+| qinpei-wechat-trust | 朋友圈信任经营 | 2.3.2-student | on-demand | skillhub-zips/qinpei-wechat-trust.zip |
 | qinpei-community-ops-trust | 社群运营提效 | 3.2.1 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
 | qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.0 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
 | qinpei-storytelling | 故事力提效 | 1.1.0 | on-demand | skillhub-zips/qinpei-storytelling.zip |

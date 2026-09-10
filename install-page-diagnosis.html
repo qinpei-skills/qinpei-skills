@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>展业破局·诊断 · 手机一键安装</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    background:#F6F3EE; color:#2B2724; line-height:1.75;
+    padding:0 0 60px; font-size:17px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:640px; margin:0 auto; padding:0 20px; }
+
+  .hero { background:#0F6E56; color:#fff; padding:46px 0 40px; margin-bottom:26px; }
+  .hero h1 { font-size:27px; font-weight:600; letter-spacing:.5px; margin-bottom:10px; }
+  .hero p { font-size:15px; opacity:.88; line-height:1.7; }
+  .hero .tag {
+    display:inline-block; font-size:13px; background:rgba(255,255,255,.16);
+    border-radius:20px; padding:3px 13px; margin-bottom:16px; letter-spacing:.5px;
+  }
+
+  .card {
+    background:#fff; border-radius:14px; padding:20px 20px 18px; margin-bottom:14px;
+    box-shadow:0 1px 3px rgba(43,39,36,.05);
+  }
+  .card-hd { display:flex; align-items:flex-start; gap:12px; margin-bottom:14px; }
+  .card-hd + p { font-size:14.5px; color:#4A4540; line-height:1.7; }
+  .num {
+    flex:0 0 34px; height:34px; border-radius:10px; background:#FAEEDA; color:#854F0B;
+    font-size:15px; font-weight:600; display:flex; align-items:center; justify-content:center;
+  }
+  .card-tx h3 { font-size:17px; font-weight:600; margin-bottom:2px; }
+  .card-tx p { font-size:14px; color:#6B6560; line-height:1.6; }
+
+  .btn {
+    display:block; width:100%; border:none; border-radius:11px; cursor:pointer;
+    font-family:inherit; font-size:16px; font-weight:500; padding:13px 16px;
+    transition:background .18s, color .18s, transform .1s;
+    background:#BA7517; color:#fff; letter-spacing:.3px;
+  }
+  .btn:active { transform:scale(.985); }
+  .btn.done { background:#EAF3DE; color:#3B6D11; }
+
+  .feature {
+    background:#fff; border:1.5px solid #BA7517; border-radius:16px;
+    padding:24px 20px 20px; margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(186,117,23,.10);
+  }
+  .feature .badge {
+    display:inline-block; font-size:12.5px; background:#FAEEDA; color:#854F0B;
+    border-radius:20px; padding:3px 12px; margin-bottom:12px; font-weight:500;
+  }
+  .feature h2 { font-size:20px; font-weight:600; margin-bottom:6px; }
+  .feature > p { font-size:14.5px; color:#6B6560; margin-bottom:14px; line-height:1.65; }
+  .feature .say {
+    background:#F6F3EE; border-radius:11px; padding:13px 15px; margin-bottom:18px;
+    font-size:15px; color:#2B2724; line-height:1.6;
+  }
+  .feature .note { font-size:13px; color:#8A8279; margin-top:11px; text-align:center; }
+
+  .sec-title {
+    font-size:14px; color:#8A8279; letter-spacing:1px; margin:28px 0 12px; padding-left:4px;
+  }
+
+  .two { display:flex; gap:12px; }
+  .two .card { flex:1; margin-bottom:14px; padding:18px 16px; }
+  .two .card h3 { font-size:15.5px; font-weight:600; margin-bottom:6px; }
+  .two .card p { font-size:13.5px; color:#6B6560; line-height:1.6; }
+  @media (max-width:520px) { .two { flex-direction:column; gap:0; } }
+
+  .steps { background:#fff; border-radius:14px; padding:22px 20px; margin-top:24px; }
+  .steps h3 { font-size:16px; font-weight:600; margin-bottom:14px; }
+  .step { display:flex; gap:12px; margin-bottom:13px; font-size:15px; color:#4A4540; line-height:1.65; }
+  .step:last-child { margin-bottom:0; }
+  .step b {
+    flex:0 0 22px; height:22px; border-radius:50%; background:#BA7517; color:#fff;
+    font-size:12.5px; font-weight:500; display:flex; align-items:center; justify-content:center;
+    margin-top:3px;
+  }
+  .warn {
+    background:#FAEEDA; border-radius:12px; padding:15px 17px; margin-top:14px;
+    font-size:14px; color:#7A5716; line-height:1.7;
+  }
+  .warn b { color:#633806; }
+  footer { text-align:center; font-size:13px; color:#9C948B; margin-top:30px; line-height:1.8; }
+
+  .toast {
+    position:fixed; left:50%; bottom:38px; transform:translate(-50%,20px);
+    background:#2B2724; color:#fff; font-size:14.5px; padding:11px 24px; border-radius:24px;
+    opacity:0; transition:opacity .22s, transform .22s; pointer-events:none; z-index:99;
+  }
+  .toast.show { opacity:1; transform:translate(-50%,0); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="tag">沁珮 · 团队长赋能</div>
+    <h1>展业破局 · 诊断</h1>
+    <p>听完课先别急着改——让它帮你把卡在哪、该往哪走捋清楚<br>复制指令 → 打开 WorkBuddy 粘贴发送，几十秒装好</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="feature">
+    <div class="badge">手机一键安装</div>
+    <h2>装完说一句话就能开始</h2>
+    <p>它像一对一咨询，不像填表。你只说你的处境，它一层层帮你问下去。</p>
+    <div class="say">「帮我看看我的经营卡点」</div>
+    <button class="btn" data-copy="根据 https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/install-one.md 帮我安装「展业破局·诊断」">复制安装指令</button>
+    <div class="note">不想被问？直接说你要干什么，它也照做</div>
+  </div>
+
+  <div class="sec-title">它会帮你把三件事说清楚</div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">1</div>
+      <div class="card-tx"><h3>你到底卡在哪一层</h3><p>先看最底层：你的客户是谁、你能替他解决什么问题；再往上查心态、选择、能力、执行四层</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">2</div>
+      <div class="card-tx"><h3>这是真问题，还是假问题</h3><p>用五层剥茧一步步检验：把检验过程摊给你看，让你自己看见因果断在哪，而不是被说服</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">3</div>
+      <div class="card-tx"><h3>接下来该往哪走</h3><p>先给方向、等你确认；确认之后再告诉你用哪个技能包落地——朋友圈、社群、还是沙龙</p></div>
+    </div>
+  </div>
+
+  <div class="sec-title">两个入口，你自己挑</div>
+
+  <div class="two">
+    <div class="card">
+      <h3>我有点迷茫</h3>
+      <p>不知道先做什么、做了很久业绩上不去——那就走完整诊断，像老中医把脉，一层层问。</p>
+    </div>
+    <div class="card">
+      <h3>我很确定</h3>
+      <p>已经想好要干什么、就想直接开干——它会尊重你的选择，照做；只在关键处提醒你一句。</p>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fff;">
+    <div class="card-hd" style="margin-bottom:10px;">
+      <div class="num" style="background:#EAF3DE;color:#3B6D11;">!</div>
+      <div class="card-tx"><h3>它不会做的事</h3></div>
+    </div>
+    <p style="font-size:14.5px;color:#4A4540;">
+      不替你下决定 · 不评判对错 · 不给你灌鸡汤<br>
+      只剖因果，最后怎么选，永远是你自己说了算。
+    </p>
+  </div>
+
+  <div class="steps">
+    <h3>怎么用</h3>
+    <div class="step"><b>1</b><span>点上面的「复制安装指令」，提示"已复制"就行</span></div>
+    <div class="step"><b>2</b><span>打开 WorkBuddy，在对话框里<b style="background:none;color:#BA7517;border-radius:0;width:auto;height:auto;flex:none;display:inline;font-weight:600;margin:0">长按粘贴</b>，发送</span></div>
+    <div class="step"><b>3</b><span>手机保持亮屏别切走，等它说"装好啦"，然后说「帮我看看我的经营卡点」</span></div>
+    <div class="warn">
+      <b>小提示</b>：装之前建议先把模型切成 <b>DeepSeek</b>，会更快。<br>
+      诊断是聊出来的——一两句话说不清没关系，它一次只问一个。
+    </div>
+  </div>
+
+  <footer>
+    沁珮技能包 · 学员版<br>
+    装完不知道用哪个？跟它说「qp」
+  </footer>
+</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script>
+var toast = document.getElementById('toast');
+var timer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(timer);
+  timer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('[data-copy]');
+  if (!btn) return;
+  var text = btn.getAttribute('data-copy');
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      showToast('已复制，去 WorkBuddy 粘贴吧');
+    }).catch(function () {
+      fallbackCopy(text);
+      showToast('已复制，去 WorkBuddy 粘贴吧');
+    });
+  } else {
+    fallbackCopy(text);
+    showToast('已复制，去 WorkBuddy 粘贴吧');
+  }
+
+  var old = btn.textContent;
+  btn.textContent = '已复制 ✓';
+  btn.classList.add('done');
+  setTimeout(function () {
+    btn.textContent = old.indexOf('已复制') === 0 ? '复制安装指令' : old;
+    btn.classList.remove('done');
+  }, 1800);
+});
+</script>
+</body>
+</html>

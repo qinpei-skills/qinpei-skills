@@ -1,7 +1,7 @@
-# 沁珮系列技能包 · 安装说明书（v5.0.0 · zip 极速版）
+# 沁珮系列技能包 · 安装说明书（v6.0.0 · 多通道自动降级）
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，不是给人读的文档。
-> 当前版本：5.0.0（2026-09-10 改为 **zip 一次下载 + 解压**——每个技能 1 个压缩包，一次请求拿全部文件）
+> 当前版本：6.0.0（2026-09-10）——**核心升级：8 条下载通道按序自动降级，一个不通立刻换下一个；zip 全挂还能逐文件抓，禁止卡死或半途放弃。**
 
 ---
 
@@ -21,20 +21,31 @@
 
 ---
 
-## ⚠️ 环境事实（决定走哪条通道）
+## 🔑 通道清单（多通道自动降级 · 一个不通立刻换下一个）
 
-**手机端沙箱网络实测**：
+**学员端网络环境不完全可控，某些域名可能被干扰（已实测出现"三条通道同时 SSL 断"）。**
+**所以：不许只试一个地址就放弃 —— 按下面顺序逐个试，任一成功即停止。**
 
-| 通道 | 状态 | 用途 |
-|---|---|---|
-| `raw.githubusercontent.com` GitHub 直连 | ❌ 被封（SSL 失败） | **不要用** |
-| GitHub API | ❌ 被封 | **不要用** |
-| **`cdn.jsdelivr.net` jsdelivr CDN** | ✅ **能直连！返回原始字节** | **首选** |
-| WebFetch（AI 工具） | ✅ 能通但慢、可能转述/截断 | **备用兜底** |
+设 `HUB = https://e49a4d844301479d877a56a99de0053c.app.workbuddy.link`
 
-**结论**：一律走 **jsdelivr CDN**（curl 直连下载原始字节，最快最稳）。
+| 序 | 通道 | 地址模板 | 说明 |
+|:--:|:---|:---|:---|
+| 1 | **WorkBuddy 文库** | `HUB/skillhub-zips/<技能名>.zip` | **首选，同平台域名最稳** |
+| 2 | jsdelivr 主节点 | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<技能名>.zip` | |
+| 3 | jsdelivr 备用 | `https://gcore.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<技能名>.zip` | 不同 CDN 节点，主节点挂了它常能通 |
+| 4 | jsdelivr 备用 | `https://testingcf.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<技能名>.zip` | 同上 |
+| 5 | gh 加速代理 | `https://ghfast.top/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<技能名>.zip` | |
+| 6 | gh 加速代理 | `https://gh-proxy.com/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<技能名>.zip` | |
+| 7 | gh 加速代理 | `https://ghproxy.net/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<技能名>.zip` | |
+| 8 | WorkBuddy 文库重试 | `HUB/skillhub-zips/<技能名>.zip` | 前面都失败，回来再试一次（常是临时抖动） |
 
-> jsdelivr 地址格式：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/<仓库内路径>`
+**铁律**：
+1. **一个通道失败立刻换下一个**，不要因为某个域名不通就判定整件事失败
+2. **每个通道只试 1 次、超时 20 秒**（`curl --max-time 20`）
+3. 判定"这个通道失败"：命令返回非 0 / 下载文件 < 500 字节 / 报 SSL 或超时
+4. **zip 全通道都失败 → 走「兜底：逐文件抓取」**（见下），不要半途停下来说装不了
+
+**没有 shell 工具时**：8 个 zip 通道都下载不了 zip（WebFetch 对二进制只会转述）→ **直接走逐文件抓取**（用 WebFetch 抓 .md 文本，手机端一定能走通）。
 
 ---
 
@@ -42,24 +53,26 @@
 
 **每个技能打成一个 zip**（含 SKILL.md + references + 模板），一次请求搞定，比逐文件抓快得多。
 
-### 技能名 ↔ zip 地址对照表（写死 · 直接查表）
+### 技能名 ↔ zip 文件名对照表（写死 · 直接查表）
 
-| 技能名（目录名） | zip 地址 |
+| 技能名（目录名） | zip 文件名 |
 |:---|:---|
-| qinpei | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei.zip` |
-| qinpei-profile | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-profile.zip` |
-| qinpei-wechat-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-wechat-trust.zip` |
-| qinpei-community-ops-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-community-ops-trust.zip` |
-| qinpei-salon-ops-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-salon-ops-trust.zip` |
-| qinpei-storytelling | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-storytelling.zip` |
-| qinpei-ip-diagnosis | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-ip-diagnosis.zip` |
-| qinpei-business-check | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-business-check.zip` |
+| qinpei | `qinpei.zip` |
+| qinpei-profile | `qinpei-profile.zip` |
+| qinpei-wechat-trust | `qinpei-wechat-trust.zip` |
+| qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` |
+| qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` |
+| qinpei-storytelling | `qinpei-storytelling.zip` |
+| qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` |
+| qinpei-business-check | `qinpei-business-check.zip` |
+
+> 完整下载地址 = 上面「通道清单」里的地址模板，把 `<技能名>` 换成上表的技能名。
 
 ### 下载 + 解压（标准两步）
 
 ```bash
-# ① 下载
-curl -fsSL "<zip 地址>" -o /tmp/qinpei-skill.zip
+# ① 下载（把 <地址> 换成通道清单里的第 1 个；失败就换第 2、3…个）
+curl -fsSL --max-time 20 "<地址>" -o /tmp/qinpei-skill.zip
 
 # ② 解压（目录不存在会自动建）
 mkdir -p ~/.workbuddy/skills/<技能名>
@@ -73,15 +86,22 @@ rm -f /tmp/qinpei-skill.zip
 python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
 ```
 
-- URL 末尾若担心 CDN 缓存，可加 `?t=$(date +%s)` 强制回源。
-- `curl -f` 失败不输出文件｜`-s` 静默｜`-S` 报错｜`-L` 跟随重定向。
+- ⚠️ **下载失败不要停**：换通道清单里的下一个地址继续，8 个都试完才走逐文件抓取
+- `curl -f` 失败不输出文件｜`-s` 静默｜`-S` 报错｜`-L` 跟随重定向｜`--max-time 20` 防卡死
 
-### 兜底：逐文件抓取（仅当 zip 下载不到 / 解压工具都没有）
+### 兜底：逐文件抓取（仅当 zip 全通道失败 / 解压工具都没有）
 
-前缀：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/<技能名>/`
-逐文件抓取清单见 **install-one.md 的「方案二」**（含每个技能的完整文件列表）。
+**前缀按同样顺序试**：
+```
+HUB/skills/<技能名>/
+https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/<技能名>/
+https://gcore.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/<技能名>/
+https://ghfast.top/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/<技能名>/
+```
+逐文件抓取清单见 **install-one.md 的「终极兜底」**（含每个技能的完整文件列表）。
 
-jsdelivr 不通（HTTP 非 2xx）→ 改用 WebFetch 抓同一 URL（剥围栏后写入）。
+某个前缀不通 → 换下一个前缀；仍不通 → 改用 WebFetch 抓同一 URL（剥围栏后写入）。
+**抓到 SKILL.md 就先建起技能目录**——不要因为缺附件整个放弃。
 
 ### ⚠️ WebFetch 兜底三大坑
 
@@ -91,9 +111,16 @@ jsdelivr 不通（HTTP 非 2xx）→ 改用 WebFetch 抓同一 URL（剥围栏�
 
 **坑 3：不反复重试** —— 每个文件最多 2 次（curl 1 次 + WebFetch 1 次），失败就停。
 
-### ⚠️ 坑 4：jsdelivr 缓存
+### ⚠️ 坑 4：CDN 缓存
 
-CDN 通常分钟级刷新，偶尔有旧缓存。绕过：URL 末尾加 `?t=<时间戳>`。
+jsdelivr 有缓存，偶尔返回旧版。绕过：URL 末尾加 `?t=<时间戳>`。
+**但不用为此担心**：通道 1（WorkBuddy 文库）是我们自己发布的，每次更新同步即时生效；且它排在最前面，正常情况走的就是它。
+
+### ⚠️ 坑 5：学员端网络有多张网
+
+不同学员的运营商/WiFi 不一样，**同一个域名有人通有人不通**。
+已实测出现过「jsdelivr + GitHub raw + GitHub API 三条全断（SSL 握手直接断）」。
+**这就是为什么要按 8 条通道逐个试**——一条断了换下一条，不要下"网络抽风、稍后重试"的结论。
 
 ---
 
@@ -199,4 +226,4 @@ CDN 通常分钟级刷新，偶尔有旧缓存。绕过：URL 末尾加 `?t=<时
 - 学员说「qp」或直接说需求（发朋友圈/运营社群等）→ 由「沁珮入口」处理，包括**按需补装对应技能包**
 - 单装某一个技能 → 用 **install-one.md**
 - 学员的画像/档案数据永远不动——这是底线
-- 当前版本 5.0.0；技能清单数据以 `skills-catalog.md` 为准
+- 当前版本 6.0.0；技能清单数据以 `skills-catalog.md` 为准

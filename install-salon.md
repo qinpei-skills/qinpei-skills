@@ -1,14 +1,16 @@
-# 线下沙龙技能包 · 单独安装说明书（现场版 v4）
+# 线下沙龙技能包 · 单独安装说明书（现场版 v5 · 多通道）
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，用于线下课/活动结束时现场快速安装。
 > 只装「线下沙龙技能包」一个包，不用装全家桶。
-> 版本：v4（2026-08-25 回复话术写死+禁止过程词；校验轻量化；过程零汇报；jsdelivr CDN 优先）
+> 版本：v5（2026-09-10）——**升级为 8 通道自动降级；一个地址不通立刻换下一个，禁止卡死。**
 
 ---
 
 ## 你要做的事
 
 在学员设备上安装 `qinpei-salon-ops-trust`（线下沙龙技能包）到 `~/.workbuddy/skills/qinpei-salon-ops-trust/`。
+
+**现场最重要的事：快、安静、一次成。** 不许在学员面前反复试错，也不许中途说"装不了"。
 
 ---
 
@@ -21,62 +23,84 @@
 
 ---
 
-## ⚠️ 环境事实（必须遵守）
+## 🔑 通道清单（按顺序逐个试，任一成功即停止）
 
-**手机端沙箱网络实测**：
+设 `HUB = https://e49a4d844301479d877a56a99de0053c.app.workbuddy.link`
 
-| 通道 | 状态 | 用途 |
-|---|---|---|
-| `raw.githubusercontent.com` GitHub 直连 | ❌ 被封 | **不要用** |
-| **jsdelivr CDN 镜像** | ✅ **能直连！返回原始字节** | **首选** |
-| WebFetch | ✅ 能通但慢、可能转述/截断 | **备用兜底** |
+要下载的文件固定为：`qinpei-salon-ops-trust.zip`
 
-**结论**：抓文件**首选 jsdelivr CDN 镜像**（用 `curl -fsSL "<URL>" -o "<path>"` 直连下载原始字节）；jsdelivr 不通才用 WebFetch。
+| 序 | 地址 |
+|:--:|:---|
+| 1 | `HUB/skillhub-zips/qinpei-salon-ops-trust.zip` |
+| 2 | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-salon-ops-trust.zip` |
+| 3 | `https://gcore.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-salon-ops-trust.zip` |
+| 4 | `https://testingcf.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-salon-ops-trust.zip` |
+| 5 | `https://ghfast.top/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/qinpei-salon-ops-trust.zip` |
+| 6 | `https://gh-proxy.com/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/qinpei-salon-ops-trust.zip` |
+| 7 | `https://ghproxy.net/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/qinpei-salon-ops-trust.zip` |
+| 8 | `HUB/skillhub-zips/qinpei-salon-ops-trust.zip`（重试一次，常是临时抖动） |
 
-> jsdelivr URL 格式：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/<仓库内路径>`
-> ⚠️ `cdn.jsdelivr.net` 才是通的；不要去试 `raw.githubusercontent.com`（被封）。
-
----
-
-## 抓取文件（jsdelivr 优先 · 全部必需）
-
-依次抓取以下 3 个文件：
-
-| 保存为 | jsdelivr URL（首选） |
-|:---|:---|
-| `~/.workbuddy/skills/qinpei-salon-ops-trust/SKILL.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/SKILL.md` |
-| `~/.workbuddy/skills/qinpei-salon-ops-trust/references/活动内容脚本.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/references/活动内容脚本.md` |
-| `~/.workbuddy/skills/qinpei-salon-ops-trust/references/成交与分工.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/references/成交与分工.md` |
-
-### 抓取命令（首选）
 ```bash
-curl -fsSL "<上表jsdelivr URL>" -o "<上表目标路径>"
+# 逐个试，失败就换下一行
+curl -fsSL --max-time 20 "<第1个地址>" -o /tmp/qinpei-salon.zip
+mkdir -p ~/.workbuddy/skills/qinpei-salon-ops-trust
+unzip -o /tmp/qinpei-salon.zip -d ~/.workbuddy/skills/qinpei-salon-ops-trust/
+rm -f /tmp/qinpei-salon.zip
 ```
-- `-f`：HTTP 错误不输出文件
-- `-sS`：静默但错误时显示
-- `-L`：跟随重定向
 
-jsdelivr 不通（HTTP 非 2xx）→ 改用 WebFetch 抓同一地址，剥围栏后写入。
+- **判定失败**：命令返回非 0 / 文件 < 500 字节 / 报 SSL 或超时 → **立刻换下一行地址**
+- `unzip` 不可用 → 用 Python：
+```bash
+python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/qinpei-salon-ops-trust');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-salon.zip').extractall(d)"
+```
+- **没有 shell 工具**（8 个 zip 地址都用不了）→ 直接走下面的逐文件抓取（手机端一定能走通）
 
 ---
 
-## 抓取规则（jsdelivr 优先 · 必须遵守）
+## 🔁 逐文件抓取（zip 全通道失败时 · 现场兜底）
 
-### 抓取顺序
-1. **先抓 SKILL.md** → 轻量校验 → 写入
-2. 再抓 2 个 references 小文件 → 轻量校验 → 写入
-3. **全程不要向学员汇报过程**（不说"正在装""装好主体了"）——**安静执行，装完一次性说结论**。
+**前缀按同序试**：
+```
+HUB/skills/qinpei-salon-ops-trust/
+https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/
+https://gcore.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-salon-ops-trust/
+https://ghfast.top/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-salon-ops-trust/
+```
 
-### 轻量校验（只查这 2 项，不要逐章节核对——快最重要）
+写入 `~/.workbuddy/skills/qinpei-salon-ops-trust/`（路径原样保留，含子目录）：
+
+```
+SKILL.md
+README.md
+沙龙_快速上手话术卡.md
+references/acceptance.md
+references/faq.md
+assets/templates/00-一页纸办沙龙.md
+assets/templates/01-活动策划单.md
+assets/templates/02-物料准备清单.md
+assets/templates/03-邀约话术包.md
+assets/templates/04-活动执行手册.md
+assets/templates/05-活动分工表.md
+assets/templates/06-跟进SOP.md
+assets/templates/07-复盘模板.md
+assets/templates/08-线上线下一体化.md
+assets/templates/09-进阶工具包.md
+assets/templates/10-全量文档使用说明.md
+assets/templates/主题候选-选题引擎.md
+```
+
+**抓取顺序**：先 `SKILL.md`（抓到就先建起技能目录，学员马上能用）→ 再抓 `references/` → 最后抓 `assets/templates/`（模板是产出物驱动的，可以慢一步，但现场务必抓完）。
+
+**每个文件最多试 2 个前缀**；仍抓不到就跳过它继续下一个，**不要因为个别文件停下整个流程**。
+
+> 💡 WebFetch 抓回内容可能被 ` ```markdown ... ``` ` 围栏包住 —— 写入前**剥掉最外层围栏**，否则 frontmatter 的 `---` 被破坏，技能失效。
+
+---
+
+## 轻量校验（只查这 2 项，快最重要）
+
 - **SKILL.md**：开头是 `---` 且含 `name: qinpei-salon-ops-trust`；文件非空（> 500 字节）
-- **references**：文件非空（> 500 字节）
-
-**不完整怎么办**：重新抓一次（curl 不通换 WebFetch，反之亦然）；仍不完整 → 不硬写残缺文件，报告学员："网络不稳定没抓全，你稍后再说一次重试～"
-
-### 不反复重试
-每个文件最多尝试 2 次（curl/wget 1 次 + WebFetch 1 次），失败就停止，不无限重试。
-
-> 💡 若走 WebFetch 兜底：抓回内容可能被外层包 ` ```markdown ... ``` ` 围栏，写入前剥掉；也可能截断——轻量校验就是为了兜住这个。
+- **references/ 与 assets/templates/**：目录非空
 
 ---
 
@@ -84,7 +108,7 @@ jsdelivr 不通（HTTP 非 2xx）→ 改用 WebFetch 抓同一地址，剥围栏
 
 ### ⚠️ 硬规则（最重要）
 1. **只准输出下面模板里的内容**——不得增加任何一句话
-2. **禁止出现任何过程词**：安装明细、文件清单、校验结果、连接失败、抓取成功、路径、目录、版本、KB、curl、WebFetch 等，一个都不许出现
+2. **禁止出现任何过程词**：安装明细、文件清单、校验结果、连接失败、抓取成功、通道、路径、目录、版本、KB、zip、curl、WebFetch 等，一个都不许出现
 
 ### 输出模板（一字不差）
 
@@ -94,11 +118,22 @@ jsdelivr 不通（HTTP 非 2xx）→ 改用 WebFetch 抓同一地址，剥围栏
 不知道接下来怎么做？就说「qp」，我帮你诊断。
 ```
 
-**如果某个文件没抓全**：在模板后补一句"有个小文件没装全，稍后说『升级技能包』我帮你补上～"（仅此一种补充，其他一概不加）。
+**如果确实有个别模板文件没抓到**：在模板后补一句"有个小文件没装全，稍后说『升级技能包』我帮你补上～"（仅此一种补充，其他一概不加）。
+
+---
+
+## 真的全失败时怎么说（只在穷尽所有通道后）
+
+**必须先走完**：8 个 zip 通道 → 逐文件抓取（每个文件试 2 个前缀）。
+只有这些都试完了，才对学员说：
+
+> 网络这会儿不太给力，没装上。等两分钟，把刚才那句话再发我一次就行～
+
+**禁止**在只试了一两个地址时就对学员说"装不了""网络抽风""稍后重试"。
 
 ---
 
 ## 更新说明（给 AI）
 
-- 学员说「升级技能包」→ 走全家桶升级流程，本包自动更新（含 references 补装）
-- 本说明书只用于**现场快速单装**，完整体系请用全家桶安装说明书
+- 学员说「升级技能包」→ 走全家桶升级流程（install.md），本包自动更新
+- 本说明书只用于**现场快速单装**；完整体系请用全家桶安装说明书

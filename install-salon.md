@@ -43,12 +43,13 @@
 
 ```bash
 # 逐个试，失败就换下一行
-curl -fsSL --max-time 20 "<第1个地址>" -o /tmp/qinpei-salon.zip
+curl -fsSL --max-time 10 "<第1个地址>" -o /tmp/qinpei-salon.zip   # 10 秒足够；20 秒会让学员干等
 python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/qinpei-salon-ops-trust');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-salon.zip').extractall(d)"
 rm -f /tmp/qinpei-salon.zip
 ```
 
 - **判定失败**：命令返回非 0 / 文件 < 500 字节 / 报 SSL 或超时 → **立刻换下一行地址**
+- ⏱ **超时设 10 秒**：实测某条被封的 CDN 会挂到超时才降级——设 20 秒学员就要干等 20 秒
 - 🔴 **解压优先 python3**（上面这条）。只有 python3 不可用时才用 `unzip -o`，但**解压后必须看一眼文件名**：
   沙龙包里有 13 个中文名模板（`assets/templates/01-活动策划单.md` 等）。若 `ls assets/templates/` 显示的是乱码（`01-???.md`、`01-æ´»åŠ¨...md`），说明这个系统的 unzip 不支持中文——**立刻 `rm -rf` 清掉，改用 python3 重解**；python3 也没有就直接走下面的逐文件抓取（文件名自己写，反而不会错）。
   漏了这一步，沙龙技能会因为找不到模板而功能残废。

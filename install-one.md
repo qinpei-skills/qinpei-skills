@@ -68,7 +68,7 @@ curl -fsSL --max-time 20 "<地址>" -o /tmp/qinpei-skill.zip
 | 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` | 2.1.0 |
 | 故事力 / 讲故事 | qinpei-storytelling | `qinpei-storytelling.zip` | 1.1.0 |
 | IP定位 / IP定位诊断 | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` | 1.1.0 |
-| **展业破局·诊断 / 展业问诊 / 业务诊断 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` | 2.0.0 |
+| **展业诊断 / 展业破局·诊断 / 展业破局诊断 / 展业问诊 / 业务诊断 / 业务体检 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` | 3.0.0 |
 | 画像 / 我的画像 | qinpei-profile | `qinpei-profile.zip` | 1.0.1 |
 | 入口 / qp | qinpei | `qinpei.zip` | 1.5.0 |
 
@@ -254,7 +254,7 @@ assets/templates/主题候选-选题引擎.md
 | 学员装的技能 | 开场白（替换模板里的 <开场白>） |
 |:---|:---|
 | 朋友圈 | 想发圈了，直接说「帮我写一条朋友圈」；要是没想好写什么，先告诉我你是做什么的、客户主要是哪些人，我帮你定第一条 |
-| 展业破局·诊断 | 想弄清楚卡在哪，直接说「帮我看看我的经营卡点」；不知道怎么开口也没关系，就照你平时说话那样，把你的情况跟我讲讲 |
+| 展业诊断 | 想弄清楚卡在哪，直接说「帮我看看我的经营卡点」；不知道怎么开口也没关系，就照你平时说话那样，把你的情况跟我讲讲 |
 | 社群 | 群里冷场了，直接说「我的群没人说话」，我帮你把群盘活；也可以先说一句你的群是干什么的 |
 | 沙龙 | 想办活动了，直接说「我要办沙龙」，我帮你把流程、话术、互动都安排好 |
 | 故事力 | 想写自己的故事，直接说「帮我写我的故事」，我一段段带你写出来 |

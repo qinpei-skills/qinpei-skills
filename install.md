@@ -88,13 +88,13 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 
 ### 🔴 解压后必做：中文文件名自检（漏做会导致技能变哑巴）
 
-技能包里有**中文命名的模板文件**（社群 7 个、沙龙 13 个、朋友圈 4 个，如 `assets/templates/01-群公告+欢迎语.md`）。
+技能包里有 **27 个中文命名的文件**（社群 7 个、沙龙 13 个、朋友圈 4 个模板，**另有展业诊断／故事力／IP定位 各 1 个 `话术卡.md`**；例如 `assets/templates/01-群公告+欢迎语.md`）。
 部分系统的 `unzip` 不支持中文，会把它们解成乱码名，**技能就找不到自己的模板，功能直接残废**。
 
 解压后 `ls ~/.workbuddy/skills/<技能名>/assets/templates/` 看一眼：
 
 - **中文正常显示** → ✅ 继续下一步
-- **出现乱码**（形如 `01-???.md`、`01-ç¾¤å…¬å'Š.md`）→ 清掉重解：
+- **出现乱码**（形如 `01-???.md`、`01-ç¾¤å…¬åŠ.md`）→ 清掉重解：
   ```bash
   rm -rf ~/.workbuddy/skills/<技能名>/
   python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"

@@ -1,16 +1,18 @@
-# 沁珮技能包 · 单个技能安装说明书（v5 · zip 极速版）
+# 沁珮技能包 · 单个技能安装说明书（v6 · 多通道自动降级）
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，用于**只装某一个技能**（不想装全家桶时）。
-> 学员说「安装 XX 技能」时用这份说明书。
-> 版本：v5（2026-09-10 改为 **zip 一次下载 + 解压**，单包从"抓 8-17 个文件"变成"下载 1 个压缩包"）
+> 版本：v6（2026-09-10）——**核心升级：一个通道不通立刻换下一个，禁止卡死、禁止直接放弃。**
 
 ---
 
 ## 你要做的事
 
-识别学员想装的技能名 → 下载对应 **zip 压缩包** → 解压到 `~/.workbuddy/skills/<技能名>/` → 轻量校验 → 按模板回复。
+识别学员想装的技能名 → **按下面的通道顺序逐个尝试下载 zip** → 解压到 `~/.workbuddy/skills/<技能名>/` → 轻量校验 → 按模板回复。
 
-**⚠️ 不要抓技能清单、不要解析任何表格、不要请求任何其他 URL。**
+**🔴 三条铁律（违反就等于装不上）**：
+1. **一个通道失败，立刻换下一个通道**——不要因为某个域名不通就判定整件事失败
+2. **每个通道只试 1 次、超时 20 秒**，不通就走人，不在一个地址上耗
+3. **zip 全部通道都失败 → 必须走「终极兜底：逐文件抓取」**，不要半途停下来说"装不了"
 
 ---
 
@@ -22,85 +24,122 @@
 
 ---
 
-## ⚠️ 环境事实（重要 · 决定走哪条通道）
+## 🔑 通道清单（按顺序逐个试，任一成功即停止）
 
-**手机端沙箱的网络状况（已实测）**：
+**下面所有地址指向的都是同一个 zip 文件。前一个失败就换下一个。**
 
-| 通道 | 状态 | 用途 |
-|---|---|---|
-| `raw.githubusercontent.com` GitHub 直连 | ❌ 被封（SSL 失败） | **不要用** |
-| GitHub API (`api.github.com`) | ❌ 被封 | **不要用** |
-| **`cdn.jsdelivr.net` CDN 镜像** | ✅ **能直连！返回原始字节** | **首选** |
-| WebFetch（AI 工具） | ✅ 能通但慢、可能转述/截断 | **备用兜底** |
+设 `HUB = https://e49a4d844301479d877a56a99de0053c.app.workbuddy.link`
 
-**结论**：一律走 **jsdelivr CDN**（curl/wget 直连下载原始字节，最快最稳）。
+| 序 | 通道 | 地址模板 | 说明 |
+|:--:|:---|:---|:---|
+| 1 | **WorkBuddy 文库** | `HUB/skillhub-zips/<zip名>.zip` | **首选，同平台域名最稳** |
+| 2 | jsdelivr 主节点 | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<zip名>.zip` | |
+| 3 | jsdelivr 备用 | `https://gcore.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<zip名>.zip` | 不同 CDN 节点，主节点挂了它常能通 |
+| 4 | jsdelivr 备用 | `https://testingcf.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<zip名>.zip` | 同上 |
+| 5 | gh 加速代理 | `https://ghfast.top/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<zip名>.zip` | |
+| 6 | gh 加速代理 | `https://gh-proxy.com/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<zip名>.zip` | |
+| 7 | gh 加速代理 | `https://ghproxy.net/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<zip名>.zip` | |
+| 8 | WorkBuddy 文库重试 | `HUB/skillhub-zips/<zip名>.zip` | 前面都失败，回来再试一次（常是临时抖动） |
 
-> jsdelivr 地址格式：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/<仓库内路径>`
+**下载命令**（有 shell 时）：
+```bash
+curl -fsSL --max-time 20 "<地址>" -o /tmp/qinpei-skill.zip
+```
+- `-f` 失败不写文件｜`-s -S` 静默但报错｜`-L` 跟随重定向
+- **换通道的判断**：命令返回非 0、或下载文件 < 500 字节、或报 SSL/超时 → **立刻换下一行地址**
+
+**没有 shell 工具时**：
+- 第 1–8 通道都下载不了 zip（WebFetch 对二进制会转述、拿不到原始字节）
+- → **直接跳到「终极兜底：逐文件抓取」**（用 WebFetch 抓 .md 文本文件，这条路手机端一定能走通）
 
 ---
 
-## 🚀 方案一（首选 · 最快 · 一步到位）：下载 zip + 解压
+## 技能名 → zip 文件名对照（写死，直接查表）
 
-**每个技能打成一个 zip，一次请求拿全部文件**（含 SKILL.md + references + 模板）。
-
-### 第 1 步：下载 zip
-
-技能名 → zip 地址对照（**写死，直接查表**）：
-
-| 学员说的技能 | 技能名（目录名） | zip 地址 |
+| 学员说的技能 | 技能名（目录名） | zip 文件名 |
 |:---|:---|:---|
-| 朋友圈 | qinpei-wechat-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-wechat-trust.zip` |
-| 社群 | qinpei-community-ops-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-community-ops-trust.zip` |
-| 沙龙 | qinpei-salon-ops-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-salon-ops-trust.zip` |
-| 故事力 | qinpei-storytelling | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-storytelling.zip` |
-| IP定位 | qinpei-ip-diagnosis | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-ip-diagnosis.zip` |
-| 展业破局·诊断 | qinpei-business-check | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-business-check.zip` |
-| 画像 | qinpei-profile | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-profile.zip` |
-| 入口 | qinpei | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei.zip` |
+| 朋友圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` |
+| 社群 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` |
+| 沙龙 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` |
+| 故事力 | qinpei-storytelling | `qinpei-storytelling.zip` |
+| IP定位 | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` |
+| 展业破局·诊断 | qinpei-business-check | `qinpei-business-check.zip` |
+| 画像 | qinpei-profile | `qinpei-profile.zip` |
+| 入口 | qinpei | `qinpei.zip` |
 
-```bash
-curl -fsSL "<zip 地址>" -o /tmp/qinpei-skill.zip
-```
+---
 
-- URL 末尾若担心缓存，可加 `?t=$(date +%s)` 强制回源（jsdelivr 有缓存）。
-- `-f` 失败不输出文件｜`-s` 静默｜`-S` 报错信息｜`-L` 跟随重定向。
-
-### 第 2 步：解压到技能目录
+## 第 2 步：解压到技能目录
 
 ```bash
 mkdir -p ~/.workbuddy/skills/<技能名>
 unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 ```
 
-**`unzip` 不可用时**，改用 Python（沙箱一般都有 python3）：
-
+**`unzip` 不可用时**改用 Python：
 ```bash
 python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
 ```
 
-**两种都不可用** → 走方案二（逐文件抓取）。
+**两种都不可用** → 走「终极兜底：逐文件抓取」。
 
-### 第 3 步：清理
+然后 `rm -f /tmp/qinpei-skill.zip` 清理。
 
-```bash
-rm -f /tmp/qinpei-skill.zip
-```
+**⚠️ 解压是覆盖式但不会伤学员数据**：分发包里**不含**学员的 `我的画像.md` 和 `学员档案/`，所以升级解压不会清掉学员积累的内容。
 
 ---
 
-## 🔁 方案二（兜底）：逐文件抓取
+## 第 3 步：轻量校验（只查这 2 项，快最重要）
 
-**只在方案一失败时使用**（zip 下载不到 / 解压工具都没有）。
+- ✅ `SKILL.md` 存在、开头是 `---`、含 `name: <对应技能名>`、且 > 500 字节
+- ✅ `references/`、`assets/` 目录（若 zip 里有）非空
 
-**所有地址 = 前缀 + 下表路径**，前缀为：
+---
 
+## 🔁 终极兜底：逐文件抓取（zip 全通道失败时必走）
+
+**只在 zip 8 个通道全部失败、或解压工具都没有时使用。**
+**注意：下面 5 个技能包本身就只有 1–3 个文本文件，用 WebFetch 逐文件抓 10 秒内就能完成——务必走这条路，不要放弃。**
+
+**地址前缀**（逐个试，和上面通道同序）：
 ```
+HUB/skills/<技能名>/
 https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/<技能名>/
+https://gcore.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/<技能名>/
+https://ghfast.top/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/<技能名>/
+```
+写入目录：`~/.workbuddy/skills/<技能名>/`（路径原样保留，含子目录）
+
+### 入口（qinpei）
+```
+SKILL.md
 ```
 
-例（朋友圈 SKILL.md）：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-wechat-trust/SKILL.md`
+### 画像（qinpei-profile）
+```
+SKILL.md
+```
 
-写入目录：`~/.workbuddy/skills/<技能名>/`（路径原样保留，含子目录）
+### 故事力（qinpei-storytelling）
+```
+SKILL.md
+README.md
+话术卡.md
+```
+
+### IP定位（qinpei-ip-diagnosis）
+```
+SKILL.md
+README.md
+话术卡.md
+```
+
+### 展业破局·诊断（qinpei-business-check）
+```
+SKILL.md
+README.md
+话术卡.md
+```
 
 ### 朋友圈（qinpei-wechat-trust）
 ```
@@ -149,53 +188,14 @@ assets/templates/10-全量文档使用说明.md
 assets/templates/主题候选-选题引擎.md
 ```
 
-### 故事力（qinpei-storytelling）
-```
-SKILL.md
-README.md
-话术卡.md
-```
+> 学员说的技能不在表里 → 告诉学员："这个还没开源，我帮你装现有的：朋友圈 / 社群 / 沙龙 / 故事力 / IP定位 / 展业破局·诊断 / 画像 / 入口"。
 
-### IP定位（qinpei-ip-diagnosis）
-```
-SKILL.md
-README.md
-话术卡.md
-```
+### 抓取规则
 
-### 展业破局·诊断（qinpei-business-check）
-```
-SKILL.md
-README.md
-话术卡.md
-```
-
-### 画像（qinpei-profile）
-```
-SKILL.md
-```
-
-### 入口（qinpei）
-```
-SKILL.md
-```
-
-> 学员说的技能不在表里 → 告诉学员"这个还没开源，我帮你装现有的：朋友圈/社群/沙龙/故事力/IP定位/展业破局·诊断/画像/入口"。
-
----
-
-## 抓取规则（必须遵守）
-
-1. **先主文件、再小文件**（兜底方案下）：先抓 `SKILL.md` 再抓其余
-2. **全程不要向学员汇报过程**（不说"正在装""主体装好了""正在补小文件"）——**安静执行，装完一次性说结论**
-3. **不反复重试**：方案一失败 → 换方案二；方案二下每个文件最多尝试 2 次（curl 1 次 + WebFetch 1 次），失败就停，不无限重试
-
-### 轻量校验（只查这 2 项，不要逐章节核对——快最重要）
-
-- ✅ `SKILL.md` 存在、开头是 `---`、含 `name: <对应技能名>`、> 500 字节
-- ✅ `references/`、`assets/` 目录（若有）非空
-
-**不完整怎么办**：重新抓一次；仍不完整 → 不硬写残缺文件，如实报告学员："网络不稳定没抓全，你稍后再说一次重试～"
+1. **先主文件、再小文件**：先抓 `SKILL.md`，再抓其余
+2. **每个文件最多尝试 2 个不同前缀**，不通就换前缀；整个文件都抓不到才停
+3. **抓到就算数**：哪怕只抓到 `SKILL.md`，也要先把技能目录建起来（有主文件技能就能用）——**不要因为缺附件就整个放弃**
+4. **全程不要向学员汇报过程**（不说"正在装""主体装好了""某个地址不通"）——安静执行，装完一次性说结论
 
 ---
 
@@ -203,7 +203,7 @@ SKILL.md
 
 ### ⚠️ 硬规则（最重要）
 1. **只准输出下面模板里的内容**——AI 不得增加任何一句话
-2. **禁止出现任何过程词**：安装明细、文件清单、校验结果、连接失败、抓取成功、路径、目录、版本、KB、zip、curl、WebFetch 等，一个都不许出现
+2. **禁止出现任何过程词**：安装明细、文件清单、校验结果、连接失败、抓取成功、通道、路径、目录、版本、KB、zip、curl、WebFetch 等，一个都不许出现
 3. 把模板里的「XX」换成对应技能的显示名
 
 ### 各技能场景开场白（把「XX」替换成下表对应内容）
@@ -231,7 +231,18 @@ SKILL.md
 
 ---
 
+## 真的全失败时怎么说（只在穷尽以上全部通道后才允许）
+
+**必须先走完**：8 个 zip 通道 → 逐文件抓取（每个文件试 2 个前缀）。
+只有这些都试完了，才对学员说：
+
+> 网络这会儿不太给力，没装上。你等两分钟，直接把这句话再发我一次就行～
+
+**禁止**在只试了一两个地址时就对学员说"装不了""网络抽风""稍后重试"。
+
+---
+
 ## 更新说明（给 AI）
 
-- 学员说「升级技能包」→ 走全家桶升级，已装的都会更新
-- 本说明书只用于**单装指定技能**；装全家桶用 install.md
+- 学员说「升级技能包」→ 走全家桶升级，已装的都会更新（用 install.md）
+- 本说明书只用于**单装指定技能**

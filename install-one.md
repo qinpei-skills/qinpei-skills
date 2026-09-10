@@ -56,16 +56,18 @@ curl -fsSL --max-time 20 "<地址>" -o /tmp/qinpei-skill.zip
 
 ## 技能名 → zip 文件名对照（写死，直接查表）
 
-| 学员说的技能 | 技能名（目录名） | zip 文件名 |
+**左列任何一个叫法，都指向同一个技能——学员怎么叫，都要能对上。**
+
+| 学员可能说的名字（含别名） | 技能名（目录名） | zip 文件名 |
 |:---|:---|:---|
-| 朋友圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` |
-| 社群 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` |
-| 沙龙 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` |
-| 故事力 | qinpei-storytelling | `qinpei-storytelling.zip` |
-| IP定位 | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` |
-| 展业破局·诊断 | qinpei-business-check | `qinpei-business-check.zip` |
-| 画像 | qinpei-profile | `qinpei-profile.zip` |
-| 入口 | qinpei | `qinpei.zip` |
+| 朋友圈 / 朋友圈信任经营 / 朋友圈经营 / 发圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` |
+| 社群 / 社群运营 / 群运营 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` |
+| 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` |
+| 故事力 / 讲故事 | qinpei-storytelling | `qinpei-storytelling.zip` |
+| IP定位 / IP定位诊断 | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` |
+| **展业破局·诊断 / 展业问诊 / 业务诊断 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` |
+| 画像 / 我的画像 | qinpei-profile | `qinpei-profile.zip` |
+| 入口 / qp | qinpei | `qinpei.zip` |
 
 ---
 

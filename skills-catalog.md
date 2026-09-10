@@ -16,7 +16,7 @@
 | qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.0 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
 | qinpei-storytelling | 故事力提效 | 1.1.0 | on-demand | skillhub-zips/qinpei-storytelling.zip |
 | qinpei-ip-diagnosis | 个人IP定位诊断 | 1.1.0 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
-| qinpei-business-check | 展业破局·诊断 | 2.0.0 | on-demand | skillhub-zips/qinpei-business-check.zip |
+| qinpei-business-check | 展业诊断 | 3.0.0 | on-demand | skillhub-zips/qinpei-business-check.zip |
 
 ---
 

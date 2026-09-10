@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>朋友圈信任经营 · 手机一键安装</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    background:#F6F3EE; color:#2B2724; line-height:1.75;
+    padding:0 0 60px; font-size:17px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:640px; margin:0 auto; padding:0 20px; }
+
+  .hero { background:#0F6E56; color:#fff; padding:46px 0 40px; margin-bottom:26px; }
+  .hero h1 { font-size:27px; font-weight:600; letter-spacing:.5px; margin-bottom:10px; }
+  .hero p { font-size:15px; opacity:.88; line-height:1.7; }
+  .hero .tag {
+    display:inline-block; font-size:13px; background:rgba(255,255,255,.16);
+    border-radius:20px; padding:3px 13px; margin-bottom:16px; letter-spacing:.5px;
+  }
+
+  .card {
+    background:#fff; border-radius:14px; padding:20px 20px 18px; margin-bottom:14px;
+    box-shadow:0 1px 3px rgba(43,39,36,.05);
+  }
+  .card-hd { display:flex; align-items:flex-start; gap:12px; margin-bottom:14px; }
+  .num {
+    flex:0 0 34px; height:34px; border-radius:10px; background:#EAF3DE; color:#3B6D11;
+    font-size:15px; font-weight:600; display:flex; align-items:center; justify-content:center;
+  }
+  .num.core { background:#FAEEDA; color:#854F0B; }
+  .card-tx h3 { font-size:17px; font-weight:600; margin-bottom:2px; }
+  .card-tx p { font-size:14px; color:#6B6560; line-height:1.6; }
+
+  .btn {
+    display:block; width:100%; border:none; border-radius:11px; cursor:pointer;
+    font-family:inherit; font-size:16px; font-weight:500; padding:13px 16px;
+    transition:background .18s, color .18s, transform .1s;
+    background:#0F6E56; color:#fff; letter-spacing:.3px;
+  }
+  .btn:active { transform:scale(.985); }
+  .btn.done { background:#EAF3DE; color:#3B6D11; }
+
+  .feature {
+    background:#fff; border:1.5px solid #0F6E56; border-radius:16px;
+    padding:24px 20px 20px; margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(15,110,86,.08);
+  }
+  .feature .badge {
+    display:inline-block; font-size:12.5px; background:#FAEEDA; color:#854F0B;
+    border-radius:20px; padding:3px 12px; margin-bottom:12px; font-weight:500;
+  }
+  .feature h2 { font-size:20px; font-weight:600; margin-bottom:6px; }
+  .feature > p { font-size:14.5px; color:#6B6560; margin-bottom:18px; line-height:1.65; }
+  .feature .note { font-size:13px; color:#8A8279; margin-top:11px; text-align:center; }
+
+  .sec-title {
+    font-size:14px; color:#8A8279; letter-spacing:1px; margin:28px 0 12px; padding-left:4px;
+  }
+
+  .steps { background:#fff; border-radius:14px; padding:22px 20px; margin-top:24px; }
+  .steps h3 { font-size:16px; font-weight:600; margin-bottom:14px; }
+  .step { display:flex; gap:12px; margin-bottom:13px; font-size:15px; color:#4A4540; line-height:1.65; }
+  .step:last-child { margin-bottom:0; }
+  .step b {
+    flex:0 0 22px; height:22px; border-radius:50%; background:#0F6E56; color:#fff;
+    font-size:12.5px; font-weight:500; display:flex; align-items:center; justify-content:center;
+    margin-top:3px;
+  }
+  .warn {
+    background:#FAEEDA; border-radius:12px; padding:15px 17px; margin-top:14px;
+    font-size:14px; color:#7A5716; line-height:1.7;
+  }
+  .warn b { color:#633806; }
+  footer { text-align:center; font-size:13px; color:#9C948B; margin-top:30px; line-height:1.8; }
+
+  .toast {
+    position:fixed; left:50%; bottom:38px; transform:translate(-50%,20px);
+    background:#2B2724; color:#fff; font-size:14.5px; padding:11px 24px; border-radius:24px;
+    opacity:0; transition:opacity .22s, transform .22s; pointer-events:none; z-index:99;
+  }
+  .toast.show { opacity:1; transform:translate(-50%,0); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="tag">沁珮 · 团队长赋能</div>
+    <h1>朋友圈信任经营</h1>
+    <p>把朋友圈从"卖货广告牌"变成"信任银行"<br>复制指令 → 打开 WorkBuddy 粘贴发送，几十秒装好</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="feature">
+    <div class="badge">手机一键安装</div>
+    <h2>装这一个就够</h2>
+    <p>不会写提示词没关系，装完跟它聊天就行——你说人话，它出内容。</p>
+    <button class="btn" data-copy="根据 https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/install-one.md 帮我安装「朋友圈」">复制安装指令</button>
+    <div class="note">装完直接说「帮我写条朋友圈」</div>
+  </div>
+
+  <div class="sec-title">它能帮你做这 5 件事</div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">1</div>
+      <div class="card-tx"><h3>装修微信名片</h3><p>头像建议、3 个昵称、个性签名、背景墙，外加置顶三条朋友圈（故事 / 价值 / 案例各一条）</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">2</div>
+      <div class="card-tx"><h3>写一条朋友圈</h3><p>认知升维 / 情绪疗愈 / 生活美学 / 事业轻感 / 过程纪实 / 认知普惠，六个方向任选，自动配业务钩子</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">3</div>
+      <div class="card-tx"><h3>排一周发圈计划</h3><p>按「认识你→认可你→信任你」三层信任配比排满一周，配一张彩色日历总览图，照着发就行</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">4</div>
+      <div class="card-tx"><h3>改你写的朋友圈</h3><p>把草稿粘给它，四步改造：洗稿重塑 → 视角转换 → 合规脱敏 → 植入行动引导。改几次它就开始学你的风格</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">5</div>
+      <div class="card-tx"><h3>公众承诺打卡</h3><p>发起一个挑战，它写好首条承诺 + 每日打卡模板；哪天坚持不下去了，它给你写一条"我为什么还在坚持"</p></div>
+    </div>
+  </div>
+
+  <div class="steps">
+    <h3>怎么用</h3>
+    <div class="step"><b>1</b><span>点上面的「复制安装指令」，提示"已复制"就行</span></div>
+    <div class="step"><b>2</b><span>打开 WorkBuddy，在对话框里<b style="background:none;color:#0F6E56;border-radius:0;width:auto;height:auto;flex:none;display:inline;font-weight:600;margin:0">长按粘贴</b>，发送</span></div>
+    <div class="step"><b>3</b><span>手机保持亮屏别切走，等它说"装好啦"，再说一句你想写什么</span></div>
+    <div class="warn">
+      <b>小提示</b>：装之前建议先把模型切成 <b>DeepSeek</b>，会更快。
+    </div>
+  </div>
+
+  <footer>
+    沁珮技能包 · 学员版<br>
+    装完不知道用哪个？跟它说「qp」
+  </footer>
+</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script>
+var toast = document.getElementById('toast');
+var timer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(timer);
+  timer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('[data-copy]');
+  if (!btn) return;
+  var text = btn.getAttribute('data-copy');
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      showToast('已复制，去 WorkBuddy 粘贴吧');
+    }).catch(function () {
+      fallbackCopy(text);
+      showToast('已复制，去 WorkBuddy 粘贴吧');
+    });
+  } else {
+    fallbackCopy(text);
+    showToast('已复制，去 WorkBuddy 粘贴吧');
+  }
+
+  var old = btn.textContent;
+  btn.textContent = '已复制 ✓';
+  btn.classList.add('done');
+  setTimeout(function () {
+    btn.textContent = old.indexOf('已复制') === 0 ? '复制安装指令' : old;
+    btn.classList.remove('done');
+  }, 1800);
+});
+</script>
+</body>
+</html>

@@ -41,7 +41,7 @@
 
 **铁律**：
 1. **一个通道失败立刻换下一个**，不要因为某个域名不通就判定整件事失败
-2. **每个通道只试 1 次、超时 20 秒**（`curl --max-time 20`）
+2. **每个通道只试 1 次、超时 20 秒**（`curl --max-time 10`）
 3. 判定"这个通道失败"：命令返回非 0 / 下载文件 < 500 字节 / 报 SSL 或超时
 4. **zip 全通道都失败 → 走「兜底：逐文件抓取」**（见下），不要半途停下来说装不了
 
@@ -72,7 +72,7 @@
 
 ```bash
 # ① 下载（把 <地址> 换成通道清单里的第 1 个；失败就换第 2、3…个）
-curl -fsSL --max-time 20 "<地址>" -o /tmp/qinpei-skill.zip
+curl -fsSL --max-time 10 "<地址>" -o /tmp/qinpei-skill.zip
 
 # ② 解压 —— 🔴 优先用 Python（原因见下方自检）
 python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
@@ -102,7 +102,7 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
   python3 也没有 → 改走「兜底：逐文件抓取」（文件名由你自己写，反而不会错）
 
 - ⚠️ **下载失败不要停**：换通道清单里的下一个地址继续，8 个都试完才走逐文件抓取
-- `curl -f` 失败不输出文件｜`-s` 静默｜`-S` 报错｜`-L` 跟随重定向｜`--max-time 20` 防卡死
+- `curl -f` 失败不输出文件｜`-s` 静默｜`-S` 报错｜`-L` 跟随重定向｜`--max-time 10` 防卡死
 
 ### 兜底：逐文件抓取（仅当 zip 全通道失败 / 解压工具都没有）
 

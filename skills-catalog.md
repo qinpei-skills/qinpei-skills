@@ -3,19 +3,20 @@
 > 本文件是学员端安装/升级技能的**唯一数据源**，由沁珮维护。
 > 新增技能 = 加一行；技能升级 = 改版本号。学员端一句「升级技能包」自动生效。
 > 安装模式：`core` = 首次必装（小、秒装）；`on-demand` = 按需补装（学员用到时由入口自动装）。
-> **安装方式（2026-09-10 起）：优先下载 zip 一次解压**（1 个请求拿全部文件，最快）；zip 不通再逐文件抓取（清单见 install-one.md 方案二）。
-> 格式：技能名 | 显示名 | 版本 | 安装模式 | zip 地址
+> **安装方式（2026-09-10 v6 起）：优先下载 zip 一次解压**（1 个请求拿全部文件，最快）。
+> ⚠️ **下载地址不固定**：8 条通道（WorkBuddy 文库 → jsdelivr 主/备用节点 → gh 加速代理）**按序自动降级，一个不通立刻换下一个**——完整通道清单见 `install.md` / `install-one.md`。zip 全通道都不通再走逐文件抓取（清单见 install-one.md「终极兜底」）。
+> 格式：技能名 | 显示名 | 版本 | 安装模式 | zip 文件名
 
-| 技能名 | 显示名 | 版本 | 安装模式 | zip 地址 |
+| 技能名 | 显示名 | 版本 | 安装模式 | zip 文件名 |
 |:---|:---|:---:|:---:|:---|
-| qinpei | 沁珮入口（引导+导航） | 1.5.0 | core | https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei.zip |
-| qinpei-profile | 共享画像银行 | 1.0.1 | core | https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-profile.zip |
-| qinpei-wechat-trust | 朋友圈信任经营 | 2.3.1-student | on-demand | https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-wechat-trust.zip |
-| qinpei-community-ops-trust | 社群运营提效 | 3.2.1 | on-demand | https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-community-ops-trust.zip |
-| qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.0 | on-demand | https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-salon-ops-trust.zip |
-| qinpei-storytelling | 故事力提效 | 1.1.0 | on-demand | https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-storytelling.zip |
-| qinpei-ip-diagnosis | 个人IP定位诊断 | 1.1.0 | on-demand | https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-ip-diagnosis.zip |
-| qinpei-business-check | 展业破局·诊断 | 2.0.0 | on-demand | https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-business-check.zip |
+| qinpei | 沁珮入口（引导+导航） | 1.5.0 | core | skillhub-zips/qinpei.zip |
+| qinpei-profile | 共享画像银行 | 1.0.1 | core | skillhub-zips/qinpei-profile.zip |
+| qinpei-wechat-trust | 朋友圈信任经营 | 2.3.1-student | on-demand | skillhub-zips/qinpei-wechat-trust.zip |
+| qinpei-community-ops-trust | 社群运营提效 | 3.2.1 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
+| qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.0 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
+| qinpei-storytelling | 故事力提效 | 1.1.0 | on-demand | skillhub-zips/qinpei-storytelling.zip |
+| qinpei-ip-diagnosis | 个人IP定位诊断 | 1.1.0 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
+| qinpei-business-check | 展业破局·诊断 | 2.0.0 | on-demand | skillhub-zips/qinpei-business-check.zip |
 
 ---
 

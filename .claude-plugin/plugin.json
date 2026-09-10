@@ -1,8 +1,0 @@
-{
-  "name": "qinpei-methodology",
-  "displayName": "沁珮方法论技能包",
-  "description": "沁珮（经销商赋能）蒸馏的方法论技能：朋友圈信任经营。其余优化中。",
-  "skills": [
-    "./skills/qinpei-wechat-trust"
-  ]
-}

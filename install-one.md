@@ -61,20 +61,29 @@ curl -fsSL --max-time 20 "<地址>" -o /tmp/qinpei-skill.zip
 
 **左列任何一个叫法，都指向同一个技能——学员怎么叫，都要能对上。**
 
-| 学员可能说的名字（含别名） | 技能名（目录名） | zip 文件名 |
-|:---|:---|:---|
-| 朋友圈 / 朋友圈信任经营 / 朋友圈新人经营 / 朋友圈经营 / 发圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` |
-| 社群 / 社群运营 / 群运营 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` |
-| 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` |
-| 故事力 / 讲故事 | qinpei-storytelling | `qinpei-storytelling.zip` |
-| IP定位 / IP定位诊断 | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` |
-| **展业破局·诊断 / 展业问诊 / 业务诊断 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` |
-| 画像 / 我的画像 | qinpei-profile | `qinpei-profile.zip` |
-| 入口 / qp | qinpei | `qinpei.zip` |
+| 学员可能说的名字（含别名） | 技能名（目录名） | zip 文件名 | 当前版本（校验用） |
+|:---|:---|:---|:---|
+| 朋友圈 / 朋友圈信任经营 / 朋友圈新人经营 / 朋友圈经营 / 发圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` | 2.3.2-student |
+| 社群 / 社群运营 / 群运营 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` | 3.2.1 |
+| 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` | 2.1.0 |
+| 故事力 / 讲故事 | qinpei-storytelling | `qinpei-storytelling.zip` | 1.1.0 |
+| IP定位 / IP定位诊断 | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` | 1.1.0 |
+| **展业破局·诊断 / 展业问诊 / 业务诊断 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` | 2.0.0 |
+| 画像 / 我的画像 | qinpei-profile | `qinpei-profile.zip` | 1.0.1 |
+| 入口 / qp | qinpei | `qinpei.zip` | 1.5.0 |
 
 ---
 
 ## 第 2 步：解压到技能目录
+
+> **⚠️ 解压前先保护学员数据（不能省）**：若目标目录已存在，先把学员自己积累的内容挪到临时目录，装完再放回去：
+>
+> ```bash
+> cd ~/.workbuddy/skills/<技能名>/ 2>/dev/null && { [ -f 我的画像.md ] && cp 我的画像.md /tmp/ ; [ -d 学员档案 ] && cp -r 学员档案 /tmp/ ; true; }
+> ```
+>
+> 解压是**覆盖式**的——不先备份就解压，学员之前填的画像和案例会被抹掉，还要重填一遍。**不确定有没有旧目录，就一律先备份。**
+> 装完后把 `/tmp/我的画像.md`、`/tmp/学员档案/` 放回 `~/.workbuddy/skills/qinpei-profile/` 与技能目录原位。
 
 **🔴 必须先试 Python 方式**（原因见下方"中文文件名自检"）：
 
@@ -92,6 +101,7 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 ### 🔴 解压后必做：中文文件名自检（漏做会导致技能变哑巴）
 
 技能包里有 **27 个中文命名的文件**（社群 7 个、沙龙 13 个、朋友圈 4 个模板，**另有展业诊断／故事力／IP定位 各 1 个 `话术卡.md`**；例如 `assets/templates/01-群公告+欢迎语.md`）。
+（27 是**全部技能包加起来的数**。单装一个包只会看到属于它的那几个——朋友圈就是 4 个模板——**数目少不代表装漏了**。）
 部分系统的 `unzip` 不支持中文（无 UTF-8 支持），会把它们解成乱码名，**技能就找不到自己的模板，功能直接残废**。
 
 解压后 `ls ~/.workbuddy/skills/<技能名>/assets/templates/` 看一眼：
@@ -112,10 +122,16 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 
 ---
 
-## 第 3 步：轻量校验（只查这 2 项，快最重要）
+## 第 3 步：轻量校验（只查这 3 项，快最重要）
 
 - ✅ `SKILL.md` 存在、开头是 `---`、含 `name: <对应技能名>`、且 > 500 字节
 - ✅ `references/`、`assets/` 目录（若 zip 里有）非空
+- ✅ **版本号对得上**——读 `SKILL.md` 里的 `version:`，与上表「当前版本」列**逐字一致**：
+  ```bash
+  grep -m1 "^version:" ~/.workbuddy/skills/<技能名>/SKILL.md
+  ```
+
+**🔴 版本比上表旧 = 命中了 CDN 旧缓存**（不是学员的问题）：清掉刚解压的目录，回「通道清单」换下一个通道重下（从「文库重试」行开始最容易成功）；最多 2 轮，仍旧 → 走「终极兜底：逐文件抓取」。**禁止把旧版本当作装好了交给学员。**
 
 ---
 

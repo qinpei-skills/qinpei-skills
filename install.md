@@ -1,27 +1,27 @@
-# 沁珮系列技能包 · 安装说明书
+# 沁珮系列技能包 · 安装说明书（v5.0.0 · zip 极速版）
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，不是给人读的文档。
-> 当前版本：4.0.0（jsdelivr CDN 优先——2026-08-25 加入 jsdelivr 直连通道）
+> 当前版本：5.0.0（2026-09-10 改为 **zip 一次下载 + 解压**——每个技能 1 个压缩包，一次请求拿全部文件）
 
 ---
 
 ## 你要做的事
 
 在用户设备上安装/升级「沁珮开源系列技能包」到 `~/.workbuddy/skills/`。
-**首次安装只装核心包（很小，10 秒内完成）；大技能包按需补装（学员用到时由入口自动装，不用一次装完）。**
+**首次安装只装核心包（很小，秒装）；大技能包按需补装（学员用到时由入口自动装）。**
 
 ---
 
 ## ⚠️ 先对学员说清楚（每次安装/升级前必说，大白话）
 
 > 安装需要保持手机**亮屏、别切走、别接电话**，装完我会告诉你。
-> 这次大概需要：**1 分钟内**（首次）或几十秒（升级），你准备好了跟我说一声，我就开始。
+> 这次大概需要：**不到 1 分钟**（首次）或几十秒（升级），你准备好了跟我说一声，我就开始。
 
 学员确认后，再开始下面的流程。
 
 ---
 
-## ⚠️ 环境事实（决定抓取通道）
+## ⚠️ 环境事实（决定走哪条通道）
 
 **手机端沙箱网络实测**：
 
@@ -32,123 +32,138 @@
 | **`cdn.jsdelivr.net` jsdelivr CDN** | ✅ **能直连！返回原始字节** | **首选** |
 | WebFetch（AI 工具） | ✅ 能通但慢、可能转述/截断 | **备用兜底** |
 
-**结论**：抓文件**首选 jsdelivr CDN**（curl 直连下载原始字节，最快最稳）；jsdelivr 不通才用 WebFetch。
+**结论**：一律走 **jsdelivr CDN**（curl 直连下载原始字节，最快最稳）。
 
-> jsdelivr URL 格式：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/<仓库内路径>`
-> 例：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills-catalog.md`
+> jsdelivr 地址格式：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/<仓库内路径>`
 
-### 推荐抓取命令（首选）
+---
+
+## 🚀 核心方法：下载 zip + 解压（一次请求拿全部文件）
+
+**每个技能打成一个 zip**（含 SKILL.md + references + 模板），一次请求搞定，比逐文件抓快得多。
+
+### 技能名 ↔ zip 地址对照表（写死 · 直接查表）
+
+| 技能名（目录名） | zip 地址 |
+|:---|:---|
+| qinpei | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei.zip` |
+| qinpei-profile | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-profile.zip` |
+| qinpei-wechat-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-wechat-trust.zip` |
+| qinpei-community-ops-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-community-ops-trust.zip` |
+| qinpei-salon-ops-trust | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-salon-ops-trust.zip` |
+| qinpei-storytelling | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-storytelling.zip` |
+| qinpei-ip-diagnosis | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-ip-diagnosis.zip` |
+| qinpei-business-check | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/qinpei-business-check.zip` |
+
+### 下载 + 解压（标准两步）
+
 ```bash
-curl -fsSL "<jsdelivr URL>" -o "<目标路径>"
+# ① 下载
+curl -fsSL "<zip 地址>" -o /tmp/qinpei-skill.zip
+
+# ② 解压（目录不存在会自动建）
+mkdir -p ~/.workbuddy/skills/<技能名>
+unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
+rm -f /tmp/qinpei-skill.zip
 ```
-- `-f`：HTTP 错误不输出文件（失败立即停）
-- `-sS`：静默但错误时显示
-- `-L`：跟随重定向
+
+**`unzip` 不可用时**，改用 Python（沙箱一般都有 python3）：
+
+```bash
+python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
+```
+
+- URL 末尾若担心 CDN 缓存，可加 `?t=$(date +%s)` 强制回源。
+- `curl -f` 失败不输出文件｜`-s` 静默｜`-S` 报错｜`-L` 跟随重定向。
+
+### 兜底：逐文件抓取（仅当 zip 下载不到 / 解压工具都没有）
+
+前缀：`https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/<技能名>/`
+逐文件抓取清单见 **install-one.md 的「方案二」**（含每个技能的完整文件列表）。
 
 jsdelivr 不通（HTTP 非 2xx）→ 改用 WebFetch 抓同一 URL（剥围栏后写入）。
 
----
+### ⚠️ WebFetch 兜底三大坑
 
-## 第一步：读技能清单
+**坑 1：抓回内容可能包围栏** —— 返回常被包 ` ```markdown ... ``` `。写入前**必须剥掉最外层围栏**，否则 frontmatter 的 `---` 被破坏，技能失效。
 
-**首选 jsdelivr**：用 curl 抓取
-```
-https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills-catalog.md
-```
-存到本地临时文件（如 `/tmp/skills-catalog.md`），用 Read 工具读取。
+**坑 2：可能截断/漏内容** —— 抓回后核对文件非空（> 500 字节）、开头是 `---`。
 
-**备用 WebFetch**：jsdelivr 不通时用 WebFetch 抓同一 URL，剥围栏后写入临时文件再读。
+**坑 3：不反复重试** —— 每个文件最多 2 次（curl 1 次 + WebFetch 1 次），失败就停。
 
-清单是一张表格，每行一个技能：`技能名 | 显示名 | 版本 | 安装模式 | SKILL.md 地址`。
+### ⚠️ 坑 4：jsdelivr 缓存
 
-### ⚠️ WebFetch 三大坑（仅 WebFetch 兜底时适用）
-
-**坑 1：抓回内容可能包围栏**
-- WebFetch 抓 markdown 文件时，返回内容经常被外层包了 ` ```markdown ... ``` ` 代码围栏
-- **写入文件前必须剥掉最外层的 ` ```markdown ` 和末尾的 ` ``` `**，否则 frontmatter（`---` 标记）被破坏，技能失效
-- 剥法：如果返回内容以 ` ```markdown\n` 开头且以 ` ```\n` 结尾，删掉这两行
-
-**坑 2：抓清单可能漏行（最危险）**
-- WebFetch 抓 `skills-catalog.md` 时**实测可能丢行**——曾出现 4 行丢成 2 行
-- **抓到 catalog 后必须数行**：`| ... |` 行数应 = 技能数 + 1（表头）。如果少于清单声明的技能数（当前 8 个），重新抓一次；还漏就报错让学员知道
-
-**坑 3：不反复重试**
-- 每个文件最多尝试 2 次（jsdelivr curl 1 次 + WebFetch 兜底 1 次），失败就停止
-
-### ⚠️ 坑 4：jsdelivr 缓存（很罕见但存在）
-
-- jsdelivr CDN 通常缓存时间短（分钟级），但偶尔也会有旧版本缓存
-- 绕过方法：URL 末尾加 `?t=<当前时间戳>`，例如：
-  - `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills-catalog.md?t=1739876543`
-- 仅在发现抓到旧版时才用；时间戳只是为了让 URL 唯一，强制回源
-
-### ⚠️ 版本号规则
-- 抓回 SKILL.md 后**必须读它的 frontmatter `version` 字段**（开头的 `--- ... ---` 块里）
-- 与清单里的版本**字符串不一致** → 强制升级（不要冒险跳过，"误判最新"是最严重的安装故障）
-- 升级时只覆盖 `SKILL.md` 本体，绝不碰学员资料
+CDN 通常分钟级刷新，偶尔有旧缓存。绕过：URL 末尾加 `?t=<时间戳>`。
 
 ---
 
-## 第二步：本次只装这两个技能（写死名单，不依赖字段匹配）
+## 第一步：首次安装（只装这两个核心包）
 
-⚠️ **本次安装只装以下两个技能，其他所有技能（包括清单里其他条目）都不抓不装**：
+⚠️ **本次只装以下两个技能，其他所有技能都不抓不装**：
 
-| 保存为 | jsdelivr URL（首选） |
+| 技能名 | 保存位置 |
 |:---|:---|
-| `~/.workbuddy/skills/qinpei/SKILL.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei/SKILL.md` |
-| `~/.workbuddy/skills/qinpei-profile/SKILL.md` | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/qinpei-profile/SKILL.md` |
+| `qinpei` | `~/.workbuddy/skills/qinpei/` |
+| `qinpei-profile` | `~/.workbuddy/skills/qinpei-profile/` |
 
-**这两个技能很小（合计约 10KB），秒装。** 清单里的其他技能（如朋友圈、社群等）都属于「按需补装」——**本次安装完全不抓不写任何文件**，它们由「沁珮入口」在学员实际要用时自动按需补装。
+**这两个包很小（合计约 8KB），秒装。**
 
-### 1. 对每个要装的技能
+其他技能（朋友圈、社群、沙龙、故事力、IP定位、展业破局·诊断）都属于「按需补装」——**本次完全不抓不写**，由「沁珮入口」在学员实际要用时自动补装。
 
-检查 `~/.workbuddy/skills/<技能名>/SKILL.md` 是否存在：
+### 装完自检（防止 AI 错装）
 
-- **不存在** → 新安装：用 curl 抓 jsdelivr URL，写入该目录
-- **存在** → 读它 frontmatter 里的 `version` 字段，和清单里的版本比对：
-  - **一样** → 跳过（已是最新，别动它）
-  - **线上更新** → curl 抓 jsdelivr URL，覆盖写入（升级）
+用 `ls ~/.workbuddy/skills/` 确认：
+- ✅ **应该存在**：`qinpei/`、`qinpei-profile/`
+- ❌ **绝不应该存在**（除非学员之前装过）：`qinpei-wechat-trust/`、`qinpei-community-ops-trust/`
 
-### 1.5 已装过的「按需包」也要升级（学员说「升级技能包」时）
+如果发现不该有的目录被本次创建 → 诚实告诉学员"刚才多装了 XX（不该装的），可以忽略"。
 
-⚠️ **重要**：学员已经按需装过的大技能（如朋友圈、社群），以后迭代出新版时，说「升级技能包」**也要帮它们升级**。
+---
 
-**升级前先做一步提速**：用 `ls ~/.workbuddy/skills/`（或 Read 目录）**先列出本地已存在的 `qinpei*` 目录**，只对**已存在的目录**做版本比对；不存在的 on-demand 目录**直接跳过、不读不抓**（省掉大量无用检查，升级应 30 秒内完成）。
+## 第二步：升级（学员说「升级技能包」时）
 
-处理方式（不改变"首次只装 core"的原则）：
-- 对清单里的**每一个技能**（不限 core），先检查 `~/.workbuddy/skills/<技能名>/SKILL.md` 是否已存在：
-  - **已存在** → 按第 1 步的规则比对版本：线上更新就升级，一样就跳过
-  - **不存在** → 如果是 `core` 就新装；如果是 `on-demand` 就跳过（不新装，等用到时由入口补装）
-- **附加文件检查（升级时）**：对已存在的技能，检查它 catalog 里列的"附加文件"（references/ 等）是否都存在：
-  - **缺失** → 用 curl 抓 jsdelivr URL 补上
-  - **都存在** → 跳过
+**升级 = 装过的都更新到最新版；没装过的按需包不装。**
 
-> 一句话记忆：**升级 = 装过的都更新到最新，没装过的按需包不装，缺的知识文件补上。**
+### 1. 先列出本地已装的技能
 
-### 2. ⚠️ 装完自检（防止 AI 错装）
+用 `ls ~/.workbuddy/skills/`（或 Read 目录）**列出所有 `qinpei*` 目录**。
 
-装完两个 core 技能后，**AI 必须做一次自检**：
+### 2. 只对已存在的目录，下载 zip 覆盖解压
 
-用 `ls ~/.workbuddy/skills/`（或 Read 目录）确认：
-- ✅ **应该存在**：`qinpei/` 和 `qinpei-profile/` 两个目录
-- ❌ **绝不应该存在**：`qinpei-wechat-trust/` 或 `qinpei-community-ops-trust/`（除非学员之前已经装过）
+对每个**已存在的** `qinpei*` 目录（在对照表里有 zip 地址的）：
+- 下载对应 zip → 解压覆盖到原目录
+- ⚠️ **不存在的 on-demand 目录直接跳过，不新装**（等学员用到时由入口补装）
 
-如果发现不该有的目录被本次操作创建/修改了 → 在回复里诚实告诉学员"刚才多装了 XX（不该装的），可以忽略/后面用到时再说"。
+> 直接覆盖解压即可，不做版本比对——zip 里永远是最新版，比"读版本+抓清单+比对"更快更可靠。
 
-### 3. 抓取失败
-跳过它、记下来，最后告诉用户"哪个没装上，再说一次『升级技能包』重试"。**不要卡住整个流程。**
+### 3. 补装缺失的知识文件
 
-### 4. ⚠️ 硬规则：保护学员自己的资料
-每个技能目录下的 `我的画像.md`、`学员档案/` 等文件，是**学员自己的数据**：
-- 已存在 → **绝对不要覆盖、不要删除、不要动**
-- 不存在 → 不要替学员创建（技能使用过程中 AI 会自动创建）
-- 升级时只覆盖 `SKILL.md` 本身
+如果某技能目录里 `references/` 或 `assets/` 缺失或为空 → 重新下载该技能 zip 解压补齐（zip 已含全部文件）。
+
+### 4. 抓取失败
+跳过它、记下来，最后告诉学员"哪个没更新上，再说一次『升级技能包』重试"。**不要卡住整个流程。**
+
+---
+
+## ⚠️ 硬规则：保护学员自己的资料（不可违反）
+
+学员的技能目录下可能有**学员自己产生的数据**：
+
+- `我的画像.md`（学员的行业/人设/钩子）
+- `学员档案/`（沙龙等活动记录、复盘数据、经验库）
+- 其他学员自己命名并保存的文件
+
+规则：
+1. **绝对不要覆盖、不要删除、不要清空这些文件**
+2. **不存在时不要替学员创建**（技能使用过程中 AI 会自动创建）
+3. 分发包（zip）里**已经不含**这些学员数据文件，所以正常解压覆盖不会动到它们——但**不要额外做删除或清目录的动作**
+4. 升级时**不要**使用 `rm -rf` 删整个技能目录
 
 ---
 
 ## 第三步：完成后怎么回复用户
 
-**必须用大白话，禁止出现这些词**：目录、路径、命令行、CLI、仓库、克隆、终端、脚本、frontmatter、core、on-demand。
+**必须用大白话，禁止出现这些词**：目录、路径、命令行、CLI、仓库、zip、解压、终端、脚本、frontmatter、KB。
 
 **① 首次安装（装好核心包）**
 ```
@@ -180,7 +195,8 @@ https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills-catalog.md
 
 ## 更新说明（给 AI）
 
-- 学员说「安装技能包」「升级技能包」「更新技能包」「装最新版」→ **重跑本文件**，自动增量 + 升级，无需区分
+- 学员说「安装技能包」「升级技能包」「更新技能包」「装最新版」→ **重跑本文件**，自动增量 + 升级
 - 学员说「qp」或直接说需求（发朋友圈/运营社群等）→ 由「沁珮入口」处理，包括**按需补装对应技能包**
-- 当前版本 4.0.0。技能清单最新数据以 `skills-catalog.md` 为准
+- 单装某一个技能 → 用 **install-one.md**
 - 学员的画像/档案数据永远不动——这是底线
+- 当前版本 5.0.0；技能清单数据以 `skills-catalog.md` 为准

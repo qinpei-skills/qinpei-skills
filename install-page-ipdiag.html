@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="1VHdcWNqceFgrvWewUG6aG">
+<head data-page-node-id="aZ04Gj5fJO8ZkLGDda7uzD">
+<meta charset="UTF-8" data-page-node-id="DedHJwydKEhSNeo6EbKHki">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" data-page-node-id="dfnnsD7GrAYbq8VahWOZlE">
+<meta name="format-detection" content="telephone=no" data-page-node-id="n42F0eZoehEVoNhGFRy3V6">
+<meta name="theme-color" content="#2A3F6B" data-page-node-id="fF8VVbH1bqhUq5WTWbLbZp">
+<meta name="description" content="沁珮技能包 · IP 定位诊断（学员版）安装页。复制一句指令发给 WorkBuddy，几十秒装好，装完说「帮我做IP定位」，它带你把定位收成一句话。" data-page-node-id="BOEsnkA9qdf3Lh1r4AWjLT">
+<meta property="og:type" content="website" data-page-node-id="MTXDzRdCQT7GL6wxSprvhX">
+<meta property="og:title" content="沁珮技能包 · IP 定位诊断 skill 安装" data-page-node-id="ggKxNDDzFO8e45F4lw33Jr">
+<meta property="og:description" content="复制一句指令，几十秒装好。装完说「帮我做IP定位」，它一问一问带你把定位收成一句话。" data-page-node-id="XRtleyDeJ7UK6IWLaHVwln">
+<meta name="apple-mobile-web-app-title" content="IP定位skill安装" data-page-node-id="eUICoRicYFCWf2iXSscp9x">
+<title>沁珮技能包 · IP 定位诊断 skill 安装</title>
+<style>
+  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    background:#F6F3EE; color:#2B2724; line-height:1.75;
+    padding:0 0 60px; font-size:17px; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden; word-break:break-word;
+  }
+  .wrap { max-width:640px; margin:0 auto; padding:0 clamp(16px, 4.6vw, 20px); }
+
+  .hero { background:#2A3F6B; color:#fff; padding:clamp(34px, 8.4vw, 46px) 0 clamp(30px, 7.4vw, 40px); margin-bottom:26px; }
+  .hero h1 { font-size:clamp(22px, 6.4vw, 27px); font-weight:600; letter-spacing:.5px; margin-bottom:10px; }
+  .hero p { font-size:clamp(13.5px, 3.9vw, 15px); opacity:.88; line-height:1.7; }
+  .nw { white-space:nowrap; }
+  .hero .tag {
+    display:inline-block; font-size:clamp(12px, 3.4vw, 13px); background:rgba(255,255,255,.16);
+    border-radius:20px; padding:3px 13px; margin-bottom:16px; letter-spacing:.5px;
+  }
+
+  .card {
+    background:#fff; border-radius:14px; padding:20px 20px 18px; margin-bottom:14px;
+    box-shadow:0 1px 3px rgba(43,39,36,.05);
+  }
+  .card-hd { display:flex; align-items:flex-start; gap:clamp(9px, 2.8vw, 12px); margin-bottom:14px; }
+  .card-hd + p { font-size:14.5px; color:#4A4540; line-height:1.7; }
+  .num {
+    flex:0 0 clamp(28px, 9vw, 34px); height:clamp(28px, 9vw, 34px); border-radius:10px;
+    background:#E9EDF7; color:#2A3F6B;
+    font-size:15px; font-weight:600; display:flex; align-items:center; justify-content:center;
+  }
+  .card-tx { min-width:0; }
+  .card-tx h3 { font-size:17px; font-weight:600; margin-bottom:2px; }
+  .card-tx p { font-size:14px; color:#6B6560; line-height:1.6; }
+
+  .btn {
+    display:block; width:100%; border:none; border-radius:11px; cursor:pointer;
+    font-family:inherit; font-size:16px; font-weight:500; padding:13px 16px;
+    transition:background .18s, color .18s, transform .1s;
+    background:#BA7517; color:#fff; letter-spacing:.3px;
+    word-break:break-word; line-height:1.5;
+  }
+  .btn:active { transform:scale(.985); }
+  .btn.done { background:#EAF3DE; color:#3B6D11; }
+  .btn.ghost { background:#F6F3EE; color:#BA7517; margin-top:10px; font-size:15px; }
+  .btn.ghost.done { background:#EAF3DE; color:#3B6D11; }
+
+  .feature {
+    background:#fff; border:1.5px solid #BA7517; border-radius:16px;
+    padding:24px 20px 20px; margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(186,117,23,.10);
+  }
+  .feature .badge {
+    display:inline-block; font-size:12.5px; background:#FAEEDA; color:#854F0B;
+    border-radius:20px; padding:3px 12px; margin-bottom:12px; font-weight:500;
+  }
+  .feature h2 { font-size:clamp(18px, 5.2vw, 20px); font-weight:600; margin-bottom:6px; }
+  .feature > p { font-size:clamp(13.5px, 3.9vw, 14.5px); color:#6B6560; margin-bottom:14px; line-height:1.65; }
+  .feature .say {
+    background:#F6F3EE; border-radius:11px; padding:13px 15px; margin-bottom:18px;
+    font-size:clamp(14px, 4vw, 15px); color:#2B2724; line-height:1.6;
+  }
+  .feature .note { font-size:13px; color:#8A8279; margin-top:11px; text-align:center; }
+
+  .sec-title {
+    font-size:14px; color:#8A8279; letter-spacing:1px; margin:28px 0 12px; padding-left:4px;
+  }
+
+  .two { display:flex; gap:12px; }
+  .two .card { flex:1; margin-bottom:14px; padding:18px 16px; }
+  .two .card h3 { font-size:15.5px; font-weight:600; margin-bottom:6px; }
+  .two .card p { font-size:13.5px; color:#6B6560; line-height:1.6; }
+  @media (max-width:520px) { .two { flex-direction:column; gap:0; } }
+
+  .steps { background:#fff; border-radius:14px; padding:22px 20px; margin-top:24px; }
+  .steps h3 { font-size:16px; font-weight:600; margin-bottom:14px; }
+  .step { display:flex; gap:12px; margin-bottom:13px; font-size:15px; color:#4A4540; line-height:1.65; }
+  .step:last-child { margin-bottom:0; }
+  .step > span { min-width:0; }
+  .step > b {
+    flex:0 0 22px; height:22px; border-radius:50%; background:#BA7517; color:#fff;
+    font-size:12.5px; font-weight:500; display:flex; align-items:center; justify-content:center;
+    margin-top:3px;
+  }
+  .step b.k { flex:none; width:auto; height:auto; background:none; border-radius:0;
+    color:#BA7517; font-weight:600; font-size:inherit; display:inline; margin:0; padding:0; }
+  .warn {
+    background:#FAEEDA; border-radius:12px; padding:15px 17px; margin-top:14px;
+    font-size:14px; color:#7A5716; line-height:1.7;
+  }
+  .warn b { color:#633806; }
+  footer { text-align:center; font-size:13px; color:#9C948B; margin-top:30px; line-height:1.8; }
+
+  .toast {
+    position:fixed; left:50%; bottom:38px; transform:translate(-50%,20px);
+    background:#2B2724; color:#fff; font-size:14.5px; padding:11px 24px; border-radius:24px;
+    opacity:0; transition:opacity .22s, transform .22s; pointer-events:none; z-index:99;
+    max-width:86vw; text-align:center; line-height:1.5;
+  }
+  .toast.show { opacity:1; transform:translate(-50%,0); }
+
+  @media (max-width:360px) {
+    body { font-size:16px; }
+    .card { padding:17px 16px 15px; border-radius:12px; }
+    .feature { padding:20px 16px 17px; border-radius:14px; }
+    .steps { padding:19px 16px; }
+    .btn { font-size:15px; padding:12px 13px; }
+    .btn.ghost { font-size:14px; }
+    .step { font-size:14.5px; gap:9px; }
+  }
+</style>
+</head>
+<body data-page-node-id="6cEEpVCt730RBYShYru0E6">
+
+<div class="hero" data-page-node-id="ARzVz0T88XVAPCuvpBxzEz">
+  <div class="wrap" data-page-node-id="0cTe9E1wPpHXqBOAETlS7L">
+    <div class="tag" data-page-node-id="3VS8mGSq3aiYXnRnNIZvUe">沁珮技能包 · 手机下载指引</div>
+    <h1 data-page-node-id="9KOSMLzNMFXm84Ibfa4gFS">IP 定位诊断</h1>
+    <p data-page-node-id="HinfoQ8tBnaA6Caz164a7i">发了不少，但说不清自己是谁、帮谁、凭什么——<br data-page-node-id="Jt2bm1VkyJCNhsB7Sb1eeY">它带你把四个要素一个个过一遍，<span class="nw" data-page-node-id="6sd3nLYNBm8y0BGIR2hlYW">收成一句话</span>。<br data-page-node-id="1941amg2nBT8TJDEoGFPH8">复制指令 → 打开 WorkBuddy 粘贴发送，<span class="nw" data-page-node-id="ecwTEF2BgHqrywaFNolsrL">几十秒装好</span></p>
+  </div>
+</div>
+
+<div class="wrap" data-page-node-id="zIEXcnSmXDNvkB0B2tti1i">
+
+  <div class="feature" data-page-node-id="YHveaEbAEgRYuSiO1WmuGD">
+    <div class="badge" data-page-node-id="cqEcEZ2LGba23Vg4eUfHNq">手机一键安装</div>
+    <h2 data-page-node-id="R68CGj7XpRmhlKt1D7db0q">装完说一句话就能开始</h2>
+    <p data-page-node-id="krf3hinHyFORHxeaiCeYee">不用写提示词，跟它聊天就行。它一次只问一层，你答完它才往下走。</p>
+    <div class="say" data-page-node-id="R8OpNF3MTxtk7mNHMRoYWI">「帮我做IP定位」</div>
+    <button class="btn" data-copy="根据 https://qinpei-skill-all.app.workbuddy.host/install-one.md?t=__T__ 帮我安装「IP定位诊断」" data-page-node-id="AJwpPkKJeFn0pubHDkrIIk">复制安装指令</button>
+    <button class="btn ghost" data-copy="帮我安装沁珮技能包「IP定位诊断」：下载 https://qinpei-skill-all.app.workbuddy.host/skillhub-zips/qinpei-ip-diagnosis.zip?t=__T__ 并解压到 ~/.workbuddy/skills/qinpei-ip-diagnosis/" data-page-node-id="M9NMIdIRGLNHLjXiAZD5EE">没反应？换这条备用指令再试一次</button>
+    <div class="note" data-page-node-id="HgCULAAhjV4S0965e7TtPg">你要是带着具体困惑来，直接说「我发圈没人理，是不是人设不对」，它从这儿开始</div>
+  </div>
+
+  <div class="sec-title" data-page-node-id="ducPcNLyg9yf9IaGEYPbFn">它会带你把四个要素一个个过一遍</div>
+
+  <div class="card" data-page-node-id="Q6IroAUFKcXxRD9G8iRaFC">
+    <div class="card-hd" data-page-node-id="0ZCBv5eBdUK8D07qxQKauF">
+      <div class="num" data-page-node-id="yEindekb81VGq2nLCBYTrr">1</div>
+      <div class="card-tx" data-page-node-id="e8pERLwYjCKb1Bp3qumPPQ"><h3 data-page-node-id="9AcZD851DELk0Gz09KcJmQ">你是谁 · 身份标签</h3><p data-page-node-id="CJp7MYSlp7d1BqE9h0VbgH">「我是＿＿，帮助＿＿解决＿＿」——角色要具体、人群要有边界、问题要具体，含糊了当场打回并给你示范</p></div>
+    </div>
+  </div>
+
+  <div class="card" data-page-node-id="BoYhuKNnoGK4nALnQo7q2n">
+    <div class="card-hd" data-page-node-id="EjaiQbD8qL5PN4Vb6iDZtG">
+      <div class="num" data-page-node-id="n3TW9I8hBraEmCIYFaEaE8">2</div>
+      <div class="card-tx" data-page-node-id="61SfFUXwkchD3PWFJqYVUi"><h3 data-page-node-id="qzAbfCE2VHJgimW7oey43t">你凭什么 · 信任背书</h3><p data-page-node-id="0BHJ7eRJtT7QnoiBsT6Vge">经历背书（我踩过哪些坑）／结果背书（帮多少人解决了什么）／共情背书（我和你一样，所以我懂你）——三选一，命中一个就够</p></div>
+    </div>
+  </div>
+
+  <div class="card" data-page-node-id="wV4aKpDT7IyY9fXGFiRPyu">
+    <div class="card-hd" data-page-node-id="PY3SqgX7BHmGsCYJEyyKxv">
+      <div class="num" data-page-node-id="BEf1f42Px2buiAC4881LaR">3</div>
+      <div class="card-tx" data-page-node-id="oeismyolGn86OGm9PosM0z"><h3 data-page-node-id="xPtBw7CcD7FWKkeAtk6Eml">你给什么 · 价值承诺</h3><p data-page-node-id="WPZ1J1VoDBIxO52vjuNsCp">不是「我卖什么产品」，是「他关注你能持续得到什么」——「关注我，每周分享一个养生小妙招」</p></div>
+    </div>
+  </div>
+
+  <div class="card" data-page-node-id="FaMdLoM765EVjIcvwL3B1R">
+    <div class="card-hd" data-page-node-id="n1Ie5eO4VoJGbs1VkrZfWj">
+      <div class="num" data-page-node-id="TEAxD4CqRo2H8Bj1m0Ffij">4</div>
+      <div class="card-tx" data-page-node-id="WRqGhZvpBx2O1NyoupqPpb"><h3 data-page-node-id="OS4Wdj0gtlDMa3mKmD82ge">你带来什么 · 行动引导</h3><p data-page-node-id="Fz98siUSvtEzTGUbK90we0">每条内容都要留一个「下一步」——评论扣1、私信我、预约下场直播，不是发了就完了</p></div>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fff;" data-page-node-id="eRcZ2RWL0WfgQG5TeJFBlZ">
+    <div class="card-hd" style="margin-bottom:10px;" data-page-node-id="A7BUSGYmkPQEHDY2fZqo2G">
+      <div class="num" style="background:#EAF3DE;color:#3B6D11;" data-page-node-id="M1CR473Y1vxBEHSAYiS3iL">!</div>
+      <div class="card-tx" data-page-node-id="XyHDZYGrGzbwpQrIBj4pUZ"><h3 data-page-node-id="oAredC4PYEsujQdd0LUya6">走完你带走什么</h3></div>
+    </div>
+    <p style="font-size:14.5px;color:#4A4540;" data-page-node-id="lxqvWywGRUaEoSJtoN8BUv">
+      一句<b data-page-node-id="AKFdKEOzo9jdLXWZbI0NBw">用【你的方案】解决【什么人群】的【什么问题】</b>，10 秒内讲得清才算过。<br data-page-node-id="miXFVFa02r8GAn1FZr3TK3">
+      再加：你的 <b data-page-node-id="iAHbDcp8CU67csunvFWGbr">IP 类型</b>（专家型／故事型／陪伴型／工具型，主类型 60% + 辅助 40%）<br data-page-node-id="gEBIJItWWRqUYvjQv81G7e">
+      以及一份 <b data-page-node-id="qq3jZBQNYUGExiHXJgBBa4">成熟度打分</b>（4 个信号 8 分制），告诉你最该先补的是哪一个<br data-page-node-id="B8TdW5bQmBgyeTzxsiL4Hy">
+      <span style="color:#8A8279;font-size:13px;" data-page-node-id="REOHqtIRwAYeHQ8mkYThno">（手机上先给文字版；回电脑上说一声，帮你存成 Word）</span>
+    </p>
+  </div>
+
+  <div class="two" data-page-node-id="fbqTAySQi34neLNbeFbhGj">
+    <div class="card" data-page-node-id="NCFiHo24faPhvd6GgxFxiw">
+      <h3 data-page-node-id="K65F2guXzzolncaSn7YC2e">从零开始</h3>
+      <p data-page-node-id="DPZEXMwRAqysk08TziIE6E">说「帮我做IP定位」，它一问一问陪你捋清楚，不一次性甩你一堆问题。</p>
+    </div>
+    <div class="card" data-page-node-id="WKTDuX6tTc7wJMwF0RKdoz">
+      <h3 data-page-node-id="zphYbjpaGtUUI6B4LJNagQ">做过一阵想校准</h3>
+      <p data-page-node-id="FMx3M1XD5Kvfn9FoIHeyOg">说「我发圈没人理，是不是人设不对」，它先判断你这个问题本身成不成立。</p>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fff;" data-page-node-id="gvFNTdnIJFMqKCOcHOsaP5">
+    <div class="card-hd" style="margin-bottom:10px;" data-page-node-id="rQDwto8EMoNoqiPm615P6r">
+      <div class="num" style="background:#F1EFE8;color:#5F5E5A;" data-page-node-id="0BBHz3lmhnIaTHisvztiAB">–</div>
+      <div class="card-tx" data-page-node-id="whARy0C41iCDbnzU6cSB4q"><h3 data-page-node-id="fxtgcB7TAQeXitbBBxwsBF">它不做什么</h3></div>
+    </div>
+    <p style="font-size:14.5px;color:#4A4540;" data-page-node-id="5BHIgchGoQuo2bXoW78mr1">
+      只给<b data-page-node-id="wCTirCH3CMjn2AxZ7P4YBz">方向和判断</b>，不替你写文案、不写故事、不做排版——那些是定完位之后你自己的活。<br data-page-node-id="wuD0PWTNU3dgmGzVeEgEa2">
+      它也不会给你贴一个你撑不住的头衔：定位必须从你<b data-page-node-id="mZhZMsd3TSLNYRJsJWpkSK">真做过</b>的地方出。<br data-page-node-id="FEHJ22qAqfBYlDMDj0kvCt">
+      这一个包自己就能跑完，<b data-page-node-id="ufvLbJrmQvY90BzRA9kddF">不需要再装别的</b>。
+    </p>
+  </div>
+
+  <div class="steps" data-page-node-id="GUrDqQlXwrSBDz6ojUbTot">
+    <h3 data-page-node-id="A3v4OB0cvHByKVgWfaVVgP">怎么用</h3>
+    <div class="step" data-page-node-id="2IGfFedPa3HDeHzOtyLPjF"><b data-page-node-id="2DehjTaKFYJD8vE3JHxI5U">1</b><span data-page-node-id="yaVke2HqOAxlA0mafaxYsE">点上面的「复制安装指令」，提示「已复制」就行</span></div>
+    <div class="step" data-page-node-id="iT6pKpwmIDgkLlJkIVcJ3u"><b data-page-node-id="3L3wepoTDtrwLfMyIgTiTC">2</b><span data-page-node-id="ZLB6TqLci39v2WSBxknHUc">打开 WorkBuddy，在对话框里<b class="k" data-page-node-id="UFcr7ZV4qJLO4pGBuv2Uec">长按粘贴</b>，发送</span></div>
+    <div class="step" data-page-node-id="4T7Uma9jrNxFBTKVRIPNQ1"><b data-page-node-id="I8gDMB7zt2rGHiIWwzP3Lb">3</b><span data-page-node-id="XxNzn9dcPH8kHlLYHZTbwA">手机保持亮屏别切走，等它说「装好啦」，然后说「帮我做IP定位」</span></div>
+    <div class="warn" data-page-node-id="w1CE8lWSHnMZtFtTx5RFN1">
+      <b data-page-node-id="EUn5tFwdyBKY4mVKWXkaUo">小提示</b>：装之前建议先把模型切成 <b data-page-node-id="HYMjvy6seVL9g9EDwjy9W8">DeepSeek</b>，会更快。<br data-page-node-id="4FdCvjwDzwji3JekvHNZBT">
+      诊断是聊出来的——一两句话说不清没关系，它一次只问一个；被问住了就直说「不知道」，它会换个问法。
+            以后想升级，直接跟它说一句 <b>「升级到最新版本」</b> 就行，不用再回来找这条链接。
+    </div>
+  </div>
+
+  <footer data-page-node-id="pZagKbBx9a18tXldxRy1dG">
+    沁珮技能包 · IP 定位诊断（学员版）<br data-page-node-id="ZBJcYYJbWk1YuClLwZoLNG">
+    装完直接说「帮我做IP定位」
+  </footer>
+</div>
+
+<div class="toast" id="toast" data-page-node-id="ZHEdjpENOHHFPHELANxYLx">已复制</div>
+
+<script>
+var toast = document.getElementById('toast');
+var timer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(timer);
+  timer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('[data-copy]');
+  if (!btn) return;
+  var text = btn.getAttribute('data-copy');
+  // 防旧缓存：把 __T__ 换成当场的时间戳，让每次复制的地址都唯一，永远回源拿最新
+  if (text.indexOf('__T__') >= 0) {
+    text = text.split('__T__').join(String(Date.now()) + String(Math.floor(Math.random() * 900) + 100));
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      showToast('已复制，去 WorkBuddy 粘贴吧');
+    }).catch(function () {
+      fallbackCopy(text);
+      showToast('已复制，去 WorkBuddy 粘贴吧');
+    });
+  } else {
+    fallbackCopy(text);
+    showToast('已复制，去 WorkBuddy 粘贴吧');
+  }
+
+  var old = btn.textContent;
+  btn.textContent = '已复制 ✓';
+  btn.classList.add('done');
+  setTimeout(function () {
+    btn.textContent = old.indexOf('已复制') === 0 ? '复制安装指令' : old;
+    btn.classList.remove('done');
+  }, 1800);
+});
+</script>
+</body>
+</html>

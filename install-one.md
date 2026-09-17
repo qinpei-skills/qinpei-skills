@@ -168,7 +168,7 @@ curl -fsSL --max-time 10 "<地址>?t=$(date +%s)" -o /tmp/qinpei-skill.zip   # 1
 | 社群 / 社群运营 / 群运营 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` | 3.3.4 |
 | 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` | 2.1.4 |
 | 故事力 / 讲故事 | qinpei-storytelling | `qinpei-storytelling.zip` | 2.0.2 |
-| **IP 定位 / IP定位诊断 / IP人设 / 立人设 / 个人IP定位 / 个人品牌定位 / 定位诊断 / 我适合做什么类型的IP** | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` | 3.0.5 |
+| **IP 定位 / IP定位诊断 / IP人设 / 立人设 / 个人IP定位 / 个人品牌定位 / 定位诊断 / 我适合做什么类型的IP** | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` | 3.0.6 |
 | **展业诊断 / 展业破局·诊断 / 展业破局诊断 / 展业问诊 / 业务诊断 / 业务体检 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` | 3.0.4 |
 | 画像 / 我的画像 | qinpei-profile | `qinpei-profile.zip` | 1.1.3 |
 | 入口 / qp | qinpei | `qinpei.zip` | 1.5.3 |

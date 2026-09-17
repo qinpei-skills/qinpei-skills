@@ -6,7 +6,7 @@ qinpei-wechat-trust=2.3.6-student
 qinpei-community-ops-trust=3.3.4
 qinpei-salon-ops-trust=2.1.4
 qinpei-storytelling=2.0.2
-qinpei-ip-diagnosis=3.0.5
+qinpei-ip-diagnosis=3.0.6
 qinpei-business-check=3.0.4
 ==================== VERSION-MANIFEST END ==================== -->
 
@@ -28,7 +28,7 @@ qinpei-business-check=3.0.4
 | qinpei-community-ops-trust | 社群运营提效 | 3.3.3 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
 | qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.3 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
 | qinpei-storytelling | 故事力提效 | 2.0.1 | on-demand | skillhub-zips/qinpei-storytelling.zip |
-| qinpei-ip-diagnosis | 个人IP定位诊断 | 3.0.4 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
+| qinpei-ip-diagnosis | 个人IP定位诊断 | 3.0.6 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
 | qinpei-business-check | 展业诊断 | 3.0.3 | on-demand | skillhub-zips/qinpei-business-check.zip |
 
 > ⚠️ **本表的「版本」= zip 分发包里 SKILL.md 的版本**（学员实际装到的版本），不是仓库源码版本。

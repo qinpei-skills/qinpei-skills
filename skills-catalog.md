@@ -3,10 +3,10 @@
 qinpei=1.5.3
 qinpei-profile=1.1.3
 qinpei-wechat-trust=2.3.6-student
-qinpei-community-ops-trust=3.3.4
+qinpei-community-ops-trust=3.3.5
 qinpei-salon-ops-trust=2.1.4
 qinpei-storytelling=2.0.2
-qinpei-ip-diagnosis=3.0.6
+qinpei-ip-diagnosis=3.0.7
 qinpei-business-check=3.0.4
 ==================== VERSION-MANIFEST END ==================== -->
 
@@ -25,10 +25,10 @@ qinpei-business-check=3.0.4
 | qinpei | 沁珮入口（引导+导航） | 1.5.2 | core | skillhub-zips/qinpei.zip |
 | qinpei-profile | 共享画像银行 | 1.1.2 | core | skillhub-zips/qinpei-profile.zip |
 | qinpei-wechat-trust | 朋友圈信任经营 | 2.3.5-student | on-demand | skillhub-zips/qinpei-wechat-trust.zip |
-| qinpei-community-ops-trust | 社群运营提效 | 3.3.3 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
+| qinpei-community-ops-trust | 社群运营提效 | 3.3.5 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
 | qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.3 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
 | qinpei-storytelling | 故事力提效 | 2.0.1 | on-demand | skillhub-zips/qinpei-storytelling.zip |
-| qinpei-ip-diagnosis | 个人IP定位诊断 | 3.0.6 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
+| qinpei-ip-diagnosis | 个人IP定位诊断 | 3.0.7 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
 | qinpei-business-check | 展业诊断 | 3.0.3 | on-demand | skillhub-zips/qinpei-business-check.zip |
 
 > ⚠️ **本表的「版本」= zip 分发包里 SKILL.md 的版本**（学员实际装到的版本），不是仓库源码版本。
@@ -56,8 +56,8 @@ zip 分发包里**只含技能本体**（SKILL.md / references / assets 模板 /
 | qinpei-wechat-trust | 2.3.5-student | ✅ | ✅ | ✅ 已完成（入口补强 + 一句话升级） |
 | qinpei-business-check | 3.0.3 | ✅ | ✅ | ✅ 已完成（入口补强 + 单装独立 + 一句话升级） |
 | qinpei-salon-ops-trust | 2.1.3 | ✅ | ✅ | ✅ 已完成（手工合并，剥离差异仍在） |
-| qinpei-ip-diagnosis | 3.0.4 | ✅ | ✅ | ✅ 已完成（含一句话升级） |
-| qinpei-community-ops-trust | 3.3.3 | ✅ | ✅ | ✅ 已完成（入口修复 + 画像路径 + 一句话升级） |
+| qinpei-ip-diagnosis | 3.0.7 | ✅ | ✅ | ✅ 已完成（含一句话升级） |
+| qinpei-community-ops-trust | 3.3.5 | ✅ | ✅ | ✅ 已完成（入口修复 + 画像路径 + 一句话升级） |
 | qinpei-storytelling | 2.0.1 | 2.0.1 ✅ | ✅ 2.0.1 | ✅ 已完成（补一句话升级章节） |
 | qinpei | 1.5.2 | 1.5.2 ✅ | ✅ 1.5.2 | ✅ 已完成（补一句话升级章节） |
 | qinpei-profile | 1.1.2 | 1.1.2 ✅ | ✅ 1.1.2 | ✅ 已完成（补一句话升级章节） |

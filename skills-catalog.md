@@ -7,7 +7,7 @@ qinpei-community-ops-trust=3.3.5
 qinpei-salon-ops-trust=2.1.5
 qinpei-storytelling=2.0.3
 qinpei-ip-diagnosis=3.0.7
-qinpei-business-check=3.0.5
+qinpei-business-check=3.1.0
 ==================== VERSION-MANIFEST END ==================== -->
 
 # 沁珮技能包清单（skills-catalog）
@@ -29,7 +29,7 @@ qinpei-business-check=3.0.5
 | qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.5 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
 | qinpei-storytelling | 故事力提效 | 2.0.3 | on-demand | skillhub-zips/qinpei-storytelling.zip |
 | qinpei-ip-diagnosis | 个人IP定位诊断 | 3.0.7 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
-| qinpei-business-check | 展业诊断 | 3.0.5 | on-demand | skillhub-zips/qinpei-business-check.zip |
+| qinpei-business-check | 展业诊断 | 3.1.0 | on-demand | skillhub-zips/qinpei-business-check.zip |
 
 > ⚠️ **本表的「版本」= zip 分发包里 SKILL.md 的版本**（学员实际装到的版本），不是仓库源码版本。
 > **2026-09-12 对账修正**：`qinpei-ip-diagnosis` 原写 `1.1.0` 系笔误，实际 zip 已是 **3.0.1**（09-11 已推成功）；`qinpei-storytelling` 仓库源码已是 **2.0.0** 但 zip 未重打，学员仍装到 1.1.0。
@@ -54,7 +54,7 @@ zip 分发包里**只含技能本体**（SKILL.md / references / assets 模板 /
 | 技能名 | 电脑端真源 | 仓库源码 | zip 分发包 | 状态 |
 |:---|:---|:---|:---|:---|
 | qinpei-wechat-trust | 2.3.7-student | ✅ | ✅ | ✅ 已完成（入口补强 + 一句话升级） |
-| qinpei-business-check | 3.0.5 | ✅ | ✅ | ✅ 已完成（入口补强 + 单装独立 + 一句话升级） |
+| qinpei-business-check | 3.1.0 | ✅ | ✅ | ✅ 已完成（一句一签对话协议） |
 | qinpei-salon-ops-trust | 2.1.5 | ✅ | ✅ | ✅ 已完成（手工合并，剥离差异仍在） |
 | qinpei-ip-diagnosis | 3.0.7 | ✅ | ✅ | ✅ 已完成（含一句话升级） |
 | qinpei-community-ops-trust | 3.3.5 | ✅ | ✅ | ✅ 已完成（入口修复 + 画像路径 + 一句话升级） |

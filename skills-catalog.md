@@ -6,7 +6,7 @@ qinpei-wechat-trust=2.3.7-student
 qinpei-community-ops-trust=3.3.5
 qinpei-salon-ops-trust=2.1.5
 qinpei-storytelling=2.0.3
-qinpei-ip-diagnosis=3.0.7
+qinpei-ip-diagnosis=3.1.0
 qinpei-business-check=3.1.0
 ==================== VERSION-MANIFEST END ==================== -->
 
@@ -28,7 +28,7 @@ qinpei-business-check=3.1.0
 | qinpei-community-ops-trust | 社群运营提效 | 3.3.5 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
 | qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.5 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
 | qinpei-storytelling | 故事力提效 | 2.0.3 | on-demand | skillhub-zips/qinpei-storytelling.zip |
-| qinpei-ip-diagnosis | 个人IP定位诊断 | 3.0.7 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
+| qinpei-ip-diagnosis | 个人IP定位诊断 | 3.1.0 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
 | qinpei-business-check | 展业诊断 | 3.1.0 | on-demand | skillhub-zips/qinpei-business-check.zip |
 
 > ⚠️ **本表的「版本」= zip 分发包里 SKILL.md 的版本**（学员实际装到的版本），不是仓库源码版本。
@@ -56,7 +56,7 @@ zip 分发包里**只含技能本体**（SKILL.md / references / assets 模板 /
 | qinpei-wechat-trust | 2.3.7-student | ✅ | ✅ | ✅ 已完成（入口补强 + 一句话升级） |
 | qinpei-business-check | 3.1.0 | ✅ | ✅ | ✅ 已完成（一句一签对话协议） |
 | qinpei-salon-ops-trust | 2.1.5 | ✅ | ✅ | ✅ 已完成（手工合并，剥离差异仍在） |
-| qinpei-ip-diagnosis | 3.0.7 | ✅ | ✅ | ✅ 已完成（含一句话升级） |
+| qinpei-ip-diagnosis | 3.1.0 | ✅ | ✅ | ✅ 已完成（含一句话升级） |
 | qinpei-community-ops-trust | 3.3.5 | ✅ | ✅ | ✅ 已完成（入口修复 + 画像路径 + 一句话升级） |
 | qinpei-storytelling | 2.0.3 | 2.0.3 ✅ | ✅ 2.0.3 | ✅ 已完成（补一句话升级章节） |
 | qinpei | 1.5.4 | 1.5.4 ✅ | ✅ 1.5.4 | ✅ 已完成（补一句话升级章节） |

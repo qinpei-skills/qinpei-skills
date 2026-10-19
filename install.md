@@ -1,71 +1,329 @@
-# 沁珮方法论技能包 · 安装说明书
+# 沁珮系列技能包 · 安装说明书（v6.2.3 · 多通道自动降级 + 一句话升级）
 
-> **这是写给 AI 的安装说明书，不是给人看的。** 当用户说「安装 / 更新 / 检查更新 / 有什么新技能」时，请按本文档操作。
+> ⚠️ 这是一份**写给 AI 看的安装指令**，不是给人读的文档。
+> 当前版本：6.2.3（2026-09-13）——**缓存免疫**：升级指令与口令块里**所有地址一律带 `?t=$(date +%s)` 时间戳参数**。实测边缘节点会缓存旧内容、且**多个边缘节点各自独立缓存**；平台层关不掉（`_headers` / `edgeone.json` 实测都不被解析）。不加参数就可能出现「读到旧版本表 → 判为已是最新 → 升级静默不执行」。
+> 上一版：6.2.2（2026-09-13）——**新增《🔄 一条指令升级（老学员专用）》**：给"09-12 之前装过、包里没有升级章节"的老学员**一条指令**（粘贴一次即可），之后永久只需说一句「升级到最新版本」；**升级流程细节统一以 `upgrade.md` 为准**。
+> 上一版：6.2.1（2026-09-12）——**与 `install-one.md` v6.7 对齐口径，新增「一句话升级」**：
+> ① 🆕 **装完必做**：把「升级口令」追加进学员的用户级记忆 `~/.workbuddy/MEMORY.md`（`qinpei-update-command` 标记块）——他以后在任何新对话说一句「升级到最新版本」就管用，**不用再回来找链接**。见第二步第 5 小节。
+> ② 🆕 **首次安装的回复模板加一句**：告诉学员这个口令（**只此一处允许出现"版本"二字**）。
+> ③ 🆕 升级触发词扩为：「升级到最新版本」「升级技能包」「技能包自检升级」「检查更新」「有没有新版本」。
+> ④ 版本真源统一指向 `skills-catalog.md` 顶部的 **VERSION-MANIFEST** 段（`包名=版本`）。
+> 6.1.1（2026-09-11）——**与 `install-one.md` v6.6 对齐口径**，两条通用修正：
+> ① 🧪 **新增第 5 条铁律「测试 / 隔离场景绝不动真源」**——执行者若说明是跑测试并指定了别的落盘目录，就**把全文所有以 `~/.workbuddy/skills/` 开头的路径一律换成那个目录**（不只是带占位符的那种）；**绝不可为了跑测试读写真源**。原先这条只写在 `install-one.md` 的文末，动手解压时根本还没读到。
+> ② **中文名自检命令去掉 `basename`**——`-exec basename {} \;` 遇到带空格的文件名会拆行、让计数失真 → 改用 `sed 's#.*/##'`（两份说明书同步）。
+> 6.1.0（2026-09-11）——**与 `install-one.md` v6.5 对齐口径**：
+> ① 下载成功后加一道「**验它真是个 zip**」（防 200 的错误 HTML 页被当成下载成功）；
+> ② 逐文件抓取的 4 个前缀**不是** zip 通道表"前 4 条一一对应"，已逐条标注真实对应关系；
+> ③ 中文名文件总数 27 → **28**（漏算展业诊断的 `assets/templates/01-展业诊断简报.md`）；
+> ④ 超时统一 **10 秒**（原先铁律 20 秒与命令 10 秒自相矛盾）。
+> 6.0.0（2026-09-10）——**核心升级：8 条下载通道按序自动降级，一个不通立刻换下一个；zip 全挂还能逐文件抓，禁止卡死或半途放弃。**
+
+---
+
+## 🔄 一条指令升级（老学员专用 · 升级流程以 `upgrade.md` 为准）
+
+**背景**：**2026-09-12 之前**装过沁珮技能包的学员，他手上的包里**没有《🔄 版本自检与升级》一节**——
+所以他说「升级到最新版本」时，AI 不知道去哪儿取新版。**这不是他不能用，是缺一份"升级说明书"。**
+
+**做法**：给这类学员**一条指令**，他**复制粘贴一次**就行；之后再升级，**永久只需说一句「升级到最新版本」**。
+
+**这条指令（原样给他，一个字别改）**：
+> 升级沁珮技能包到最新版：读 https://qinpei-skill-all.app.workbuddy.host/upgrade.md?t=1757750000 ，严格照它执行
+> 🔴 `?t=` 后面是**防旧缓存的时间戳**，换成任意数字都行；**但别把这小段删掉**——删了就可能一直读到旧版本表。
+
+**AI 收到这条指令后**：去读 `upgrade.md` 并**严格执行**——它会完成「取版本表 → 逐包比对 → 覆盖升级 → 把永久口令写进学员的用户级记忆 → 一句话汇报」。
+
+🔴 **升级流程的一切细节，一律以 `upgrade.md` 为准**，本说明书不再重复（避免口径分叉）。
+🔴 升级**只升他装过的包**，绝不借机引入新技能包；升级对话里**不提「qp」、不提其他技能包名**。
+
+---
+
+## 你要做的事
+
+在用户设备上安装/升级「沁珮开源系列技能包」到 `~/.workbuddy/skills/`。
+**首次安装只装核心包（很小，秒装）；大技能包按需补装（学员用到时由入口自动装）。**
+
+---
+
+## ⚠️ 先对学员说清楚（每次安装/升级前必说，大白话）
+
+> 安装需要保持手机**亮屏、别切走、别接电话**，装完我会告诉你。
+> 这次大概需要：**不到 1 分钟**（首次）或几十秒（升级），你准备好了跟我说一声，我就开始。
+
+学员确认后，再开始下面的流程。
+
+---
+
+## 🔑 通道清单（多通道自动降级 · 一个不通立刻换下一个）
+
+**学员端网络环境不完全可控，某些域名可能被干扰（已实测出现"三条通道同时 SSL 断"）。**
+**所以：不许只试一个地址就放弃 —— 按下面顺序逐个试，任一成功即停止。**
+
+设 `HUB = https://qinpei-skill-all.app.workbuddy.host`（**抓取时地址末尾一律拼 `?t=$(date +%s)`**，防边缘节点给旧内容）
+
+**🔴 取址规矩（2026-09-13 实测补）**：下面表里每个地址，抓取时都要在**末尾拼 `?t=$(date +%s)`**——边缘节点会缓存旧包，实测文库地址**不带参数连取 3 次会抖出旧版**（2.3.6 → 2.3.6 → **2.3.5**），**带上参数 3/3 稳定拿最新**。
+（jsdelivr 那几条**加参数无效**——它按路径缓存，要靠发布时 purge；照原样取即可，**用下面的版本校验兜底**。）
+
+| 序 | 通道 | 地址模板 | 说明 |
+|:--:|:---|:---|:---|
+| 1 | **WorkBuddy 文库** | `HUB/skillhub-zips/<技能名>.zip` | **首选，同平台域名最稳** |
+| 2 | jsdelivr 主节点 | `https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<技能名>.zip` | |
+| 3 | jsdelivr 备用 | `https://gcore.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<技能名>.zip` | 不同 CDN 节点，主节点挂了它常能通 |
+| 4 | jsdelivr 备用 | `https://testingcf.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skillhub-zips/<技能名>.zip` | 同上 |
+| 5 | gh 加速代理 | `https://ghfast.top/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<技能名>.zip` | |
+| 6 | gh 加速代理 | `https://gh-proxy.com/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<技能名>.zip` | |
+| 7 | gh 加速代理 | `https://ghproxy.net/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skillhub-zips/<技能名>.zip` | |
+| 8 | WorkBuddy 文库重试 | `HUB/skillhub-zips/<技能名>.zip` | 前面都失败，回来再试一次（常是临时抖动） |
+
+**铁律**：
+1. **一个通道失败立刻换下一个**，不要因为某个域名不通就判定整件事失败
+2. **每个通道只试 1 次、超时 10 秒**（`curl --max-time 10`）
+   （原先铁律写 20 秒、命令写 10 秒，是两个数，2026-09-11 已统一为 **10 秒**：zip 才几十 KB，正常 1–3 秒；被封的 CDN 会一直挂到超时才放弃，设 20 秒学员连撞两条要干等 40 秒）
+3. 判定"这个通道失败"：命令返回非 0 / 下载文件 < 500 字节 / 报 SSL 或超时
+4. **zip 全通道都失败 → 走「兜底：逐文件抓取」**（见下），不要半途停下来说装不了
+5. **🧪 测试 / 隔离场景绝不动真源**——执行者若明确说这是"跑测试 / 冒烟验证"并指定了别的落盘目录，就**把全文所有以 `~/.workbuddy/skills/` 开头的路径一律换成那个目录**（**不只是带 `<技能名>` 占位符的那种**）。**绝不可为了跑测试去读写 `~/.workbuddy/skills/` 下的真源目录**——那会造成真实损失。
+
+**没有 shell 工具时**：8 个 zip 通道都下载不了 zip（WebFetch 对二进制只会转述）→ **直接走逐文件抓取**（用 WebFetch 抓 .md 文本，手机端一定能走通）。
+
+---
+
+## 🚀 核心方法：下载 zip + 解压（一次请求拿全部文件）
+
+**每个技能打成一个 zip**（含 SKILL.md + references + 模板），一次请求搞定，比逐文件抓快得多。
+
+### 技能名 ↔ zip 文件名对照表（写死 · 直接查表）
+
+| 技能名（目录名） | zip 文件名 |
+|:---|:---|
+| qinpei | `qinpei.zip` |
+| qinpei-profile | `qinpei-profile.zip` |
+| qinpei-wechat-trust | `qinpei-wechat-trust.zip` |
+| qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` |
+| qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` |
+| qinpei-storytelling | `qinpei-storytelling.zip` |
+| qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` |
+| qinpei-business-check | `qinpei-business-check.zip` |
+
+> 完整下载地址 = 上面「通道清单」里的地址模板，把 `<技能名>` 换成上表的技能名。
+
+### 下载 + 解压（标准两步）
+
+```bash
+# ① 下载（把 <地址> 换成通道清单里的第 1 个；失败就换第 2、3…个）
+curl -fsSL --max-time 10 "<地址>" -o /tmp/qinpei-skill.zip
+
+# ② 🔴 验它真是个 zip（防 200 的错误 HTML 页被当成下载成功——这种页体积也不小，只看字节数会被骗）
+python3 -c "import zipfile; zipfile.ZipFile('/tmp/qinpei-skill.zip'); print('zip 正常')"
+
+# ③ 解压 —— 🔴 优先用 Python（原因见下方自检）
+python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
+rm -f /tmp/qinpei-skill.zip
+```
+
+> 第 ② 步报 `BadZipFile` 或跑不通 → **当作这个通道失败**，换下一行地址重下。**别把坏文件解压了再往下走。**
+
+**只有 python3 确实不可用时**，才用 `unzip`：
+
+```bash
+mkdir -p ~/.workbuddy/skills/<技能名>
+unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
+```
+
+### 🔴 解压后必做：中文文件名自检（漏做会导致技能变哑巴）
+
+部分系统的 `unzip` 不支持中文，会把中文名文件解成乱码名，**技能就找不到自己的文件，功能直接残废**。
+
+**第 1 步｜查表核对：每个包应该有几个文件、其中几个是中文名。**
+
+| 技能 | 目录名 | 文件总数 | 中文名文件数 |
+|:---|:---|---:|---:|
+| 入口 | qinpei | 1 | 0 |
+| 画像 | qinpei-profile | 1 | 0 |
+| 故事力 | qinpei-storytelling | 3 | 1 |
+| IP定位 | qinpei-ip-diagnosis | 3 | 1 |
+| 展业诊断 | qinpei-business-check | 6 | 2 |
+| 朋友圈 | qinpei-wechat-trust | 7 | 4 |
+| 社群 | qinpei-community-ops-trust | 11 | 7 |
+| 沙龙 | qinpei-salon-ops-trust | 17 | 13 |
+
+**这 8 个包合计 28 个中文名文件**（原先本说明书写 27，漏算了展业诊断的 `assets/templates/01-展业诊断简报.md`，2026-09-11 已更正）。
+
+**第 2 步｜核对命令**（`<技能名>` 换成实际目录名，8 个包逐个跑一遍）：
+
+```bash
+D=~/.workbuddy/skills/<技能名>
+echo "文件总数: $(find "$D" -type f | wc -l | tr -d ' ')"
+echo "中文名文件:"
+find "$D" -type f | sed 's#.*/##' | LC_ALL=C grep '[^ -~]' || echo "  （一个都没有）"
+```
+（**别用 `-exec basename {} \;`**——`basename` 会把带空格的文件名拆成两行，让计数和清单都失真。用 `sed 's#.*/##'`。）
+
+- **文件总数对得上、中文名个数也对得上** → ✅ 继续下一步
+- **🔴 出现乱码**（形如 `01-???.md`、`01-ç¾¤å…¬åŠ.md`、`01-\xe7\xbe\xa4...md`，或该有中文名却一个都没列出来）→ 清掉重解：
+  ```bash
+  rm -rf ~/.workbuddy/skills/<技能名>/
+  python3 -c "import zipfile,os;d=os.path.expanduser('~/.workbuddy/skills/<技能名>');os.makedirs(d,exist_ok=True);zipfile.ZipFile('/tmp/qinpei-skill.zip').extractall(d)"
+  ```
+  python3 也没有 → 改走「兜底：逐文件抓取」（文件名由你自己写，反而不会错）
+
+> ⚠️ **别用 `ls <技能名>/assets/templates/` 来查**：只有朋友圈 / 社群 / 沙龙 / 展业诊断这 4 个包有这个目录，**入口 / 画像 / 故事力 / IP定位这 4 个包根本没有**——用它查会报 `No such file or directory`，很容易被误判成"解压失败 / 装漏了"。**一律用上面第 2 步的整目录命令。**
+
+- ⚠️ **下载失败不要停**：换通道清单里的下一个地址继续，8 个都试完才走逐文件抓取
+- `curl -f` 失败不输出文件｜`-s` 静默｜`-S` 报错｜`-L` 跟随重定向｜`--max-time 10` 防卡死
+
+### 兜底：逐文件抓取（仅当 zip 全通道失败 / 解压工具都没有）
+
+**前缀按同样顺序试（共 4 个，逐条对应关系见括号，别去凑"前 4 条"）**：
+```
+① HUB/skills/<技能名>/                                                                    ← zip 表第 1 条
+② https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/<技能名>/              ← zip 表第 2 条
+③ https://gcore.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/skills/<技能名>/            ← zip 表第 3 条
+④ https://ghfast.top/https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/<技能名>/  ← zip 表第 5 条（第 4 条 testingcf 这里没有）
+```
+逐文件抓取清单见 **install-one.md 的「终极兜底」**（含每个技能的完整文件列表）。
+
+某个前缀不通 → 换下一个前缀；仍不通 → 改用 WebFetch 抓同一 URL（剥围栏后写入）。
+**抓到 SKILL.md 就先建起技能目录**——不要因为缺附件整个放弃。
+
+### ⚠️ WebFetch 兜底三大坑
+
+**坑 1：抓回内容可能包围栏** —— 返回常被包 ` ```markdown ... ``` `。写入前**必须剥掉最外层围栏**，否则 frontmatter 的 `---` 被破坏，技能失效。
+
+**坑 2：可能截断/漏内容** —— 抓回后核对文件非空（> 500 字节）、开头是 `---`。
+
+**坑 3：不反复重试** —— 每个文件最多 2 次（curl 1 次 + WebFetch 1 次），失败就停。
+
+### ⚠️ 坑 4：CDN 缓存
+
+jsdelivr 有缓存，偶尔返回旧版。绕过：URL 末尾加 `?t=<时间戳>`。
+**但不用为此担心**：通道 1（WorkBuddy 文库）是我们自己发布的，每次更新同步即时生效；且它排在最前面，正常情况走的就是它。
+
+### ⚠️ 坑 5：学员端网络有多张网
+
+不同学员的运营商/WiFi 不一样，**同一个域名有人通有人不通**。
+已实测出现过「jsdelivr + GitHub raw + GitHub API 三条全断（SSL 握手直接断）」。
+**这就是为什么要按 8 条通道逐个试**——一条断了换下一条，不要下"网络抽风、稍后重试"的结论。
+
+---
+
+## 第一步：首次安装（只装这两个核心包）
+
+⚠️ **本次只装以下两个技能，其他所有技能都不抓不装**：
+
+| 技能名 | 保存位置 |
+|:---|:---|
+| `qinpei` | `~/.workbuddy/skills/qinpei/` |
+| `qinpei-profile` | `~/.workbuddy/skills/qinpei-profile/` |
+
+**这两个包很小（合计约 8KB），秒装。**
+
+其他技能（朋友圈、社群、沙龙、故事力、IP定位、展业破局·诊断）都属于「按需补装」——**本次完全不抓不写**，由「沁珮入口」在学员实际要用时自动补装。
+
+### 装完自检（防止 AI 错装）
+
+用 `ls ~/.workbuddy/skills/` 确认：
+- ✅ **应该存在**：`qinpei/`、`qinpei-profile/`
+- ❌ **绝不应该存在**（除非学员之前装过）：`qinpei-wechat-trust/`、`qinpei-community-ops-trust/`
+
+如果发现不该有的目录被本次创建 → 诚实告诉学员"刚才多装了 XX（不该装的），可以忽略"。
+
+---
+
+## 第二步：升级（学员说「升级到最新版本 / 升级技能包 / 技能包自检升级 / 检查更新」时）
+
+**升级 = 装过的都更新到最新版；没装过的按需包不装。**
+
+🔴 **本节不再重复流程——升级的一切细节以 `upgrade.md` 为唯一真源。**
+
+**你要做的第一件事**：读 `https://qinpei-skill-all.app.workbuddy.host/upgrade.md?t=$(date +%s)`（**时间戳参数防旧缓存，务必带上**），**严格照它执行**。
+它会完成：取版本表 → 看本机装了什么 → 逐包比对 → **只对已存在的目录**覆盖升级（**解压前先验 zip 内版本 + 确认 zip 不含学员数据**）→ 写永久口令进学员记忆 → 一句话汇报。
+
+⚠️ **不存在的按需包直接跳过、不新装**（等学员实际用到时由「沁珮入口」补装）。
+⚠️ 抓取失败的：跳过它、记下来，最后告诉学员"哪个没更新上，再说一次『升级技能包』重试"。**不要卡住整个流程。**
+
+---
+
+## 沁珮技能包 · 一句话升级
+当我说「升级到最新版本 / 升级技能包 / 技能包自检升级 / 检查更新 / 有没有新版本 / 更新一下技能包」时，直接按下面做，不用我再给链接：
+1. **取版本表**（唯一版本真源）：
+   curl -fsSL --max-time 10 "https://qinpei-skill-all.app.workbuddy.host/skills-catalog.md?t=$(date +%s)"
+   在返回内容里找 VERSION-MANIFEST 那一段，数据行的格式是「包名=版本」。
+2. **看本机装了什么**：ls -d ~/.workbuddy/skills/qinpei*
+3. **逐包比对**：本机 SKILL.md 里的 version 与版本表比；线上更新才升，一样就跳过。
+4. **升级**：curl 下 https://qinpei-skill-all.app.workbuddy.host/skillhub-zips/<包名>.zip?t=$(date +%s)
+   → **覆盖解压**到 ~/.workbuddy/skills/<包名>/。
+   🔴 绝不 rm -rf 技能目录；zip 里不含我的资料卡和档案，覆盖解压不会动到我的数据。
+5. **复查**：grep 一下 version 确认升上去了，然后**一句话**告诉我（升了什么 / 都已是最新）。
+取不到版本表 → 换 .host 域名重试一次；还是失败就如实说连不上，**不许瞎猜版本**。
+<!-- /qinpei-update-command -->
+QPEOF
+echo "升级口令已写入"```
+
+**三条注意**：① 已有的别重复写（`grep -q` 判断过）；② **只能追加，绝不覆盖整个文件**（学员可能有自己的记忆内容）；③ 没有 shell / 写不了文件 → 跳过，**不要跟学员解释**。
+
+---
 
 
-## 你的任务
 
-用户想安装或更新沁珮（经销商赋能）的方法论技能包。请按以下步骤，把对应技能目录**完整下载并保存到本地技能目录**：
+---
 
+## ⚠️ 硬规则：保护学员自己的资料（不可违反）
 
-1. **定位技能目录**：用户技能根目录通常是 `~/.workbuddy/skills/`（macOS/Linux）或 `%USERPROFILE%\.workbuddy\skills\`（Windows）。找不到就先确认 WorkBuddy 是否已安装。
-2. **下载文件**：本文档所在仓库的 raw 基址是 `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/`。每个技能的文件清单见下方，请逐个下载，**不要截断、不要摘要、不要改写**，原样保存。
-3. **保存路径**：把每个技能目录整体保存到 `~/.workbuddy/skills/<技能文件夹名>/` 下（同名覆盖即可，这就是「更新」）。
-4. **中文文件名**：若直接下载中文名文件失败，对文件名做 URL 编码后再试（文档已附编码版路径）。
-5. **完成后**：用大白话告诉用户「已安装成功 / 已更新到最新，现在你可以对我说：'我要发朋友圈 / 做社群运营 / 写故事 / 研发课程'，我来帮你」。不要说「目录、路径、CLI、命令行」这类词。
-6. **如实反馈**：任何文件下载失败，必须如实告知用户哪个没装上，不许假装装好。
+学员的技能目录下可能有**学员自己产生的数据**：
 
-## 更新模式（重要）
+- `我的画像.md`（学员的行业/人设/钩子）
+- `学员档案/`（沙龙等活动记录、复盘数据、经验库）
+- 其他学员自己命名并保存的文件
 
-- 用户说「检查更新 / 装最新版 / 同步技能 / 更新技能包」时，**执行与首次安装完全相同的流程**（按下方清单重新拉取覆盖）。覆盖即更新，无需删除旧文件。
-- 即使用户只装过部分技能，重跑本流程会补齐全部 6 个；若用户只想更新某一个，按下方清单只重拉那个技能目录即可。
+规则：
+1. **绝对不要覆盖、不要删除、不要清空这些文件**
+2. **不存在时不要替学员创建**（技能使用过程中 AI 会自动创建）
+3. 分发包（zip）里**已经不含**这些学员数据文件，所以正常解压覆盖不会动到它们——但**不要额外做删除或清目录的动作**
+4. 升级时**不要**使用 `rm -rf` 删整个技能目录
 
-## 查询新技能 / 更新记录
+---
 
-- 用户问「有什么新技能 / 最近更新了什么 / 新增了哪些」时，请先读取 `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/CHANGELOG.md`，把最近的新增与迭代用大白话念给用户。
-- 若用户想装清单里提到的某个技能，引导他说「安装 XX 技能」，再按本文档执行。
+## 第三步：完成后怎么回复用户
 
-## 可用技能清单（用户说「安装 XX」时匹配）
+**必须用大白话，禁止出现这些词**：目录、路径、命令行、CLI、仓库、zip、解压、终端、脚本、frontmatter、KB。
 
-### qinpei-community-ops-trust  →  文件夹名 `qinpei-community-ops-trust`
+**① 首次安装（装好核心包）**
+```
+装好啦！🎉 不到一分钟搞定。
 
-| 远程路径（基址 + 相对路径） | 保存为 |
-| --- | --- |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/README.md` | `qinpei-community-ops-trust/README.md`  |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/SKILL.md` | `qinpei-community-ops-trust/SKILL.md`  |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/社群运营_快速上手话术卡.md` <br>编码版：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-ops-trust/%E7%A4%BE%E7%BE%A4%E8%BF%90%E8%90%A5_%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E8%AF%9D%E6%9C%AF%E5%8D%A1.md` | `qinpei-community-ops-trust/社群运营_快速上手话术卡.md`  |
+现在你可以直接跟我聊了。我不知道你最需要什么，先问你两件事：
+1. 你是做什么行业的？（比如：艾灸养生 / 减脂 / 护肤 / 母婴 / 做代理招商…）
+2. 你现在最头疼的是哪件事？
+　① 朋友圈不知道怎么发，发了也没人看
+　② 群建了没人说话，不知道咋运营
+　③ 想先搞清楚自己该怎么做，还没想明白
+　④ 别的（你说说看）
 
-### qinpei-community-plan-gen  →  文件夹名 `qinpei-community-plan-gen`
+回个数字或者直接说就行～
 
-| 远程路径（基址 + 相对路径） | 保存为 |
-| --- | --- |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-plan-gen/SKILL.md` | `qinpei-community-plan-gen/SKILL.md`  |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-community-plan-gen/references/generate_plan.py` | `qinpei-community-plan-gen/references/generate_plan.py`  |
+以后想升级，直接跟我说一句「升级到最新版本」就行，不用再找我要链接。
+```
 
-### qinpei-course-asset-workflow  →  文件夹名 `qinpei-course-asset-workflow`
+**② 升级（已装过核心包）**
+```
+升级完成！✅ 都更新到最新版了。今天想干点啥？发朋友圈、管社群、还是先聊聊？
+```
 
-| 远程路径（基址 + 相对路径） | 保存为 |
-| --- | --- |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-course-asset-workflow/SKILL.md` | `qinpei-course-asset-workflow/SKILL.md`  |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-course-asset-workflow/references/asset-checklist.md` | `qinpei-course-asset-workflow/references/asset-checklist.md`  |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-course-asset-workflow/references/visual-spec.md` | `qinpei-course-asset-workflow/references/visual-spec.md`  |
+**③ 有失败**
+```
+大部分装好了，但 XX 没装上（网络没通）。
+你再说一次「升级技能包」，我帮你重试它，其他不用管～
+```
 
-### 沁珮先学再用  →  文件夹名 `qinpei-knowledge-base`
+---
 
-| 远程路径（基址 + 相对路径） | 保存为 |
-| --- | --- |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-knowledge-base/SKILL.md` | `qinpei-knowledge-base/SKILL.md`  |
+## 更新说明（给 AI）
 
-### qinpei-storytelling  →  文件夹名 `qinpei-storytelling`
-
-| 远程路径（基址 + 相对路径） | 保存为 |
-| --- | --- |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-storytelling/SKILL.md` | `qinpei-storytelling/SKILL.md`  |
-
-### qinpei-wechat-trust  →  文件夹名 `qinpei-wechat-trust`
-
-| 远程路径（基址 + 相对路径） | 保存为 |
-| --- | --- |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/SKILL.md` | `qinpei-wechat-trust/SKILL.md`  |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/安装使用指南.pdf` <br>编码版：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.pdf` | `qinpei-wechat-trust/安装使用指南.pdf`  |
-| `https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/我的画像.md` <br>编码版：`https://raw.githubusercontent.com/qinpei-skills/qinpei-skills/main/skills/qinpei-wechat-trust/%E6%88%91%E7%9A%84%E7%94%BB%E5%83%8F.md` | `qinpei-wechat-trust/我的画像.md` （空白模板，直接下载） |
+- 🔄 **老学员（09-12 之前装的）要升级 → 给他一条指令**（见本文件《一条指令升级（老学员专用）》一节），AI 收到后读 `upgrade.md` 执行。**升级流程细节一律以 `upgrade.md` 为准。**
+- 学员说「安装技能包」「升级技能包」「更新技能包」「装最新版」→ **重跑本文件**，自动增量 + 升级
+- 学员说「qp」或直接说需求（发朋友圈/运营社群等）→ 由「沁珮入口」处理，包括**按需补装对应技能包**
+- 单装某一个技能 → 用 **install-one.md**
+- 学员的画像/档案数据永远不动——这是底线
+- 当前版本 **6.2.2**；**版本真源** = `skills-catalog.md` 顶部的 **VERSION-MANIFEST** 段（`包名=版本`，一行一个）
+- 🔄 **升级流程的唯一真源是 `upgrade.md`**（学员粘一条指令 → AI 读它执行 → 写永久口令）；本说明书不再重复升级细节
+- **与 `install-one.md` 的分工**：本文件管"装全家桶"；单装某一个技能走 `install-one.md`。**升级这件事两份都不再自带流程——统一以 `upgrade.md` 为唯一真源**（含版本比对、解压前双关卡、写永久口令）。**两份的通道表、超时、中文名查表数字必须一致**——改一份就同步另一份。

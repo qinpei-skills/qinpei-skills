@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#5B4B8A">
+<meta name="description" content="沁珮技能包 · 社群运营（学员版）安装页。复制一句指令发给 WorkBuddy，几十秒装好，装完说「我的群没人说话」，它先给你诊断，再出公告、一周排期和互动话题。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="沁珮技能包 · 社群运营 skill 安装">
+<meta property="og:description" content="复制一句指令，几十秒装好。装完说「我的群没人说话」，它先诊断、再出群公告、一周排期和互动话题。">
+<meta name="apple-mobile-web-app-title" content="社群skill安装">
+<title>沁珮技能包 · 社群运营 skill 安装</title>
+<style>
+  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    background:#F6F3EE; color:#2B2724; line-height:1.75;
+    padding:0 0 60px; font-size:17px; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden; word-break:break-word;
+  }
+  .wrap { max-width:640px; margin:0 auto; padding:0 clamp(16px, 4.6vw, 20px); }
+
+  .hero { background:#5B4B8A; color:#fff; padding:clamp(34px, 8.4vw, 46px) 0 clamp(30px, 7.4vw, 40px); margin-bottom:26px; }
+  .hero h1 { font-size:clamp(22px, 6.4vw, 27px); font-weight:600; letter-spacing:.5px; margin-bottom:10px; }
+  .hero p { font-size:clamp(13.5px, 3.9vw, 15px); opacity:.88; line-height:1.7; }
+  .nw { white-space:nowrap; }
+  .hero .tag {
+    display:inline-block; font-size:clamp(12px, 3.4vw, 13px); background:rgba(255,255,255,.16);
+    border-radius:20px; padding:3px 13px; margin-bottom:16px; letter-spacing:.5px;
+  }
+
+  .card {
+    background:#fff; border-radius:14px; padding:20px 20px 18px; margin-bottom:14px;
+    box-shadow:0 1px 3px rgba(43,39,36,.05);
+  }
+  .card-hd { display:flex; align-items:flex-start; gap:clamp(9px, 2.8vw, 12px); margin-bottom:14px; }
+  .card-hd + p { font-size:14.5px; color:#4A4540; line-height:1.7; }
+  .num {
+    flex:0 0 clamp(28px, 9vw, 34px); height:clamp(28px, 9vw, 34px); border-radius:10px;
+    background:#EEEAF6; color:#5B4B8A;
+    font-size:15px; font-weight:600; display:flex; align-items:center; justify-content:center;
+  }
+  .card-tx { min-width:0; }
+  .card-tx h3 { font-size:17px; font-weight:600; margin-bottom:2px; }
+  .card-tx p { font-size:14px; color:#6B6560; line-height:1.6; }
+
+  .btn {
+    display:block; width:100%; border:none; border-radius:11px; cursor:pointer;
+    font-family:inherit; font-size:16px; font-weight:500; padding:13px 16px;
+    transition:background .18s, color .18s, transform .1s;
+    background:#BA7517; color:#fff; letter-spacing:.3px;
+    word-break:break-word; line-height:1.5;
+  }
+  .btn:active { transform:scale(.985); }
+  .btn.done { background:#EAF3DE; color:#3B6D11; }
+  .btn.ghost { background:#F6F3EE; color:#BA7517; margin-top:10px; font-size:15px; }
+  .btn.ghost.done { background:#EAF3DE; color:#3B6D11; }
+
+  .feature {
+    background:#fff; border:1.5px solid #BA7517; border-radius:16px;
+    padding:24px 20px 20px; margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(186,117,23,.10);
+  }
+  .feature .badge {
+    display:inline-block; font-size:12.5px; background:#FAEEDA; color:#854F0B;
+    border-radius:20px; padding:3px 12px; margin-bottom:12px; font-weight:500;
+  }
+  .feature h2 { font-size:clamp(18px, 5.2vw, 20px); font-weight:600; margin-bottom:6px; }
+  .feature > p { font-size:clamp(13.5px, 3.9vw, 14.5px); color:#6B6560; margin-bottom:14px; line-height:1.65; }
+  .feature .say {
+    background:#F6F3EE; border-radius:11px; padding:13px 15px; margin-bottom:18px;
+    font-size:clamp(14px, 4vw, 15px); color:#2B2724; line-height:1.6;
+  }
+  .feature .note { font-size:13px; color:#8A8279; margin-top:11px; text-align:center; }
+
+  .sec-title {
+    font-size:14px; color:#8A8279; letter-spacing:1px; margin:28px 0 12px; padding-left:4px;
+  }
+
+  .two { display:flex; gap:12px; }
+  .two .card { flex:1; margin-bottom:14px; padding:18px 16px; }
+  .two .card h3 { font-size:15.5px; font-weight:600; margin-bottom:6px; }
+  .two .card p { font-size:13.5px; color:#6B6560; line-height:1.6; }
+  @media (max-width:520px) { .two { flex-direction:column; gap:0; } }
+
+  .steps { background:#fff; border-radius:14px; padding:22px 20px; margin-top:24px; }
+  .steps h3 { font-size:16px; font-weight:600; margin-bottom:14px; }
+  .step { display:flex; gap:12px; margin-bottom:13px; font-size:15px; color:#4A4540; line-height:1.65; }
+  .step:last-child { margin-bottom:0; }
+  .step > span { min-width:0; }
+  .step > b {
+    flex:0 0 22px; height:22px; border-radius:50%; background:#BA7517; color:#fff;
+    font-size:12.5px; font-weight:500; display:flex; align-items:center; justify-content:center;
+    margin-top:3px;
+  }
+  .step b.k { flex:none; width:auto; height:auto; background:none; border-radius:0;
+    color:#BA7517; font-weight:600; font-size:inherit; display:inline; margin:0; padding:0; }
+  .warn {
+    background:#FAEEDA; border-radius:12px; padding:15px 17px; margin-top:14px;
+    font-size:14px; color:#7A5716; line-height:1.7;
+  }
+  .warn b { color:#633806; }
+  footer { text-align:center; font-size:13px; color:#9C948B; margin-top:30px; line-height:1.8; }
+
+  .toast {
+    position:fixed; left:50%; bottom:38px; transform:translate(-50%,20px);
+    background:#2B2724; color:#fff; font-size:14.5px; padding:11px 24px; border-radius:24px;
+    opacity:0; transition:opacity .22s, transform .22s; pointer-events:none; z-index:99;
+    max-width:86vw; text-align:center; line-height:1.5;
+  }
+  .toast.show { opacity:1; transform:translate(-50%,0); }
+
+  @media (max-width:360px) {
+    body { font-size:16px; }
+    .card { padding:17px 16px 15px; border-radius:12px; }
+    .feature { padding:20px 16px 17px; border-radius:14px; }
+    .steps { padding:19px 16px; }
+    .btn { font-size:15px; padding:12px 13px; }
+    .btn.ghost { font-size:14px; }
+    .step { font-size:14.5px; gap:9px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="tag">沁珮技能包 · 手机下载指引</div>
+    <h1>社群运营</h1>
+    <p>群建起来了，发几条就没人说话，再发就成了广告死群——<br>它帮你把群从「广告死群」盘成「信任运营场」：<br>群公告、一周排期、互动话题、带教方案，<span class="nw">一次给你出全</span>。<br>复制指令 → 打开 WorkBuddy 粘贴发送，<span class="nw">几十秒装好</span></p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="feature">
+    <div class="badge">手机一键安装</div>
+    <h2>装完说一句话就能开始</h2>
+    <p>不用写提示词，跟它聊天就行。先说清楚你的群是干什么的、群里是谁，它按群类型给你出方案。</p>
+    <div class="say">「我的群没人说话，帮我看看要不要洗」</div>
+    <button class="btn" data-copy="根据 https://cdn.jsdelivr.net/gh/qinpei-skills/qinpei-skills@main/install-one.md?t=__T__ 帮我安装「社群运营」，全程静默：装完只回复「装好啦！」加一句开场白，不汇报任何过程；中文若是乱码就停下说过会儿再试，别猜着装">复制安装指令</button>
+    <button class="btn ghost" data-copy="帮我安装沁珮技能包「社群运营」：下载 https://qinpei-skill-all.app.workbuddy.host/skillhub-zips/qinpei-community-ops-trust.zip?t=__T__ 并解压到 ~/.workbuddy/skills/qinpei-community-ops-trust/">没反应？换这条备用指令再试一次</button>
+    <div class="note">手头有好几个群？先让它诊断，它会告诉你哪几个该留、哪几个该洗，不用凭感觉。</div>
+  </div>
+
+  <div class="sec-title">六件事，说一句话它就办</div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">1</div>
+      <div class="card-tx"><h3>建群 · 从 0 到 1</h3><p>先定群类型（兴趣／会员服务／垂类打卡／养伙伴围观／事业），再出群公告 + 欢迎语五要素 + 破冰钩子 + 建群节奏表</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">2</div>
+      <div class="card-tx"><h3>排期 · 一周群内容</h3><p>按群类型出周一到周日的固定栏目，每条都带信任层 + 钩子 + 行动指令，产品占比自动帮你卡住线</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">3</div>
+      <div class="card-tx"><h3>诊断 · 这个群要不要洗</h3><p>先算活跃率，再看 30 天里有没有真产出（成交／加入／转介绍／复购），给你「洗 / 不洗 / 先救内容」的结论和动作</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">4</div>
+      <div class="card-tx"><h3>互动 · 让大家聊起来</h3><p>互动五步骤 + 话题库，还帮你挑出群里该带头的那 1–2 个人，不用你一个人从早聊到晚</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">5</div>
+      <div class="card-tx"><h3>带教 · 事业群怎么带</h3><p>伙伴分层（新人／骨干／带头人）+ 带教全链路（招募→培训→带教→出单→表彰）+ 本周带教时间怎么排</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="num">6</div>
+      <div class="card-tx"><h3>改稿 · 群发消息太硬</h3><p>把你的群发消息改软：洗稿重塑 → 视角转换 → 合规脱敏 → 顺滑带出业务，改完直接能发</p></div>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fff;">
+    <div class="card-hd" style="margin-bottom:10px;">
+      <div class="num" style="background:#EAF3DE;color:#3B6D11;">!</div>
+      <div class="card-tx"><h3>一句心法：洗群看「产出」，不看「热闹」</h3></div>
+    </div>
+    <p style="font-size:14.5px;color:#4A4540;">
+      群安静、但有人私下找你下单 → 这是<b>闷声出单群，别解散</b>。<br>
+      群很热闹、但一直不成交 → 那是转化路径的问题，<b>也不是洗群能解决的</b>。<br>
+      它先判断你的群该按哪一类来运营：个人经营者最少做 2 类，团队长最少做 3 类，<br>
+      <span style="color:#8A8279;font-size:13px;">不用为了「全」而建，按你眼下的展业目标决定。</span>
+    </p>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h3>从零开始</h3>
+      <p>说「帮我建个群养客户，我是做艾灸的，客户都是 40 岁以上的姐姐」，它先定群类型，再出公告和欢迎语。</p>
+    </div>
+    <div class="card">
+      <h3>群已经不活跃</h3>
+      <p>说「我的群要不要洗」，它先问你三个问题（什么群／建多久／有没有人私下下单），再给结论。</p>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fff;">
+    <div class="card-hd" style="margin-bottom:10px;">
+      <div class="num" style="background:#F1EFE8;color:#5F5E5A;">–</div>
+      <div class="card-tx"><h3>它不做什么</h3></div>
+    </div>
+    <p style="font-size:14.5px;color:#4A4540;">
+      <b>不帮你拉人</b>——不替代获客投放，也不承诺帮你拉满 500 人进群。<br>
+      <b>不接系统</b>——不对接 CRM、企业微信后台，也不替你自动发消息。<br>
+      <b>不代运营</b>——群还是你自己的，它只出方案、排期、话术和钩子资料。<br>
+      这一个包自己就能跑完，<b>不需要再装别的</b>。
+    </p>
+  </div>
+
+  <div class="steps">
+    <h3>怎么用</h3>
+    <div class="step"><b>1</b><span>点上面的「复制安装指令」，提示「已复制」就行</span></div>
+    <div class="step"><b>2</b><span>打开 WorkBuddy，在对话框里<b class="k">长按粘贴</b>，发送</span></div>
+    <div class="step"><b>3</b><span>手机保持亮屏别切走，等它说「装好啦」，然后说「帮我诊断一下我的群」</span></div>
+    <div class="warn">
+      <b>小提示</b>：装之前建议先把模型切成 <b>DeepSeek</b>，会更快。<br>
+      方案默认给你 <b>Word 文档</b>，生成后会告诉你在哪、能直接打开；手机上它会先给文字版，要导出跟它说一声就行。
+            以后想升级，直接跟它说一句 <b>「升级到最新版本」</b> 就行，不用再回来找这条链接。
+    </div>
+  </div>
+
+  <footer>
+    沁珮技能包 · 社群运营（学员版）<br>
+    装完直接说「我的群没人说话」
+  </footer>
+</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script>
+var toast = document.getElementById('toast');
+var timer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(timer);
+  timer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('[data-copy]');
+  if (!btn) return;
+  var text = btn.getAttribute('data-copy');
+  // 防旧缓存：把 __T__ 换成当场的时间戳，让每次复制的地址都唯一，永远回源拿最新
+  if (text.indexOf('__T__') >= 0) {
+    text = text.split('__T__').join(String(Date.now()) + String(Math.floor(Math.random() * 900) + 100));
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      showToast('已复制，去 WorkBuddy 粘贴吧');
+    }).catch(function () {
+      fallbackCopy(text);
+      showToast('已复制，去 WorkBuddy 粘贴吧');
+    });
+  } else {
+    fallbackCopy(text);
+    showToast('已复制，去 WorkBuddy 粘贴吧');
+  }
+
+  var old = btn.textContent;
+  btn.textContent = '已复制 ✓';
+  btn.classList.add('done');
+  setTimeout(function () {
+    btn.textContent = old.indexOf('已复制') === 0 ? '复制安装指令' : old;
+    btn.classList.remove('done');
+  }, 1800);
+});
+</script>
+</body>
+</html>

@@ -1,7 +1,8 @@
 # 沁珮技能包 · 单个技能安装说明书（v6.14 ·一句一签轮 · 静默安装 + 乱码自救 + 多通道降级 + 单技能就事论事 + 一句话升级）
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，用于**只装某一个技能**（不想装全家桶时）。
-> 版本：v6.19（2026-10-30 · Phase B 身份锁定轮）——朋友圈升 2.3.9-student、社群升 3.3.7、沙龙升 2.1.7：三包补齐身份锁定（装好后永远是各自AI搭子，禁切通用助手/禁安装过程输出）+ 回复精炼两题槽（一条回复一个动作/一次≤2问/手机一屏5行），移植 video-trust 实测机制。中文名自检表数字不变。
+> 版本：v6.20（2026-10-30 · Phase C IP同词轮）——朋友圈升 2.4.0-student（IP三问加IP定位联动约定+改稿六步轻量诊断+M15发圈反馈回流）、社群升 3.3.8、沙龙升 2.1.8（M1 加 IP 定位同词复用）。中文名自检表数字不变。
+> 上一轮：v6.19（2026-10-30 · Phase B 身份锁定轮）——朋友圈升 2.3.9-student、社群升 3.3.7、沙龙升 2.1.7：三包补齐身份锁定（装好后永远是各自AI搭子，禁切通用助手/禁安装过程输出）+ 回复精炼两题槽（一条回复一个动作/一次≤2问/手机一屏5行），移植 video-trust 实测机制。中文名自检表数字不变。
 > 上一轮：v6.18（2026-10-30 · 朋友圈品牌名放开 + 同一对话提示轮）——朋友圈升 2.3.8-student（M6 品牌名一刀切放开为分场景建议：种草可写产品名/新好友可见建议代称）；社群升 3.3.6、沙龙升 2.1.6（仅欢迎语加"同一对话"口诀）；install-one/install 装完模板统一加口诀「在哪装，在哪写；新开窗口我就帮不上啦」。中文名自检表数字不变。
 > 上一轮：v6.17（2026-10-21 · IP定位 4.1.1 轮）——IP定位升 4.1.1（装机护栏+学员文档对齐：README/话术卡重写六段口径、zip 名修正、安装验收卡），文件数不变仍为 11。
 > 上一轮：v6.16（2026-10-20 · IP定位 4.1.0 轮）——IP定位升 4.1.0（对抗实测加固：拒代写固定话术/劝退档案/打分-劝退联动等 15 项），文件数不变仍为 11。
@@ -172,9 +173,9 @@ curl -fsSL --max-time 10 "<地址>?t=$(date +%s)" -o /tmp/qinpei-skill.zip   # 1
 
 | 学员可能说的名字（含别名） | 技能名（目录名） | zip 文件名 | 当前版本（校验用） |
 |:---|:---|:---|:---|
-| 朋友圈 / 朋友圈信任经营 / 朋友圈新人经营 / 朋友圈经营 / 发圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` | 2.3.9-student |
-| 社群 / 社群运营 / 群运营 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` | 3.3.7 |
-| 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` | 2.1.7 |
+| 朋友圈 / 朋友圈信任经营 / 朋友圈新人经营 / 朋友圈经营 / 发圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` | 2.4.0-student |
+| 社群 / 社群运营 / 群运营 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` | 3.3.8 |
+| 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` | 2.1.8 |
 | 故事力 / 讲故事 | qinpei-storytelling | `qinpei-storytelling.zip` | 2.0.3 |
 | **IP 定位 / IP定位诊断 / IP人设 / 立人设 / 个人IP定位 / 个人品牌定位 / 定位诊断 / 我适合做什么类型的IP** | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` | 4.1.1 |
 | **展业诊断 / 展业破局·诊断 / 展业破局诊断 / 展业问诊 / 业务诊断 / 业务体检 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` | 3.1.0 |

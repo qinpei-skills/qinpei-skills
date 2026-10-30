@@ -1,6 +1,10 @@
 # 沁珮技能包 · 单个技能安装说明书（v6.14 ·一句一签轮 · 静默安装 + 乱码自救 + 多通道降级 + 单技能就事论事 + 一句话升级）
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，用于**只装某一个技能**（不想装全家桶时）。
+> 版本：v6.18（2026-10-30 · 朋友圈品牌名放开 + 同一对话提示轮）——朋友圈升 2.3.8-student（M6 品牌名一刀切放开为分场景建议：种草可写产品名/新好友可见建议代称）；社群升 3.3.6、沙龙升 2.1.6（仅欢迎语加"同一对话"口诀）；install-one/install 装完模板统一加口诀「在哪装，在哪写；新开窗口我就帮不上啦」。中文名自检表数字不变。
+> 上一轮：v6.17（2026-10-21 · IP定位 4.1.1 轮）——IP定位升 4.1.1（装机护栏+学员文档对齐：README/话术卡重写六段口径、zip 名修正、安装验收卡），文件数不变仍为 11。
+> 上一轮：v6.16（2026-10-20 · IP定位 4.1.0 轮）——IP定位升 4.1.0（对抗实测加固：拒代写固定话术/劝退档案/打分-劝退联动等 15 项），文件数不变仍为 11。
+> 上一轮：v6.15（2026-10-20 · P0 残包修复轮）——**IP定位升 4.0.1**：对照表版本列 3.1.0→4.0.1；中文名自检表按 zip 现算校准（IP定位 3→11 文件且 ✅ 有子目录；故事力中文名 2→1；社群 11→14 文件；合计中文名 29→28）；逐文件兜底清单补全 IP定位 11 个文件 + 故事力补 `学员故事/README.md`。此前兜底路径会把 IP定位装成残包（表达基因卡/获客链路丢失）。
 > 版本：v6.14（2026-09-24 · 一句一签轮②）——**IP定位升 3.1.0**：同展业诊断引入《🗣 一句一签》对话回复协议 +「简单说」模式，硬门禁加第 5 条；最终结论四段仍按硬门禁原文输出不挂签。中文名自检表数字不变。
 > 版本：v6.13（2026-09-23 · 一句一签轮）——**展业诊断升 3.1.0**：《🗣 一句一签》对话回复协议（👍认可你/🧭说句实在话/❓该你答了/📖给你参考/👉你现在做这件事，固定词禁替换；每轮 👉 行动线收尾）+「简单说」降级模式。起因：北大课现场年长学员分不清回复里哪句是认可、提问还是参考。中文名自检表数字不变。
 > 版本：v6.12（2026-09-22 · 硬门禁轮）——**对照表「当前版本（校验用）」列对齐 P0-2 硬门禁版**：朋友圈 2.3.7-student｜展业诊断 3.0.5｜沙龙 2.1.5｜故事力 2.0.3｜画像 1.1.4｜入口 1.5.4（IP定位 3.0.7 / 社群 3.3.5 不变）。六包新增「输出/结论/写入/路由硬门禁」；中文名自检表数字不变。
@@ -167,11 +171,11 @@ curl -fsSL --max-time 10 "<地址>?t=$(date +%s)" -o /tmp/qinpei-skill.zip   # 1
 
 | 学员可能说的名字（含别名） | 技能名（目录名） | zip 文件名 | 当前版本（校验用） |
 |:---|:---|:---|:---|
-| 朋友圈 / 朋友圈信任经营 / 朋友圈新人经营 / 朋友圈经营 / 发圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` | 2.3.7-student |
-| 社群 / 社群运营 / 群运营 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` | 3.3.5 |
-| 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` | 2.1.5 |
+| 朋友圈 / 朋友圈信任经营 / 朋友圈新人经营 / 朋友圈经营 / 发圈 | qinpei-wechat-trust | `qinpei-wechat-trust.zip` | 2.3.8-student |
+| 社群 / 社群运营 / 群运营 | qinpei-community-ops-trust | `qinpei-community-ops-trust.zip` | 3.3.6 |
+| 沙龙 / 线下沙龙 / 办活动 | qinpei-salon-ops-trust | `qinpei-salon-ops-trust.zip` | 2.1.6 |
 | 故事力 / 讲故事 | qinpei-storytelling | `qinpei-storytelling.zip` | 2.0.3 |
-| **IP 定位 / IP定位诊断 / IP人设 / 立人设 / 个人IP定位 / 个人品牌定位 / 定位诊断 / 我适合做什么类型的IP** | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` | 3.1.0 |
+| **IP 定位 / IP定位诊断 / IP人设 / 立人设 / 个人IP定位 / 个人品牌定位 / 定位诊断 / 我适合做什么类型的IP** | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` | 4.1.1 |
 | **展业诊断 / 展业破局·诊断 / 展业破局诊断 / 展业问诊 / 业务诊断 / 业务体检 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` | 3.1.0 |
 | 画像 / 我的画像 | qinpei-profile | `qinpei-profile.zip` | 1.1.4 |
 | 入口 / qp | qinpei | `qinpei.zip` | 1.5.4 |
@@ -223,14 +227,14 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 |:---|:---|---:|---:|:---:|
 | 入口 | qinpei | 1 | 0 | ❌ 无 |
 | 画像 | qinpei-profile | 1 | 0 | ❌ 无 |
-| 故事力 | qinpei-storytelling | 4 | 2 | ✅ `学员故事/` |
-| IP定位 | qinpei-ip-diagnosis | 3 | 1 | ❌ 无 |
+| 故事力 | qinpei-storytelling | 4 | 1 | ✅ `学员故事/` |
+| IP定位 | qinpei-ip-diagnosis | 11 | 1 | ✅ `references/` |
 | 展业诊断 | qinpei-business-check | 6 | 2 | ✅ `references/` + `assets/templates/` |
 | 朋友圈 | qinpei-wechat-trust | 7 | 4 | ✅ `references/` + `assets/templates/` |
-| 社群 | qinpei-community-ops-trust | 11 | 7 | ✅ `references/` + `assets/templates/` |
+| 社群 | qinpei-community-ops-trust | 14 | 7 | ✅ `references/` + `assets/templates/` |
 | 沙龙 | qinpei-salon-ops-trust | 17 | 13 | ✅ `references/` + `assets/templates/` |
 
-（8 个包合计 29 个中文名文件——那是**全部加起来**的数，单装一个包只会看到属于它的那几个。**只认你自己那一行的两个数字。**）
+（8 个包合计 28 个中文名文件——那是**全部加起来**的数，单装一个包只会看到属于它的那几个。**只认你自己那一行的两个数字。**）
 
 **第 2 步｜核对**（`D` 换成真实目录）：
 
@@ -322,14 +326,25 @@ SKILL.md
 SKILL.md
 README.md
 话术卡.md
+学员故事/README.md
 ```
+（**4 个文件 / 1 个中文名**——`学员故事/README.md` 是包自带模板，必须装齐，2026-10-20 补。）
 
 ### IP定位（qinpei-ip-diagnosis）
 ```
 SKILL.md
 README.md
 话术卡.md
+references/CHANGELOG.md
+references/acquisition-chain.md
+references/cases.md
+references/expression-dna.md
+references/namecard.md
+references/profile-write.md
+references/reframes.md
+references/upgrade.md
 ```
+（**11 个文件 / 1 个中文名 / ✅ 有子目录**——与查表一致。原先这里只列了 3 个，走兜底路径会把 IP定位装成**残包**（表达基因卡、获客链路直接丢失），2026-10-20 已按 zip 实际内容补齐。）
 
 ### 展业诊断 / 展业破局·诊断（qinpei-business-check）
 ```
@@ -468,6 +483,8 @@ echo "升级口令已写入"```
 装好啦！🎉 <开场白>
 
 以后想升级，直接跟我说一句「升级到最新版本」就行，不用再找我要链接。
+
+📌 小提醒：以后写内容，都在这个对话里找我——在哪装，在哪写；新开窗口我就帮不上啦。
 ```
 
 **示例（装朋友圈，照此格式）：**
@@ -476,6 +493,8 @@ echo "升级口令已写入"```
 装好啦！🎉 想发圈了，直接说「帮我写一条朋友圈」；要是没想好写什么，先告诉我你是做什么的、客户主要是哪些人，我帮你定第一条
 
 以后想升级，直接跟我说一句「升级到最新版本」就行，不用再找我要链接。
+
+📌 小提醒：以后写内容，都在这个对话里找我——在哪装，在哪写；新开窗口我就帮不上啦。
 ```
 
 **示例（装展业破局·诊断，照此格式）：**
@@ -484,6 +503,8 @@ echo "升级口令已写入"```
 装好啦！🎉 想弄清楚卡在哪，直接说「帮我看看我的经营卡点」；不知道怎么开口也没关系，就照你平时说话那样，把你的情况跟我讲讲
 
 以后想升级，直接跟我说一句「升级到最新版本」就行，不用再找我要链接。
+
+📌 小提醒：以后写内容，都在这个对话里找我——在哪装，在哪写；新开窗口我就帮不上啦。
 ```
 
 **❌ 绝对不要再出现的旧尾巴**（已废弃）：

@@ -103,6 +103,8 @@
 | qinpei-storytelling | `qinpei-storytelling.zip` |
 | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` |
 | qinpei-business-check | `qinpei-business-check.zip` |
+| qinpei-video-trust | `qinpei-video-trust.zip` |
+| qinpei-1v1-sales | `qinpei-1v1-sales.zip` |
 
 > 完整下载地址 = 上面「通道清单」里的地址模板，把 `<技能名>` 换成上表的技能名。
 
@@ -139,12 +141,14 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 |:---|:---|---:|---:|
 | 入口 | qinpei | 1 | 0 |
 | 画像 | qinpei-profile | 1 | 0 |
-| 故事力 | qinpei-storytelling | 3 | 1 |
-| IP定位 | qinpei-ip-diagnosis | 3 | 1 |
+| 故事力 | qinpei-storytelling | 4 | 1 |
+| IP定位 | qinpei-ip-diagnosis | 11 | 1 |
 | 展业诊断 | qinpei-business-check | 6 | 2 |
 | 朋友圈 | qinpei-wechat-trust | 7 | 4 |
-| 社群 | qinpei-community-ops-trust | 11 | 7 |
-| 沙龙 | qinpei-salon-ops-trust | 17 | 13 |
+| 社群 | qinpei-community-ops-trust | 14 | 7 |
+| 沙龙 | qinpei-salon-ops-trust | 19 | 15 |
+| 口播视频 | qinpei-video-trust | 14 | 8 |
+| 一对一顾问式销售 | qinpei-1v1-sales | 14 | 5 |
 
 **这 8 个包合计 28 个中文名文件**（原先本说明书写 27，漏算了展业诊断的 `assets/templates/01-展业诊断简报.md`，2026-09-11 已更正）。
 

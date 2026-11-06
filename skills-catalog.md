@@ -9,6 +9,7 @@ qinpei-storytelling=2.0.3
 qinpei-ip-diagnosis=4.1.1
 qinpei-business-check=3.1.0
 qinpei-video-trust=0.6.3-dev
+qinpei-1v1-sales=1.0.1-dev
 ==================== VERSION-MANIFEST END ==================== -->
 
 # 沁珮技能包清单（skills-catalog）
@@ -32,6 +33,7 @@ qinpei-video-trust=0.6.3-dev
 | qinpei-ip-diagnosis | 个人IP定位诊断 | 4.1.1 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
 | qinpei-business-check | 展业诊断 | 3.1.0 | on-demand | skillhub-zips/qinpei-business-check.zip |
 | qinpei-video-trust | 口播视频AI搭子 | 0.6.3-dev | on-demand | skillhub-zips/qinpei-video-trust.zip |
+| qinpei-1v1-sales | 一对一顾问式销售 | 1.0.1-dev | on-demand | skillhub-zips/qinpei-1v1-sales.zip |
 
 > ⚠️ **本表的「版本」= zip 分发包里 SKILL.md 的版本**（学员实际装到的版本），不是仓库源码版本。
 > **2026-09-12 对账修正**：`qinpei-ip-diagnosis` 原写 `1.1.0` 系笔误，实际 zip 已是 **3.0.1**（09-11 已推成功）；`qinpei-storytelling` 仓库源码已是 **2.0.0** 但 zip 未重打，学员仍装到 1.1.0。

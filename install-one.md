@@ -239,11 +239,11 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 | 展业诊断 | qinpei-business-check | 6 | 2 | ✅ `references/` + `assets/templates/` |
 | 朋友圈 | qinpei-wechat-trust | 7 | 4 | ✅ `references/` + `assets/templates/` |
 | 社群 | qinpei-community-ops-trust | 14 | 7 | ✅ `references/` + `assets/templates/` |
-| 沙龙 | qinpei-salon-ops-trust | 19 | 15 | ✅ `references/` + `assets/templates/` |
+| 沙龙 | qinpei-salon-ops-trust | 17 | 13 | ✅ `references/` + `assets/templates/` |
 | 口播视频 | qinpei-video-trust | 14 | 8 | ✅ `references/` + `assets/templates/` |
 | 一对一顾问式销售 | qinpei-1v1-sales | 14 | 5 | ✅ `references/` + `assets/templates/` |
 
-（10 个包合计 56 个中文名文件——那是**全部加起来**的数，单装一个包只会看到属于它的那几个。**只认你自己那一行的两个数字。**）
+（10 个包合计 54 个中文名文件——那是**全部加起来**的数，单装一个包只会看到属于它的那几个。**只认你自己那一行的两个数字。**）
 
 **第 2 步｜核对**（`D` 换成真实目录）：
 
@@ -264,6 +264,24 @@ find "$D" -type f | sed 's#.*/##' | LC_ALL=C grep '[^ -~]' || echo "  （一个�
   python3 也没有 → 改走「终极兜底：逐文件抓取」（文件名由你自己写，反而不会出错）
 
 > ⚠️ **不要用 `ls assets/templates/` 来查**：只有朋友圈 / 社群 / 沙龙 / 展业诊断这 4 个包有这个目录，**入口 / 画像 / 故事力 / IP定位这 4 个包根本没有**——用那条命令会得到 `No such file or directory`，很容易被误判成"解压失败 / 装漏了"。**一律用上面第 2 步的整目录命令。**
+
+**🔴 解压后必查：SKILL.md 在不在技能目录根？**（防"套娃"）
+
+有些分发 zip 会把整包套一层同名目录，解压出来是
+`~/.workbuddy/skills/<技能名>/<技能名>/SKILL.md` —— **技能等于没装**（AI 找不到 SKILL.md，装完是哑巴）。
+
+```bash
+ls ~/.workbuddy/skills/<技能名>/SKILL.md 2>/dev/null || echo "⚠️ 套娃了！见下方修复"
+```
+
+若报"套娃"（内层才是 SKILL.md）→ 把内层内容上提一层：
+
+```bash
+cd ~/.workbuddy/skills/<技能名>/ && ls -d */ | head
+# 确认内层那层目录名就是技能名后：
+mv <技能名>/* . 2>/dev/null; mv <技能名>/.[!.]* . 2>/dev/null; rmdir <技能名> 2>/dev/null; true
+ls ~/.workbuddy/skills/<技能名>/SKILL.md
+```
 
 **两种解压方式都不可用** → 同样走「终极兜底：逐文件抓取」。
 

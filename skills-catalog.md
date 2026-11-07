@@ -8,7 +8,7 @@ qinpei-salon-ops-trust=2.1.8
 qinpei-storytelling=2.0.3
 qinpei-ip-diagnosis=4.1.1
 qinpei-business-check=3.1.0
-qinpei-video-trust=0.6.3-dev
+qinpei-video-trust=0.7.0-dev
 qinpei-1v1-sales=1.0.1-dev
 ==================== VERSION-MANIFEST END ==================== -->
 

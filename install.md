@@ -146,13 +146,13 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 | 展业诊断 | qinpei-business-check | 6 | 2 |
 | 朋友圈 | qinpei-wechat-trust | 7 | 4 |
 | 社群 | qinpei-community-ops-trust | 14 | 7 |
-| 沙龙 | qinpei-salon-ops-trust | 19 | 15 |
-| 口播视频 | qinpei-video-trust | 14 | 8 |
+| 沙龙 | qinpei-salon-ops-trust | 17 | 13 |
+| 口播视频 | qinpei-video-trust | 15 | 8 |
 | 一对一顾问式销售 | qinpei-1v1-sales | 14 | 5 |
 
-**这 8 个包合计 28 个中文名文件**（原先本说明书写 27，漏算了展业诊断的 `assets/templates/01-展业诊断简报.md`，2026-09-11 已更正）。
+**这 10 个包合计 41 个中文名文件**（2026-11-08 按当前分发 zip 逐包实测校准；口播 0.8.0 新增英文文件名，中文名数量不变）。
 
-**第 2 步｜核对命令**（`<技能名>` 换成实际目录名，8 个包逐个跑一遍）：
+**第 2 步｜核对命令**（`<技能名>` 换成实际目录名，10 个包逐个跑一遍）：
 
 ```bash
 D=~/.workbuddy/skills/<技能名>

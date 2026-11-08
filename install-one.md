@@ -1,6 +1,7 @@
 # 沁珮技能包 · 单个技能安装说明书（v6.14 ·一句一签轮 · 静默安装 + 乱码自救 + 多通道降级 + 单技能就事论事 + 一句话升级）
 
 > ⚠️ 这是一份**写给 AI 看的安装指令**，用于**只装某一个技能**（不想装全家桶时）。
+> 版本：v6.23（2026-11-08 · 口播包 0.8.0 实战质检轮）——口播包新增敏感表达转译文件，文件数 14→15、中文名文件仍为 8；对照表与自检表同步，学员仍只需在原安装对话说「升级到最新版本」。
 > 版本：v6.22（2026-11-06 · 一对一顾问式销售包首发轮）——新增第 8 个学员包 `qinpei-1v1-sales`（一对一顾问式销售 v1.0.1-dev）：版本表新增条目、skillhub-zips 分发 zip 入列、开源仓补全 skills/qinpei-1v1-sales 副本；顺带补上此前漏掉的 qinpei-video-trust 对照表行与自检表行。中文名自检表数字更新为 10 个包 / 41 个中文名文件。
 
 > 版本：v6.21（2026-10-30 · 口播包进升级通道轮）——video-trust 升 0.6.3-dev 并正式接入统一升级通道：版本表新增条目、skillhub-zips 分发 zip 入列、开源仓补全 skills/qinpei-video-trust 副本；学员升级口径与六件套统一（说「升级到最新版本」即可）。中文名自检表数字不变。
@@ -182,7 +183,7 @@ curl -fsSL --max-time 10 "<地址>?t=$(date +%s)" -o /tmp/qinpei-skill.zip   # 1
 | 故事力 / 讲故事 | qinpei-storytelling | `qinpei-storytelling.zip` | 2.0.3 |
 | **IP 定位 / IP定位诊断 / IP人设 / 立人设 / 个人IP定位 / 个人品牌定位 / 定位诊断 / 我适合做什么类型的IP** | qinpei-ip-diagnosis | `qinpei-ip-diagnosis.zip` | 4.1.1 |
 | **展业诊断 / 展业破局·诊断 / 展业破局诊断 / 展业问诊 / 业务诊断 / 业务体检 / 经营卡点诊断** | qinpei-business-check | `qinpei-business-check.zip` | 3.1.0 |
-| **口播视频 / 短视频口播 / 拍视频 / 写口播稿 / 视频号文案** | qinpei-video-trust | `qinpei-video-trust.zip` | 0.6.3-dev |
+| **口播视频 / 短视频口播 / 拍视频 / 写口播稿 / 视频号文案** | qinpei-video-trust | `qinpei-video-trust.zip` | 0.8.0-dev |
 | **一对一 / 1对1 / 1V1 / 顾问式销售 / 私聊成交 / 微信成交 / 谈单 / 客户说贵 / 异议处理 / 唤醒老客 / 招募合伙人** | qinpei-1v1-sales | `qinpei-1v1-sales.zip` | 1.0.1-dev |
 | 画像 / 我的画像 | qinpei-profile | `qinpei-profile.zip` | 1.1.4 |
 | 入口 / qp | qinpei | `qinpei.zip` | 1.5.4 |
@@ -240,10 +241,10 @@ unzip -o /tmp/qinpei-skill.zip -d ~/.workbuddy/skills/<技能名>/
 | 朋友圈 | qinpei-wechat-trust | 7 | 4 | ✅ `references/` + `assets/templates/` |
 | 社群 | qinpei-community-ops-trust | 14 | 7 | ✅ `references/` + `assets/templates/` |
 | 沙龙 | qinpei-salon-ops-trust | 17 | 13 | ✅ `references/` + `assets/templates/` |
-| 口播视频 | qinpei-video-trust | 14 | 8 | ✅ `references/` + `assets/templates/` |
+| 口播视频 | qinpei-video-trust | 15 | 8 | ✅ `references/` + `assets/templates/` |
 | 一对一顾问式销售 | qinpei-1v1-sales | 14 | 5 | ✅ `references/` + `assets/templates/` |
 
-（10 个包合计 54 个中文名文件——那是**全部加起来**的数，单装一个包只会看到属于它的那几个。**只认你自己那一行的两个数字。**）
+（10 个包合计 41 个中文名文件——那是**全部加起来**的数，单装一个包只会看到属于它的那几个。**只认你自己那一行的两个数字。**）
 
 **第 2 步｜核对**（`D` 换成真实目录）：
 

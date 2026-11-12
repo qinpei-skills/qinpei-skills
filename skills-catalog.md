@@ -5,7 +5,7 @@ qinpei-profile=1.1.4
 qinpei-wechat-trust=2.4.0-student
 qinpei-community-ops-trust=3.3.8
 qinpei-salon-ops-trust=2.1.8
-qinpei-storytelling=2.0.3
+qinpei-storytelling=2.1.0
 qinpei-ip-diagnosis=4.1.1
 qinpei-business-check=3.1.0
 qinpei-video-trust=0.8.0-dev
@@ -29,7 +29,7 @@ qinpei-1v1-sales=1.0.1-dev
 | qinpei-wechat-trust | 朋友圈信任经营 | 2.4.0-student | on-demand | skillhub-zips/qinpei-wechat-trust.zip |
 | qinpei-community-ops-trust | 社群运营提效 | 3.3.8 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
 | qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.8 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
-| qinpei-storytelling | 故事力提效 | 2.0.3 | on-demand | skillhub-zips/qinpei-storytelling.zip |
+| qinpei-storytelling | 故事力提效 | 2.1.0 | on-demand | skillhub-zips/qinpei-storytelling.zip |
 | qinpei-ip-diagnosis | 个人IP定位诊断 | 4.1.1 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
 | qinpei-business-check | 展业诊断 | 3.1.0 | on-demand | skillhub-zips/qinpei-business-check.zip |
 | qinpei-video-trust | 口播视频AI搭子 | 0.8.0-dev | on-demand | skillhub-zips/qinpei-video-trust.zip |

@@ -1,80 +1,62 @@
 <!-- ==================== VERSION-MANIFEST ====================
 学员端「升级到最新版本」的比对源。格式：包名=版本（一行一个，勿改格式）
-qinpei=1.5.4
-qinpei-profile=1.1.4
-qinpei-wechat-trust=2.3.7-student
-qinpei-community-ops-trust=3.3.5
-qinpei-salon-ops-trust=2.1.5
-qinpei-storytelling=2.0.3
-qinpei-ip-diagnosis=4.1.1
+qinpei=1.12.1
+qinpei-profile=1.4.0
+qinpei-wechat-trust=2.6.0
+qinpei-community-ops-trust=3.5.0
+qinpei-salon-ops-trust=2.3.0
+qinpei-storytelling=2.3.0
+qinpei-ip-diagnosis=5.0.1
 qinpei-business-check=3.1.0
+qinpei-video-trust=1.0.1
+qinpei-1v1-sales=1.2.0
+qinpei-sixstep-check=1.0.3
 ==================== VERSION-MANIFEST END ==================== -->
 
 # 沁珮技能包清单（skills-catalog）
 
-> 本文件是学员端安装/升级技能的**唯一数据源**，由沁珮维护。
-> 🔄 **升级流程的说明文档是 `upgrade.md`**（学员粘贴一条指令 → AI 读它 → 覆盖升级 + 写永久口令）；本节顶部的 VERSION-MANIFEST 就是它比对的版本真源。
-> 新增技能 = 加一行；技能升级 = 改版本号。学员端一句「升级技能包」自动生效。
-> 安装模式：`core` = 首次必装（小、秒装）；`on-demand` = 按需补装（学员用到时由入口自动装）。
-> **安装方式（2026-09-10 v6 起）：优先下载 zip 一次解压**（1 个请求拿全部文件，最快）。
-> ⚠️ **下载地址不固定**：8 条通道（WorkBuddy 文库 → jsdelivr 主/备用节点 → gh 加速代理）**按序自动降级，一个不通立刻换下一个**——完整通道清单见 `install.md` / `install-one.md`。zip 全通道都不通再走逐文件抓取（清单见 install-one.md「终极兜底」）。
-> 格式：技能名 | 显示名 | 版本 | 安装模式 | zip 文件名
+> **当前安装口径**：新学员统一从 WorkBuddy 技能中心 / SkillHub 安装，发布者为 `indiv-qinpei`。
+> GitHub 保存公开源码和同名 zip 镜像，既有文件路径不变，供历史安装链路与开源使用。
+> 顶部 VERSION-MANIFEST 是仓库内版本比对源；每次发布必须同时核对技能源码、zip 内版本和本表。
 
 | 技能名 | 显示名 | 版本 | 安装模式 | zip 文件名 |
 |:---|:---|:---:|:---:|:---|
-| qinpei | 沁珮入口（引导+导航） | 1.5.4 | core | skillhub-zips/qinpei.zip |
-| qinpei-profile | 共享画像银行 | 1.1.4 | core | skillhub-zips/qinpei-profile.zip |
-| qinpei-wechat-trust | 朋友圈信任经营 | 2.3.7-student | on-demand | skillhub-zips/qinpei-wechat-trust.zip |
-| qinpei-community-ops-trust | 社群运营提效 | 3.3.5 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
-| qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.1.5 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
-| qinpei-storytelling | 故事力提效 | 2.0.3 | on-demand | skillhub-zips/qinpei-storytelling.zip |
-| qinpei-ip-diagnosis | 个人IP定位诊断 | 4.1.1 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
+| qinpei | QP展业管家 | 1.12.1 | core | skillhub-zips/qinpei.zip |
+| qinpei-profile | 共享画像银行 | 1.4.0 | core | skillhub-zips/qinpei-profile.zip |
+| qinpei-wechat-trust | 朋友圈信任经营 | 2.6.0 | on-demand | skillhub-zips/qinpei-wechat-trust.zip |
+| qinpei-community-ops-trust | 社群运营提效 | 3.5.0 | on-demand | skillhub-zips/qinpei-community-ops-trust.zip |
+| qinpei-salon-ops-trust | 线下沙龙信任经营 | 2.3.0 | on-demand | skillhub-zips/qinpei-salon-ops-trust.zip |
+| qinpei-storytelling | 故事力提效 | 2.3.0 | on-demand | skillhub-zips/qinpei-storytelling.zip |
+| qinpei-ip-diagnosis | 差异化业务定位诊断 | 5.0.1 | on-demand | skillhub-zips/qinpei-ip-diagnosis.zip |
 | qinpei-business-check | 展业诊断 | 3.1.0 | on-demand | skillhub-zips/qinpei-business-check.zip |
+| qinpei-video-trust | 口播视频AI搭子 | 1.0.1 | on-demand | skillhub-zips/qinpei-video-trust.zip |
+| qinpei-1v1-sales | 一对一顾问式销售 | 1.2.0 | on-demand | skillhub-zips/qinpei-1v1-sales.zip |
+| qinpei-sixstep-check | 六步展业链路诊断 | 1.0.3 | on-demand | skillhub-zips/qinpei-sixstep-check.zip |
 
-> ⚠️ **本表的「版本」= zip 分发包里 SKILL.md 的版本**（学员实际装到的版本），不是仓库源码版本。
-> **2026-09-12 对账修正**：`qinpei-ip-diagnosis` 原写 `1.1.0` 系笔误，实际 zip 已是 **3.0.1**（09-11 已推成功）；`qinpei-storytelling` 仓库源码已是 **2.0.0** 但 zip 未重打，学员仍装到 1.1.0。
+## 2026-11-25 同步验收
 
----
+| 范围 | 结果 |
+|:---|:---|
+| SkillHub 最新 10 包源码 | 已与桌面 SkillHub 终包逐一同步 |
+| SkillHub 最新 10 个 zip | 已按原文件名同步，字节不变 |
+| 新增到 GitHub 主分支 | 一对一顾问式销售、六步展业链路诊断、口播视频AI搭子 |
+| 原有展业诊断 | 保留 3.1.0，不覆盖、不删除 |
+| 版本清单与首页 | 已更新为同一组版本号 |
+| 学员数据 | 不包含我的画像、学员档案或私有凭证 |
 
-## ⚠️ 关于「分发包」与「学员数据」的边界（重要）
+## 分发包与学员数据边界
 
-zip 分发包里**只含技能本体**（SKILL.md / references / assets 模板 / README / 话术卡），
-**不含**任何学员产生的数据文件：
+zip 只含技能本体及公开模板，不含学员在使用过程中产生的：
 
-- `我的画像.md`（学员画像）
-- `学员档案/`（沙龙等活动档案、复盘数据、经验库）
+- `我的画像.md`
+- `学员档案/`
+- 学员自行创建的其他资料
 
-→ 所以安装/升级时的覆盖解压**不会动到学员数据**。
-→ AI 也**不要**额外做删除或清目录动作，不要用 `rm -rf` 删技能目录。
+安装或升级不得额外删除、清空学员目录。源码与 zip 必须同时更新；只更新其中一个，不算同步完成。
 
-## 待办清单（下一批 · 2026-09-12 重新核对后更新）
+## 链接稳定性
 
-> ⚠️ **判据修正**：不能只看「仓库里 SKILL.md 的版本」就以为同步完了——**学员装的是 zip**。仓库源码更新 ≠ 分发包更新，**zip 必须重打**。下面按「源码是否已同步」和「zip 是否已重打」两栏分开记。
-
-| 技能名 | 电脑端真源 | 仓库源码 | zip 分发包 | 状态 |
-|:---|:---|:---|:---|:---|
-| qinpei-wechat-trust | 2.3.7-student | ✅ | ✅ | ✅ 已完成（入口补强 + 一句话升级） |
-| qinpei-business-check | 3.1.0 | ✅ | ✅ | ✅ 已完成（一句一签对话协议） |
-| qinpei-salon-ops-trust | 2.1.5 | ✅ | ✅ | ✅ 已完成（手工合并，剥离差异仍在） |
-| qinpei-ip-diagnosis | 4.1.1 | ✅ | ✅ | ✅ 已完成（含一句话升级） |
-| qinpei-community-ops-trust | 3.3.5 | ✅ | ✅ | ✅ 已完成（入口修复 + 画像路径 + 一句话升级） |
-| qinpei-storytelling | 2.0.3 | 2.0.3 ✅ | ✅ 2.0.3 | ✅ 已完成（补一句话升级章节） |
-| qinpei | 1.5.4 | 1.5.4 ✅ | ✅ 1.5.4 | ✅ 已完成（补一句话升级章节） |
-| qinpei-profile | 1.1.4 | 1.1.4 ✅ | ✅ 1.1.4 | ✅ 已完成（补一句话升级章节） |
-
-**核对方法（每次推之前跑一遍）**：取 `skills-catalog.md` 的版本列 → 与 `skillhub-zips/*.zip` 内 SKILL.md 的 version 逐一比对 → 再与电脑端真源比对。**两个都比，缺一个都不算同步。**
-**🔴 判据铁律：仓库源码更新 ≠ 学员能装到新版。学员装的是 zip。zip 没重打 = 没更新。**
-
----
-
-## 🔒 链接稳定性（2026-09-12 起）
-
-**学员手里已发出去的 5 条安装页链接 + 文库链接，永远不需要重发**——更新内容只改文件字节，不动目录名与文件名，链接天然不变（已实操验证 3 次）。
-
-🔴 **四条红线（动一条链接就废）**：
-1. 不许改 `技能安装页/<目录>` 的目录名
-2. 不许改 zip 文件名（别加版本号）
-3. 不许改 `install-one.md` 的文件名
-4. 不许把引用换成 `@tag` / `@sha`
-
-**完整交接说明见**：`~/Desktop/手机端_链接不变只换内容_交接文档_20260912.md`
+1. 不改技能目录名。
+2. 不改 zip 文件名，不在文件名中追加版本号。
+3. 不把既有引用改成固定 tag 或 commit SHA。
+4. 新安装引导以 SkillHub 为准；历史 GitHub 路径只更新内容，不随意改名。
